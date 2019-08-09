@@ -1,0 +1,60 @@
+#picker
+{
+  width: 100rpx;
+  height: 10rpx;
+}
+.page
+{
+  font-size: 25rpx;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #EEEEEE;
+}
+#image
+{
+  width: 120rpx;
+  height: 120rpx;
+}
+.weui-grid
+{
+  width: 20%;
+  border: 0rpx;
+  padding: 3rpx;
+}
+.title
+{
+  font-size: 20rpx;
+}
+.page__bd
+{
+  padding: 30rpx;
+
+}
+.grids_block
+{
+  border-radius: 30rpx;
+  border: 3rpx white solid;
+  background-color: white;
+}
+
+.srcoll_view{
+  position: absolute; top:16rpx;
+  height: 100rpx; margin-left: 0px;
+  font-size: 30rpx; font-weight: 550;
+  white-space: nowrap;
+  color: gray;
+  animation:myfirst 8s linear infinite;
+  }
+  @keyframes myfirst{
+  0% {margin-left:600rpx;margin-top: 10rpx;} 100% {margin-left:-1000rpx;margin-top: 10rpx;}
+  }
+  .head_bar
+  {
+    height:100rpx;
+    margin-top:20rpx;
+    border-bottom-left-radius: 30rpx;
+    border-bottom-right-radius: 30rpx;
+    background-color:#0080ff;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }

@@ -1,0 +1,53 @@
+<view class="page">
+		<view class="page__hd">
+				<view class="head_bar">
+						<picker mode="region" style="margin-left:20rpx;" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+								<view style="display:flex;flex-direction:row;align-items: center;">
+										<view class="picker" style="font-size:30rpx;color: white;">{{region[1]}}</view>
+										<image style="width:30rpx;height:30rpx;" src="/pages/image/UI/dwxlj.png" />
+								</view>
+						</picker>
+				</view>
+		</view>
+		<view class="page__bd">
+				<!-- <view style="width:100%;height:40rpx;background-color:white;margin-top:20rpx;">
+						<view class="srcoll_view">1231231222222222222222222222222222222222222</view>
+				</view> -->
+				<view class="weui-grids grids_block" style="margin-top:20rpx;">
+						<block wx:for="{{zymk}}" wx:for-item="item" wx:key="index">
+								<navigator url="{{item.nav}}" class="weui-grid" hover-class="weui-grid_active">
+										<image class="weui-grid__icon image" mode="widthFix" src="{{item.img}}" />
+										<view class="weui-grid__label title">{{item.title}}</view>
+								</navigator>
+						</block>
+				</view>
+				<view class="grids_block" style="margin-top:20rpx;">
+						<view style="display:flex;flex-direction:column;">
+								<view style="display:flex;flex-direction:row;align-items:center;justify-content: flex-start;  border-bottom: 3rpx #0080ff solid;">
+										<image src="/pages/image/UI/zdgbjzy.png" style="width:60rpx;height:60rpx;" />
+										<text style="text-color:blue;">钟点保洁直约</text>
+								</view>
+								<view class></view>
+								<view style="display:flex;flex-direction:row;align-items: center;justify-content: flex-start;">
+										<image src="/pages/image/UI/zdgbjzy.png" style="width:150rpx;height:150rpx;padding-right:8rpx;border-right: 3rpx #0080ff solid;" />
+										<image src="/pages/image/UI/ry.png" style="width:150rpx;height:150rpx;" />
+										<text style="color:blue;">{{zytext}}</text>
+								</view>
+						</view>
+				</view>
+				<view class="weui-grids grids_block" style="display:flex;flex-direction:column;margin-top:20rpx;">
+						<view style="display:flex;flex-direction:row;align-items:center;justify-content: flex-start;  border-bottom: 3rpx #0080ff solid;">
+								<image src="/pages/image/UI/jsyy.png" style="width:60rpx;height:60rpx;" />
+								<text style="text-color:blue;">极速直约</text>
+						</view>
+						<view>
+								<block wx:for="{{zszy}}" wx:for-item="item" wx:key="index">
+										<navigator url="{{item.nav}}" class="weui-grid" hover-class="weui-grid_active">
+												<image class="weui-grid__icon image" mode="widthFix" src="{{item.img}}" />
+												<view class="weui-grid__label title">{{item.title}}</view>
+										</navigator>
+								</block>
+						</view>
+				</view>
+		</view>
+</view>
