@@ -5,19 +5,19 @@ Component({
     selectedColor: "#0080ff",
     list: [
       {
-        pagePath: "index",
+        pagePath: "../index/index",
         text: "首页",
         iconPath: "/image/UI/sy.png",
         selectedIconPath: "/image/UI/sy.png"
       },
       {
-        pagePath: "direct",
+        pagePath: "../direct/direct",
         text: "保洁直约",
         iconPath: "/image/UI/bjzy.png",
         selectedIconPath: "/image/UI/bjzy.png"
       },
       {
-        pagePath: "my",
+        pagePath: "../my/my",
         text: "我的",
         iconPath: "/image/UI/wd.png",
         selectedIconPath: "/image/UI/wd.png"

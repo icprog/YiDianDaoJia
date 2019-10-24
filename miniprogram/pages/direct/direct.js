@@ -15,19 +15,6 @@ Page({
   },
   onLoad: function(e) {
     this.loadZdg()
-    wx.getSetting({
-      success: function(res) {
-        if (res.authSetting['scope.userInfo']) {
-          wx.getUserInfo({
-            withCredentials: true,
-            success: function(res) {
-              console.log(res)
-              app.globalData.yhxx = res.userInfo;
-            }
-          });
-        }
-      }
-    });
     //载入数据
     if (app.globalData.region[1] === "选择地区") {
       app.getPosition().then(res => {

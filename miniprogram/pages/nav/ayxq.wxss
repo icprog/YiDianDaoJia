@@ -8,3 +8,9 @@
     width:20rpx;
     height:40rpx;
 }
+.weui-grid
+{
+    padding:2px 2px;
+    border-right: 0;
+    border-top:1rpx solid #d9d9d9;
+}

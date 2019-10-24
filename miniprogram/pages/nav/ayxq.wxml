@@ -1,26 +1,44 @@
-<!--pages/nav/ayxq.wxml-->
-<view style="display: flex;flex-direction: column;height:100%">
-  <view style="width:100%; display:flex;flex-direction:row;align-items:center;justify-content:center; margin-bottom:15rpx;margin-top:10rpx;font-size: 25rpx;">
-    <image style="width:100rpx;height:100rpx;border: 3rpx #0080ff solid;border-radius:100rpx" mode="aspectFit" src="{{zdg.tx}}" />
-    <view style="margin-left:30rpx">
-      <view style="display:flex;flex-direction:row;">
-        <text style="font-size:30rpx">{{zdg.xm}}</text>
-        <text style="border: 3rpx red solid;margin-left:15rpx;color:red;margin-left: auto;">{{zdg.jg}}元/小时</text>
-      </view>
-      <view style="display:flex;flex-direction:row;">
-        <text>{{zdg.xb}}</text>
-        <text style="margin-left:15rpx;">{{zdg.nl}}岁</text>
-        <text style="margin-left:15rpx;">{{zdg.dd}}</text>
-      </view>
-      <view style="display:flex;flex-direction:row;align-items:center;justify-content:space-between">
-        <block wx:for="{{stars}}" wx:for-item="item_xj" wx:key="index">
-          <image class="star-image" src="{{zdg.xj > item_xj ? (zdg.xj-item_xj>0.5 ? selectedSrc:halfSrc) : normalSrc}}">
-          </image>
-        </block>
-        <text style="margin-left:10rpx;width:70rpx;">{{zdg.xj}} 分</text>
-        <text style="margin-left:10rpx;width:120rpx;">服务 {{zdg.fwcs}} 次</text>
-        <text style="margin-left:10rpx;width:140rpx;">距离 {{zdg.jl}} km</text>
-      </view>
+<!-- pages/nav/ayxq.wxml -->
+<view style="display:flex;margin-left:20rpx;align-items:center">
+  <image style="width:100rpx;height:100rpx;border: 3rpx #0080ff solid;border-radius:100rpx" mode="aspectFit"
+    src="{{zdg.tx}}" />
+  <view style="margin-left:30rpx">
+    <view style="display:flex;flex-direction:row;">
+      <text style="font-size:30rpx">{{zdg.xm}}</text>
+    </view>
+    <view style="display:flex;flex-direction:row;">
+      <text>{{zdg.xb}}</text>
+      <text style="margin-left:15rpx;">{{zdg.nl}}岁</text>
+      <text style="margin-left:15rpx;">{{zdg.dd}}</text>
+    </view>
+    <view style="display:flex;flex-direction:row;align-items:center;">
+      <block wx:for="{{stars}}" wx:for-item="item_xj" wx:key="index">
+        <image class="star-image" src="{{zdg.xj > item_xj ? (zdg.xj-item_xj>0.5 ? selectedSrc:halfSrc) : normalSrc}}">
+        </image>
+      </block>
+      <text style="margin-left:10rpx;width:70rpx;">{{zdg.xj}} 分</text>
     </view>
   </view>
+  <view style="margin-left:auto;margin-right: 15rpx;">
+    <button size="mini">关注</button>
+  </view>
+</view>
+<view>
+  <view  class="weui-grid">
+    <text class="weui-grid__label" style="text-align:center">1</text>
+    <text class="weui-grid__label">服务次数</text>
+  </view>
+  <view class="weui-grid">
+    <text class="weui-grid__label" >99%</text>
+    <text class="weui-grid__label">好评率</text>
+  </view>
+  <view class="weui-grid">
+    <text class="weui-grid__label" >1</text>
+    <text class="weui-grid__label">粉丝数</text>
+  </view>
+</view>
+<view>
+  <block wx:for="{{pj}}" wx:for-item="item_pj" wx:key="index">
+
+    </block>
 </view>

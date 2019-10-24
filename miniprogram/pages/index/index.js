@@ -88,7 +88,7 @@ Page({
   },
   directNav:function(e)
   {
-    wx.switchTab({ url:'direct' })
+    wx.switchTab({ url:'../direct/direct' })
   },
   onLoad: function() {
     if (app.globalData.region[1] === "选择地区") {

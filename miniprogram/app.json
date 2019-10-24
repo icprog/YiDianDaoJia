@@ -1,12 +1,12 @@
 {
   "pages": [
-    "pages/index",
-    "pages/direct",
+    "pages/nav/ayxq",
+    "pages/index/index",
+    "pages/direct/direct",
     "pages/nav/xdyy",
-    "pages/my",
+    "pages/my/my",
     "pages/nav/fw",
-    "template/dz",
-    "pages/nav/ayxq"
+    "template/dz"
   ],
   "permission": {
     "scope.userLocation": {
@@ -31,15 +31,15 @@
     "custom": true,
     "list": [
       {
-        "pagePath": "pages/index",
+        "pagePath": "pages/index/index",
         "text": "首页"
       },
       {
-        "pagePath": "pages/direct",
+        "pagePath": "pages/direct/direct",
         "text": "保洁直约"
       },
       {
-        "pagePath": "pages/my",
+        "pagePath": "pages/my/my",
         "text": "我的"
       }
     ]
