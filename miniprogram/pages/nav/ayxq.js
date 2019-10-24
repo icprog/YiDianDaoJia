@@ -1,4 +1,5 @@
 // pages/nav/zyxd.js
+let app = getApp();
 Page({
 
   /**
@@ -10,7 +11,79 @@ Page({
     selectedSrc: '/image/UI/selected.png',
     halfSrc: '/image/UI/half.png',
     zdg: {},
-    pj: [],
+    scroll_height: app.globalData.scroll_height,
+    pj: [{
+      "pjbh": "11234",//评价唯一编号
+      "khzh": 1234,//客户账号
+      "pjsj": "2019-10-10 20:30",//评价时间
+      "pjnr": "评价内容",//评价内容
+      "pjdj": "满意",
+    },
+    {
+      "pjbh": "11234",//评价唯一编号
+      "khzh": 1234,//客户账号
+      "pjsj": "2019-10-10 20:30",//评价时间
+      "pjnr": "很好哈哈哈哈哈哈哈哈哈",//评价内容
+      "pjdj": "满意",
+    },
+    {
+      "pjbh": "11234",//评价唯一编号
+      "khzh": 1234,//客户账号
+      "pjsj": "2019-10-10 20:30",//评价时间
+      "pjnr": "评价内容",//评价内容
+      "pjdj": "满意",
+    },
+    {
+      "pjbh": "11234",//评价唯一编号
+      "khzh": 1234,//客户账号
+      "pjsj": "2019-10-10 20:30",//评价时间
+      "pjnr": "评价内容",//评价内容
+      "pjdj": "满意",
+    },
+    {
+      "pjbh": "11234",//评价唯一编号
+      "khzh": 1234,//客户账号
+      "pjsj": "2019-10-10 20:30",//评价时间
+      "pjnr": "评价内容",//评价内容
+      "pjdj": "满意",
+    },
+    {
+      "pjbh": "11234",//评价唯一编号
+      "khzh": 1234,//客户账号
+      "pjsj": "2019-10-10 20:30",//评价时间
+      "pjnr": "评价内容",//评价内容
+      "pjdj": "满意",
+    },
+    {
+      "pjbh": "11234",//评价唯一编号
+      "khzh": 1234,//客户账号
+      "pjsj": "2019-10-10 20:30",//评价时间
+      "pjnr": "评价内容",//评价内容
+      "pjdj": "满意",
+    },
+    {
+      "pjbh": "11234",//评价唯一编号
+      "khzh": 1234,//客户账号
+      "pjsj": "2019-10-10 20:30",//评价时间
+      "pjnr": "评价内容",//评价内容
+      "pjdj": "满意",
+    },
+    {
+      "pjbh": "11234",//评价唯一编号
+      "khzh": 1234,//客户账号
+      "pjsj": "2019-10-10 20:30",//评价时间
+      "pjnr": "评价内容",//评价内容
+      "pjdj": "满意",
+    },
+    {
+      "pjbh": "11234",//评价唯一编号
+      "khzh": 1234,//客户账号
+      "pjsj": "2019-10-10 20:30",//评价时间
+      "pjnr": "评价内容",//评价内容
+      "pjdj": "满意",
+    }
+    ]
+    ,
     sl: 1
   },
 
@@ -48,22 +121,22 @@ Page({
         }
       }
     )
-    wx.request({
-      url: 'http://www.panzongyan.cn/wxchat/module2/mtpl',
-      method: 'post',
-      data: {
-        "useruuid": "xxx",//身份验证
-        "type": "get",//发送数据的类型为获取
-        "aybh": that.data.zdg.id,//阿姨编号
-        "content": "zdgkhpj",//内容
-        "script": "钟点工客户评价",//描述
-      },
-      success: function (res) {
-        if (res.statusCode === 200) {
-          console.log(res.data)
-        }
-      },
-    })
+    // wx.request({
+    //   url: 'http://www.panzongyan.cn/wxchat/module2/mtpl',
+    //   method: 'post',
+    //   data: {
+    //     "useruuid": "xxx",//身份验证
+    //     "type": "get",//发送数据的类型为获取
+    //     "aybh": that.data.zdg.id,//阿姨编号
+    //     "content": "zdgkhpj",//内容
+    //     "script": "钟点工客户评价",//描述
+    //   },
+    //   success: function (res) {
+    //     if (res.statusCode === 200) {
+    //       console.log(res.data)
+    //     }
+    //   },
+    // })
   },
   handleChange: function (options) {
     this.setData({
