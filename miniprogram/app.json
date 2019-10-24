@@ -1,0 +1,48 @@
+{
+  "pages": [
+    "pages/index",
+    "pages/direct",
+    "pages/nav/xdyy",
+    "pages/my",
+    "pages/nav/fw",
+    "template/dz",
+    "pages/nav/ayxq"
+  ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "您的位置信息将用于位置确认"
+    }
+  },
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "易点到家",
+    "navigationBarBackgroundColor": "white",
+    "navigationStyle": "default",
+    "backgroundColor": "white"
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "connectSocket": 10000,
+    "uploadFile": 10000,
+    "downloadFile": 10000
+  },
+  "debug": true,
+  "tabBar": {
+    "custom": true,
+    "list": [
+      {
+        "pagePath": "pages/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/direct",
+        "text": "保洁直约"
+      },
+      {
+        "pagePath": "pages/my",
+        "text": "我的"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

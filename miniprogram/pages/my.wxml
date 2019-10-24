@@ -1,0 +1,97 @@
+<view class="page">
+  <view class="page__hd">
+    <view class="head_bar" style="display:flex; justify-content:space-between; ">
+      <button wx:if="{{!hasLogin}}" class="login_btn" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo">登录</button>
+      <view wx:else style="display:flex; flex-direction:row;align-items:center">
+        <image style="width:60rpx;height:60rpx;border: 3rpx ##0080ee solid;border-radius:100rpx;margin-right:5rpx" src="{{tx}}"></image>
+        <view style="display:flex;flex-direction:column;padding:10rpx;font-size:25rpx;color:white">
+          <text>{{wxnc}}</text>
+          <text>{{sjh}}</text>
+        </view>
+      </view>
+      <view style="height:100%;display:flex;flex-direction:row;align-items:center;">
+        <image style="height:100%;width: 40px;" mode="aspectFit" src="/image/UI/sz.png"></image>
+        <image style="height:100%;width: 40px;" mode="aspectFit" src="/image/UI/dxkf.png"></image>
+      </view>
+    </view>
+  </view>
+  <view class="page__bd">
+    <view class="grids_block" style="margin-top:20rpx;">
+      <text>我的订单</text>
+      <view>
+        <navigator url="" class="weui-grid" hover-class="weui-grid_active">
+          <image class="weui-grid__icon" mode="widthFix" src="/image/dd/ddqb.png" />
+          <text class="weui-grid__label title">全部</text>
+        </navigator>
+        <navigator url="" class="weui-grid" hover-class="weui-grid_active">
+          <image class="weui-grid__icon" mode="widthFix" src="/image/dd/dddfk.png" />
+          <text class="weui-grid__label title">待付款</text>
+        </navigator>
+        <navigator url="" class="weui-grid" hover-class="weui-grid_active">
+          <image class="weui-grid__icon" mode="widthFix" src="/image/dd/ddyy.png" />
+          <text class="weui-grid__label title">预约</text>
+        </navigator>
+        <navigator url="" class="weui-grid" hover-class="weui-grid_active">
+          <image class="weui-grid__icon" mode="widthFix" src="/image/dd/ddycg.png" />
+          <text class="weui-grid__label title">已完成</text>
+        </navigator>
+        <navigator url="" class="weui-grid" hover-class="weui-grid_active">
+          <image class="weui-grid__icon" mode="widthFix" src="/image/dd/dddpj.png" />
+          <text class="weui-grid__label title">待评价</text>
+        </navigator>
+      </view>
+    </view>
+    <view style="border: 3rpx white solid;background-color: white;margin-top:20rpx;display:flex;flex-direction:row;justify-content:space-between;padding-left:20rpx;padding-right:20rpx">
+      <navigator url="" class="weui-grid" hover-class="weui-grid_active">
+        <text class="weui-grid__label title" style="color:red;text-align:center">1</text>
+        <text class="weui-grid__label title">购物车</text>
+      </navigator>
+      <navigator url="" class="weui-grid" hover-class="weui-grid_active">
+        <text class="weui-grid__label title" style="color:red">2</text>
+        <text class="weui-grid__label title">关注服务</text>
+      </navigator>
+      <navigator url="" class="weui-grid" hover-class="weui-grid_active">
+        <text class="weui-grid__label title" style="color:red">3</text>
+        <text class="weui-grid__label title">关注服务商</text>
+      </navigator>
+    </view>
+    <view class="weui-grids grids_block" style="margin-top:20rpx;">
+      <navigator url="" class="weui-grid" hover-class="weui-grid_active">
+        <image class="weui-grid__icon" mode="widthFix" src="/image/wd/wdpj.png" />
+        <view class="weui-grid__label title">我的评价</view>
+      </navigator>
+      <navigator url="" class="weui-grid" hover-class="weui-grid_active">
+        <image class="weui-grid__icon" mode="widthFix" src="/image/wd/dzgl.png" />
+        <view class="weui-grid__label title">地址管理</view>
+      </navigator>
+      <navigator url="" class="weui-grid" hover-class="weui-grid_active">
+        <image class="weui-grid__icon" mode="widthFix" src="/image/wd/lxpt.png" />
+        <view class="weui-grid__label title">联系平台</view>
+      </navigator>
+      <navigator url="" class="weui-grid" hover-class="weui-grid_active">
+        <image class="weui-grid__icon" mode="widthFix" src="/image/wd/tszx.png" />
+        <view class="weui-grid__label title">投诉中心</view>
+      </navigator>
+      <navigator url="" class="weui-grid" hover-class="weui-grid_active">
+        <image class="weui-grid__icon" mode="widthFix" src="/image/wd/sjrz.png" />
+        <view class="weui-grid__label title">商家入驻</view>
+      </navigator>
+      <navigator url="" class="weui-grid" hover-class="weui-grid_active">
+        <image class="weui-grid__icon" mode="widthFix" src="/image/wd/jrzy.png" />
+        <view class="weui-grid__label title">加入直约</view>
+      </navigator>
+      <navigator url="" class="weui-grid" hover-class="weui-grid_active">
+        <image class="weui-grid__icon" mode="widthFix" src="/image/wd/yhxy.png" />
+        <view class="weui-grid__label title">用户协议</view>
+      </navigator>
+      <navigator url="" class="weui-grid" hover-class="weui-grid_active">
+        <image class="weui-grid__icon" mode="widthFix" src="/image/wd/yszc.png" />
+        <view class="weui-grid__label title">隐私政策</view>
+      </navigator>
+      <navigator url="" class="weui-grid" hover-class="weui-grid_active">
+        <image class="weui-grid__icon" mode="widthFix" src="/image/wd/gywm.png" />
+        <view class="weui-grid__label title">关于我们</view>
+      </navigator>
+    </view>
+  </view>
+</view>
