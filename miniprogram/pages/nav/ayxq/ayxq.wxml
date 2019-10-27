@@ -1,5 +1,6 @@
 <!-- pages/nav/ayxq.wxml -->
 <view style="display:flex;margin-left:20rpx;align-items:center">
+<i-message id="message" />
   <image style="width:100rpx;height:100rpx;border: 3rpx #0080ff solid;border-radius:100rpx" mode="aspectFit"
     src="{{zdg.tx}}" />
   <view style="margin-left:30rpx">
@@ -19,8 +20,11 @@
       <text style="margin-left:10rpx;width:90rpx;">{{zdg.xj}}分</text>
     </view>
   </view>
-  <view style="margin-left:auto;margin-right: 15rpx;">
-    <button size="mini">关注</button>
+  <view wx:if="{{isFans}}" style="margin-left:auto;margin-right: 15rpx;">
+    <button bindtap="isfan" size="mini">关注</button>
+  </view>
+   <view wx:else style="margin-left:auto;margin-right: 15rpx;">
+    <button bindtap="notFan" size="mini"  type="warn">取消关注</button>
   </view>
 </view>
 <view>
@@ -37,9 +41,9 @@
     <text class="weui-grid__label">粉丝数</text>
   </view>
 </view>
-<scroll-view scroll-y style="height:400rpx">
+<scroll-view scroll-y style="height:{{scroll_height}}rpx">
     <block wx:for="{{pj}}" wx:for-item="item_pj" wx:key="index">
-      <view style="margin: 15rpx 15rpx 15rpx 50rpx;border-top:1rpx solid #d9d9d9;">
+      <view style="margin: 15rpx 15rpx 15rpx 50rpx;">
         <view>
           <text>{{item_pj.khzh}}</text>
         </view>
@@ -51,5 +55,5 @@
     </block>
   </scroll-view>
 <view style="position: fixed;bottom: 15rpx;width: 100%;text-align: center;">
-  <button size="mini" style="background: #0080ff;color: white;border-radius: 40rpx;margin:0 auto;width: 400rpx;">预约下单</button>
+  <button bindtap="order" size="mini" style="background: #0080ff;color: white;border-radius: 40rpx;margin:0 auto;width: 400rpx;">预约下单</button>
 </view>

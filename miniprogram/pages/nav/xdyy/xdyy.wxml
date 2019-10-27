@@ -63,14 +63,14 @@
     </view>
   </view>
   <text style="margin-left:30rpx;font-size: 25rpx;margin-top:10rpx;">温馨提示：</text>
-  <view style="border-top:2px solid #0080ff;position: fixed;bottom: 0;height: 100rpx;width:100%">
-    <view style="display:flex;flex-direction:row;height:100%">
-      <view style="width:50%;height:100%;border-right:2px solid #0080ff;text-align:center;">
+  <view style="border-top:2px solid #0080ff;position: fixed;bottom: 0;height: 100rpx;width:100%;text-align:center;">
+    <view style="display:flex;flex-direction:row;height:100%;align-items:center;background-color:#0080ff;">
+      <view style="width:50%;border-right:2px;solid #0080ff;background-color:#FFF;">
         <text style="font-size: 30rpx;">订单金额：</text>
-        <text style="font-size: 30rpx;color:red">{{zdg.jg*sl}}</text>
+        <text style="font-size: 30rpx;color:red;">{{zdg.jg*sl}}</text>
       </view>
-      <view bindtap="order" style="width:50%;height:100%; text-align:center;background-color:#0080ff;">
-        <text style="font-size: 30rpx; color:white">下单预约</text>
+      <view bindtap="order" style="width:50%;">
+        <text style="font-size: 30rpx; color:white;">下单预约</text>
       </view>
     </view>
   </view>

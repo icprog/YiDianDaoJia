@@ -73,7 +73,6 @@
   .login_btn
   {
     background-color: rgba(255,255,255,0);
-    border-radius:50rpx;
     border: solid white 1px;
     margin: 5rpx;
     color: white;

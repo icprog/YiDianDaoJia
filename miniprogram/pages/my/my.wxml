@@ -1,12 +1,12 @@
 <view class="page">
   <view class="page__hd">
+  <i-message id="message" />
     <view class="head_bar" style="display:flex; justify-content:space-between; ">
       <button wx:if="{{!hasLogin}}" class="login_btn" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo">登录</button>
       <view wx:else style="display:flex; flex-direction:row;align-items:center">
-        <image style="width:60rpx;height:60rpx;border: 3rpx ##0080ee solid;border-radius:100rpx;margin-right:5rpx" src="{{tx}}"></image>
+        <image style="width:60rpx;height:60rpx;border: 3rpx ##0080ee solid;border-radius:100rpx;margin-right:5rpx" src="{{wxtx}}"></image>
         <view style="display:flex;flex-direction:column;padding:10rpx;font-size:25rpx;color:white">
           <text>{{wxnc}}</text>
-          <text>{{sjh}}</text>
         </view>
       </view>
       <view style="height:100%;display:flex;flex-direction:row;align-items:center;">
@@ -60,7 +60,7 @@
         <image class="weui-grid__icon" mode="widthFix" src="/image/wd/wdpj.png" />
         <view class="weui-grid__label title">我的评价</view>
       </navigator>
-      <navigator url="" class="weui-grid" hover-class="weui-grid_active">
+      <navigator url="/pages/dzgl/index" class="weui-grid" hover-class="weui-grid_active">
         <image class="weui-grid__icon" mode="widthFix" src="/image/wd/dzgl.png" />
         <view class="weui-grid__label title">地址管理</view>
       </navigator>

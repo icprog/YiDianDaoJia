@@ -1,12 +1,8 @@
 <view class="page">
   <view class="page__hd">
+    <i-message id="message" />
     <view class="head_bar" style="display:flex; justify-content:space-between; ">
-      <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
-        <view style="display:flex;flex-direction:row;align-items: center;">
-          <view class="picker" style="font-size:30rpx;color: white;">{{region[1]}}</view>
-          <image style="width:30rpx;height:30rpx;" src="/image/UI/dwxlj.png" />
-        </view>
-      </picker>
+    <view></view>
       <view style="height:100%;display:flex;flex-direction:row;align-items:center;">
         <image style="height:100%;width: 40px;" mode="aspectFit" src="/image/UI/gwc.png"></image>
         <image style="height:100%;width: 40px;" mode="aspectFit" src="/image/UI/dxkf.png"></image>
@@ -17,14 +13,6 @@
     <view>
     </view>
     <view class="grids_block" style=" border-radius: 0rpx;">
-      <view style="font-size:30rpx;display:flex;display-direction:row;justify-content:space-between;margin-bottom:15rpx">
-        <navigator style="margin-left:60rpx;width:180rpx;text-align:center">
-          <text style="padding:10rpx;text-align:center">直约服务商</text>
-        </navigator>
-        <navigator style="margin-right:60rpx;width:180rpx;text-align:center">
-          <text style="padding:10rpx;">服务详情</text>
-        </navigator>
-      </view>
       <view style="font-size:30rpx;display:flex;display-direction:row;justify-content:space-between;margin-bottom:15rpx;padding:10rpx">
         <view data-type="xj" hover-class="weui-grid_active">
           <text style="padding:10rpx">评分最高</text>
@@ -36,23 +24,23 @@
           <text style="padding:10rpx">价格最低</text>
         </view>
       </view>
-      <scroll-view scroll-y style="height: {{scroll_height}}px;">
+      <scroll-view scroll-y style="height: {{scroll_height}}rpx;">
         <block wx:for="{{zdg}}" wx:for-item="item_zdg" wx:key="index">
           <view style="width:100%; display:flex;flex-direction:row;align-items:center;margin-bottom:15rpx;padding-left:10rpx">
             <image style="width:100rpx;height:100rpx;border: 3rpx #0080ff solid;border-radius:100rpx" mode="aspectFit" src="{{item_zdg.img}}" />
             <view style="margin-left:30rpx">
               <view style="display:flex;flex-direction:row;">
-                <text style="font-size:30rpx">{{item_zdg.name}}</text>
-                <text style="border: 3rpx black solid;margin-left:15rpx;">{{item_zdg.price}}元/小时</text>
-                <navigator url="/pages/nav/ayxq?id={{item_zdg.id}}&xm={{item_zdg.name}}&xb={{item_zdg.sex}}&nl={{item_zdg.age}}&xj={{item_zdg.xj}}&fwcs={{item_zdg.serve_num}}&jl={{item_zdg.jl}}&tx={{item_zdg.img}}&jg={{item_zdg.price}}&title=了解更多" style="margin-left: auto;padding-left:10rpx;padding-right:10rpx;">
+                <text style="font-size:30rpx">{{item_zdg.xm}}</text>
+                <text style="border: 3rpx black solid;margin-left:15rpx;">{{item_zdg.jg}}元/小时</text>
+                <navigator url="/pages/nav/ayxq/ayxq?id={{item_zdg.bh}}&xm={{item_zdg.xm}}&xb={{item_zdg.sex}}&nl={{item_zdg.nl}}&xj={{item_zdg.xj}}&fwcs={{item_zdg.fwcs}}&jl={{item_zdg.jl}}&tx={{item_zdg.img}}&jg={{item_zdg.jg}}&title=了解更多&fss={{item_zdg.fss}}&fwcs={{item_zdg.fwcs}}&hpl={{item_zdg.hpl}}" style="margin-left: auto;padding-left:10rpx;padding-right:10rpx;">
                   <text style="font-size:23rpx">了解更多</text>
                 </navigator>
               </view>
               <view style="display:flex;flex-direction:row;">
                 <text>{{item_zdg.sex}}</text>
-                <text style="margin-left:15rpx;">{{item_zdg.age}}岁</text>
-                <text style="margin-left:15rpx;">{{item_zdg.place}}</text>
-                <navigator url="/pages/nav/xdyy?id={{item_zdg.id}}&xm={{item_zdg.name}}&xb={{item_zdg.sex}}&nl={{item_zdg.age}}&xj={{item_zdg.xj}}&fwcs={{item_zdg.serve_num}}&jl={{item_zdg.jl}}&tx={{item_zdg.img}}&jg={{item_zdg.price}}&title=下单预约" style="margin-left: auto;background-color:#0080ff;border-radius:30rpx;padding-left:10rpx;padding-right:10rpx;">
+                <text style="margin-left:15rpx;">{{item_zdg.nl}}岁</text>
+                <text style="margin-left:15rpx;">{{item_zdg.dd}}</text>
+                <navigator url="/pages/nav/xdyy/xdyy?id={{item_zdg.bh}}&xm={{item_zdg.xm}}&xb={{item_zdg.sex}}&nl={{item_zdg.nl}}&xj={{item_zdg.xj}}&fwcs={{item_zdg.fwcs}}&jl={{item_zdg.jl}}&tx={{item_zdg.img}}&jg={{item_zdg.jg}}&title=下单预约" style="margin-left: auto;background-color:#0080ff;border-radius:30rpx;padding-left:10rpx;padding-right:10rpx;">
                   <text style="color:white;font-size:23rpx">下单预约</text>
                 </navigator>
               </view>
@@ -64,7 +52,7 @@
                   </image>
                 </block>
                 <text style="margin-left:10rpx;width:70rpx;">{{item_zdg.xj}} 分</text>
-                <text style="margin-left:10rpx;width:120rpx;">服务 {{item_zdg.serve_num}} 次</text>
+                <text style="margin-left:10rpx;width:120rpx;">服务 {{item_zdg.fwcs}} 次</text>
                 <text style="margin-left:10rpx;width:140rpx;">距离 {{item_zdg.jl}} km</text>
               </view>
             </view>

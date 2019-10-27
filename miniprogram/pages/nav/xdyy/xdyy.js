@@ -1,6 +1,6 @@
 // pages/nav/zyxd.js
 let app = getApp();
-const { $Message } = require('../../iview/base/index');
+const { $Message } = require('../../../iview/base/index');
 Page({
 
   /**
@@ -27,12 +27,12 @@ Page({
     })
     this.setData({
       zdg: {
-        id: options.id,
+        bh: options.bh, //编号
         xm: options.xm, //姓名
         jg: options.jg, //价格
         xb: options.xb, //性别
         nl: options.nl, //年龄
-        dd: "", //地点
+        dd: options.dd, //地点
         xj: options.xj, //星级
         fwcs: options.fwcs, //服务次数
         jl: options.jl, //距离
@@ -45,7 +45,7 @@ Page({
       url: 'http://www.panzongyan.cn/wxchat/login/hqdz',
       method: 'post',
       data: {
-        useruuid: "ozi5W47CX8DYHQ6wE_g6P0U6TBc4",
+        openid: app.globalData.openid,//身份验证
         type: "get",
         content: "dzxx",
         script: "地址信息"

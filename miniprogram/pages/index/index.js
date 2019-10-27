@@ -84,29 +84,24 @@ Page({
     this.setData({
       region: e.detail.value
     });
-    app.globalData.region = e.detail.value;
   },
   directNav:function(e)
   {
     wx.switchTab({ url:'../direct/direct' })
   },
   onLoad: function() {
-    if (app.globalData.region[1] === "选择地区") {
-      app.getPosition().then(res => {
-        app.globalData.region = res;
-        this.setData({
-          region: app.globalData.region
-        })
-      });
-    } else {
-      this.setData({
-        region: app.globalData.region
-      })
-    }
     let that = this
+    this.getPosition().then(res => {
+      console.log(res)
+      this.setData({
+        region: res
+      })
+    });
     wx.request({
       url: 'http://www.panzongyan.cn/wxchat/module2/gdt',
       method: 'get',
+      data:{
+      },
       success: function(res) {
         if (res.statusCode === 200) {
           console.log(res.data)
@@ -119,5 +114,35 @@ Page({
         }
       }
     })
+  },
+  getPosition: function () {
+    return new Promise((resolve, reject) => {
+      let app = this;
+      wx.getLocation({
+        type: 'gcj02', //返回可以用于wx.openLocation的经纬度
+        success(res) {
+          var getAddressUrl = "https://apis.map.qq.com/ws/geocoder/v1/?location=" + res.latitude + "," + res.longitude + "&key=3G2BZ-YAT3F-4CJJP-NYDUW-G5KXH-EZFT5";
+          wx.request({
+            url: getAddressUrl,
+            success: res => {
+              if (res.statusCode != 200) {
+                reject(res);
+              }
+              else {
+                let reg = [
+                  res.data.result.address_component.province,
+                  res.data.result.address_component.city,
+                  res.data.result.address_component.district
+                ];
+                resolve(reg);
+              }
+            },
+            fail(res) {
+              reject(["", "选择地区"]);
+            }
+          });
+        }
+      })
+    });
   }
 });

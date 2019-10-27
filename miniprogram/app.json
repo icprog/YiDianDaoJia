@@ -1,11 +1,13 @@
 {
   "pages": [
-    "pages/nav/ayxq",
     "pages/index/index",
+    "pages/dzgl/index",
     "pages/direct/direct",
-    "pages/nav/xdyy",
+    "pages/address-add/index",
+    "pages/nav/ayxq/ayxq",
+    "pages/nav/xdyy/xdyy",
+    "pages/nav/fw/fw",
     "pages/my/my",
-    "pages/nav/fw",
     "template/dz"
   ],
   "permission": {
@@ -16,7 +18,7 @@
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "易点到家",
-    "navigationBarBackgroundColor": "white",
+    "navigationBarBackgroundColor": "#FFF",
     "navigationStyle": "default",
     "backgroundColor": "white"
   },
