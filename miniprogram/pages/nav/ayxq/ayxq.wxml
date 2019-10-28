@@ -9,8 +9,8 @@
     </view>
     <view style="display:flex;flex-direction:row;">
       <text>{{zdg.xb}}</text>
-      <text style="margin-left:15rpx;">{{zdg.nl}}岁</text>
-      <text style="margin-left:15rpx;">{{zdg.dd}}</text>
+      <text style="margin-right:15rpx;">{{zdg.nl}}岁</text>
+      <text>{{zdg.dd}}</text>
     </view>
     <view style="display:flex;flex-direction:row;align-items:center;">
       <block wx:for="{{stars}}" wx:for-item="item_xj" wx:key="index">

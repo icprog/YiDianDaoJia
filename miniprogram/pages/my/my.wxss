@@ -41,12 +41,9 @@
 }
 .grids_block
 {
-  border-radius: 30rpx;
-  border: 3rpx white solid;
+  border-radius: 10rpx;
   background-color: white;
-  padding-bottom: 20rpx;
-  padding-left: 20rpx;
-  padding-right: 20rpx;
+
 }
 
 .srcoll_view{
@@ -73,7 +70,7 @@
   .login_btn
   {
     background-color: rgba(255,255,255,0);
-    border: solid white 1px;
+    border: solid #0080ff 0px;
     margin: 5rpx;
     color: white;
     font-size: 25rpx;

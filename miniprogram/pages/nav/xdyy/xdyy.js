@@ -26,18 +26,7 @@ Page({
       title: options.title === undefined ? "" : options.title
     })
     this.setData({
-      zdg: {
-        bh: options.bh, //编号
-        xm: options.xm, //姓名
-        jg: options.jg, //价格
-        xb: options.xb, //性别
-        nl: options.nl, //年龄
-        dd: options.dd, //地点
-        xj: options.xj, //星级
-        fwcs: options.fwcs, //服务次数
-        jl: options.jl, //距离
-        tx: options.tx, //头像
-      }
+      zdg: JSON.parse(options.item)
     })
     //获取地址
     let that = this
@@ -90,7 +79,7 @@ Page({
               url: 'http://www.panzongyan.cn/wxchat/wxx/s_order',
               method: 'post',
               data: {
-                useruuid: "ozi5W47CX8DYHQ6wE_g6P0U6TBc4",
+                openid: app.globalData.openid,
                 dzbh: "1234",
                 aybh: that.data.zdg.id,
                 sl: that.data.sl,

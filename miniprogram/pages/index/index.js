@@ -79,6 +79,7 @@ Page({
     region: ["", "选择地区"],
     zytext: "1.平台服务商严选入驻服务安心\n2.平台五抽成服务商服务用心\n3.平台提供交易资金担保放心\n4.平台服务商一键对比省心",
     notice: "示例消息",
+    scroll_height:0
   },
   bindRegionChange: function(e) {
     this.setData({
@@ -91,29 +92,34 @@ Page({
   },
   onLoad: function() {
     let that = this
+    let windowHeight = wx.getSystemInfoSync().windowHeight // 屏幕的高度
+    let windowWidth = wx.getSystemInfoSync().windowWidth // 屏幕的宽度
+    this.setData({
+      scroll_height: windowHeight * 750 / windowWidth - (250) - 30
+    })
     this.getPosition().then(res => {
       console.log(res)
       this.setData({
         region: res
       })
     });
-    wx.request({
-      url: 'http://www.panzongyan.cn/wxchat/module2/gdt',
-      method: 'get',
-      data:{
-      },
-      success: function(res) {
-        if (res.statusCode === 200) {
-          console.log(res.data)
-          if(res.data.status === "success")
-          {
-            that.setData({
-              notice: res.data.gdgg
-            });
-          }
-        }
-      }
-    })
+    // wx.request({
+    //   url: 'http://www.panzongyan.cn/wxchat/module2/gdt',
+    //   method: 'get',
+    //   data:{
+    //   },
+    //   success: function(res) {
+    //     if (res.statusCode === 200) {
+    //       console.log(res.data)
+    //       if(res.data.status === "success")
+    //       {
+    //         that.setData({
+    //           notice: res.data.gdgg
+    //         });
+    //       }
+    //     }
+    //   }
+    // })
   },
   getPosition: function () {
     return new Promise((resolve, reject) => {

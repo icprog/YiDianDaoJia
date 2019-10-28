@@ -1,14 +1,25 @@
-<!--templete/dz.wxml-->
+<!-- templete/dz.wxml -->
 <template name="dz">
-<view style="display:flex;flex-direction:row;align-items:center;border-bottom:2px solid #0080ff">
-  <image src="/image/UI/dz.png" style="width:100rpx;height:100rpx;"></image>
-  <view style="display:flex;flex-direction:column;font-size:20rpx;flex:1">
-    <view><text style="font-size:25rpx;">联系人：</text><text>小白</text></view>
-    <view><text style="font-size:25rpx;">联系电话：</text><text>12341234123</text></view>
-    <view><text style="font-size:25rpx;">服务地址：</text><text>河南省郑州市xxxx</text></view>
+  <view style="display:flex;flex-direction:row;align-items:center;border-bottom:2px solid #0080ff">
+    <image src="/image/UI/dz.png" style="width:100rpx;height:100rpx;"></image>
+    <view style="display:flex;flex-direction:column;font-size:20rpx;flex:1">
+      <view>
+        <text style="font-size:25rpx;">联系人：</text>
+        <text>{{defaultItem.lxr}}</text>
+      </view>
+      <view>
+        <text style="font-size:25rpx;">联系电话：</text>
+        <text>{{defaultItem.lxdh}}</text>
+      </view>
+      <view>
+        <text style="font-size:25rpx;">服务地址：</text>
+        <text>{{defaultItem.fwdz}}</text>
+      </view>
+    </view>
+    <navigator url="/pages/dzgl/index?from=select">
+      <view>
+        <image src="/image/UI/gdtz.png" style="width:100rpx;height:100rpx;"></image>
+      </view>
+    </navigator>
   </view>
-  <view>
-  <image src="/image/UI/gdtz.png" style="width:100rpx;height:100rpx;"></image>
-  </view>
-</view>
 </template>

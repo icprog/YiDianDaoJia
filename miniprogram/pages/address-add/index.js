@@ -3,34 +3,36 @@ const WXAPI = require('apifm-wxapi')
 var app = getApp()
 Page({
   data: {
+    from:'',
+    addressData:null
   },
-  bindSave: function(e) {
+  bindSave: function (e) {
     var that = this;
-    var lxr= e.detail.value.lxr;
+    var lxr = e.detail.value.lxr;
     var lxdz = e.detail.value.lxdz;
     var lxdh = e.detail.value.lxdh;
-    console.log(lxr+lxdz+lxdh)
-    if (lxr == ""){
+    console.log(lxr + lxdz + lxdh)
+    if (lxr == "") {
       wx.showModal({
         title: '提示',
         content: '请填写联系人姓名',
-        showCancel:false
+        showCancel: false
       })
       return
     }
-    if (lxdh == ""){
+    if (lxdh == "") {
       wx.showModal({
         title: '提示',
         content: '请填写手机号码',
-        showCancel:false
+        showCancel: false
       })
       return
     }
-    if (lxdh == ""){
+    if (lxdh == "") {
       wx.showModal({
         title: '提示',
         content: '请填写详细地址',
-        showCancel:false
+        showCancel: false
       })
       return
     }
@@ -41,18 +43,39 @@ Page({
         openid: app.globalData.openid,//身份验证
         content: "tjdzxx",// 内容
         script: "添加地址信息",//描述
-        lxr: "12213",//联系人姓名
-        lxdh: "13412342222",//联系电话
-        fwdz: "河南省郑州市xxx",//地址
+        lxr: lxr,//联系人姓名
+        lxdh: lxdh,//联系电话
+        fwdz: lxdz,//地址
       }
     })
   },
   onLoad: function (e) {
+    this.setData(
+      {
+        from : e.from
+      }
+    )
+    if (e.from === 'select') {
+     
+    }
+    else if (e.from === 'edit') {
+      wx.setNavigationBarTitle(
+        {
+          title: "修改地址"
+        }
+      )
+      this.setData(
+        {addressData:JSON.parse(e.item)}
+      )
+    }
+    else if (e.from === 'add') {
+
+    }
 
   },
   deleteAddress: function (e) {
-    var that = this;
-    var id = e.currentTarget.dataset.id;
+    let that = this;
+    let bh = e.currentTarget.dataset.bh;
     wx.showModal({
       title: '提示',
       content: '确定要删除该收货地址吗？',
@@ -62,8 +85,8 @@ Page({
             url: 'http://www.panzongyan.cn/wxchat/login/tjdz',
             data:
             {
-              "useruuid": "xxx",//身份验证
-              "bh": id,//地址唯一编号
+              openid:app.globalData.openid ,//身份验证
+              "bh": e.bh,//地址唯一编号
               "content": "scdzxx",// 内容
               "script": "删除地址信息",//描述
             }

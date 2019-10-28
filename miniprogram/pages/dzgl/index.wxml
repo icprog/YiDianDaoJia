@@ -9,11 +9,11 @@
                     {{item.fwdz}}
                  </view>     
              </view>   
-             <view class="right-edit" bindtap="editAddess" data-id="{{item.id}}"></view> 
+             <view class="right-edit" bindtap="address" data-from='edit' data-item="{{item}}"></view> 
         </view>
     </view>
     <view class="bottom-box">
-        <view class="add-btn" bindtap="addAddess">新增收货地址</view>
+        <view class="add-btn" data-from='add' bindtap="address">新增收货地址</view>
     </view>
 
 </view>

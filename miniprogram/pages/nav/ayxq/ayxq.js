@@ -99,26 +99,10 @@ Page({
     })
     let windowHeight = wx.getSystemInfoSync().windowHeight // 屏幕的高度
     let windowWidth = wx.getSystemInfoSync().windowWidth // 屏幕的宽度
-
-    this.setData(
-      {
-        zdg: {
-          bh: options.bh, //编号
-          xm: options.xm, //姓名
-          jg: options.jg, //价格
-          xb: options.xb, //性别
-          nl: options.nl, //年龄
-          dd: options.dd, //地点
-          xj: options.xj, //星级
-          fwcs: options.fwcs, //服务次数
-          jl: options.jl, //距离
-          fss: options.fss, 
-          fwcs: options.fwcs, 
-          hpl: options.hpl, 
-        },
-        scroll_height: windowHeight * 750 / windowWidth - (400) - 30
-      }
-    )
+    this.setData({
+      zdg: JSON.parse(options.item),
+      scroll_height: windowHeight * 750 / windowWidth - (400) - 30
+    })
     // wx.request({
     //   url: 'http://www.panzongyan.cn/wxchat/module2/mtpl',
     //   method: 'post',

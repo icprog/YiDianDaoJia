@@ -1,5 +1,3 @@
-import { updateAddress } from 'apifm-wxapi';
-
 const app = getApp()
 Page({
   data: {
@@ -23,20 +21,14 @@ Page({
   //   })
   // },
 
-  addAddess: function() {
+  address: function(e) {
     wx.navigateTo({
-      url: "/pages/address-add/index"
-    })
-  },
-
-  editAddess: function(e) {
-    wx.navigateTo({
-      url: "/pages/address-add/index?id=" + e.currentTarget.dataset.id
+      url: "/pages/address-add/index?item=" + JSON.stringify(e.currentTarget.dataset.item)+"&from="+e.currentTarget.dataset.from
     })
   },
 
   onLoad: function() {
-    console.log(app.globalData.yhxx.useruuid)
+    console.log(app.globalData.openid)
     wx.request({
       url: 'http://www.panzongyan.cn/wxchat/login/hqdz',
       data:

@@ -49,11 +49,42 @@ Page({
   updateInfo: function () {
     this.setData(
       {
-        hasLogin :app.globalData.hasLogin,
-        wxtx : app.globalData.wxtx,
-        wxnc : app.globalData.wxnc
+        hasLogin: app.globalData.hasLogin,
+        wxtx: app.globalData.wxtx,
+        wxnc: app.globalData.wxnc
       }
     )
     console.log(this.data.hasLogin)
+  },
+  goOrder: function (e) {
+    if (!app.globalData.hasLogin) {
+      wx.showToast({
+        title: '请登录',
+        icon: 'none',
+      })
+    }
+    else
+      wx.navigateTo({
+        url: "/pages/order-list/index?index=" + e.currentTarget.dataset.index
+      })
+  },
+  centerDirect: function (e) {
+    if (app.globalData.hasLogin) {
+      let from = e.currentTarget.dataset.from;
+      if (from === 'dzgl')//地址管理
+      {
+        wx.navigateTo(
+          {
+            url: '/pages/dzgl/index'
+          }
+        )
+      }
+    }
+    else {
+      $Message({
+        content: '请登录',
+        type: 'error'
+      });
+    }
   }
 })

@@ -71,3 +71,17 @@
     width:20rpx;
     height:40rpx;
 }
+.sort_class
+{
+  text-align: center;
+  margin-left: 30rpx;
+  color: gray;
+  line-height: 50rpx;
+}
+._sort_class
+{
+  text-align: center;
+  margin-left: 30rpx;
+  color: black;
+  line-height: 50rpx;
+}

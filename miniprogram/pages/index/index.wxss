@@ -41,7 +41,7 @@
 }
 .grids_block
 {
-  border-radius: 30rpx;
+  border-radius: 10rpx;
   border: 3rpx white solid;
   background-color: white;
   padding-bottom: 20rpx;
