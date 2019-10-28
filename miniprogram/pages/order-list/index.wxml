@@ -10,12 +10,12 @@
   </view>
   <view wx:else>
     <view style="margin-bottom:20rpx;" wx:for-items="{{selected}}" wx:key="{{index}}">
-       <navigator class="order-list" url="/pages/order-details/index?id={{item.ddbh}}">
+       <view class="order-list" >
         <view class="weui-cell__ft_in-access" style="width:90rpx;">{{item.ddzt}}</view>
         <view>订单类型：{{item.ddlx}}</view>
         <view class="price">金额：{{item.zfje}}元</view>
         <view class="time">下单时间：{{item.xdsj}}</view>
-      </navigator>
+      </view>
     </view>
   </view>
 </view>

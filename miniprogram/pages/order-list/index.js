@@ -40,7 +40,7 @@ Page({
     });
   },
   onLoad: function (options) {
-    //this.show();
+    this.show();
     if (options && options.index) {
       this.setData({
         currentIndex: options.index

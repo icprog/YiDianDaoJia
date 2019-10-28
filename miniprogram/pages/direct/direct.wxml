@@ -19,19 +19,19 @@
       <scroll-view scroll-y style="height: {{scroll_height}}rpx;" bindscrolltoupper="refresh">
         <block wx:for="{{zdg}}" wx:for-item="item_zdg" wx:key="index">
           <view style="width:100%; display:flex;flex-direction:row;align-items:center;margin-bottom:15rpx;padding-left:20rpx">
-            <image style="width:100rpx;height:100rpx;border: 3rpx #0080ff solid;border-radius:100rpx" mode="aspectFit" src="{{item_zdg.img}}" />
+            <image style="width:100rpx;height:100rpx;border: 3rpx #0080ff solid;border-radius:100rpx" mode="aspectFit" src="{{item_zdg.tx}}" />
             <view style="margin-left:30rpx">
               <view style="display:flex;flex-direction:row;">
                 <text style="font-size:30rpx">{{item_zdg.xm}}</text>
-                <text style="border: 3rpx black solid;margin-left:15rpx;">{{item_zdg.jg}}元/小时</text>
-                <view bindtap="directxq" data-title="了解更多" data-item="{{item_zdg}}" style="margin-left: auto;padding-left:10rpx;padding-right:10rpx;">
+                <text style="border: 3rpx red solid;margin-left:15rpx;padding:2rpx">{{item_zdg.jg}}元/小时</text>
+                <view bindtap="directxq" data-title="了解更多" data-item="{{item_zdg}}" style="margin-left: auto;padding-right:10rpx;">
                   <text style="font-size:23rpx">了解更多</text>
                 </view>
               </view>
               <view style="display:flex;flex-direction:row;">
                 <text>{{item_zdg.sex}}</text>
                 <text style="margin-right:15rpx;">{{item_zdg.nl}}岁</text>
-                <text>{{item_zdg.dd}}</text>
+                <text style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;max-width:60%">{{item_zdg.dd}}</text>
                 <view bindtap="directxq" data-title="下单预约" data-item="{{item_zdg}}" style="margin-left: auto;background-color:#0080ff;border-radius:30rpx;padding-left:10rpx;padding-right:10rpx;">
                   <text style="color:white;font-size:23rpx">下单预约</text>
                 </view>

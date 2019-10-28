@@ -1,6 +1,8 @@
 // pages/nav/zyxd.js
-const { $Message } = require('../../../iview/base/index');
 let app = getApp();
+const {
+  $Message
+} = require('../../../iview/base/index');
 Page({
 
   /**
@@ -12,53 +14,35 @@ Page({
     selectedSrc: '/image/UI/selected.png',
     halfSrc: '/image/UI/half.png',
     zdg: {},
-    scroll_height:0,
-    isFans:true,
-    pj: [
-    {
-      "pjbh": "11234",//评价唯一编号
-      "khzh": 1234,//客户账号
-      "pjsj": "2019-10-10 20:30",//评价时间
-      "pjnr": "评价内容",//评价内容
-      "pjdj": "满意",
-    }
-    ]
-    ,
-    sl: 1
+    sl: 1,
+    time: '',
+    date: '',
+    ddbz: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    let that = this
+  onLoad: function(options) {
     wx.setNavigationBarTitle({
       title: options.title === undefined ? "" : options.title
     })
-    let windowHeight = wx.getSystemInfoSync().windowHeight // 屏幕的高度
-    let windowWidth = wx.getSystemInfoSync().windowWidth // 屏幕的宽度
     this.setData({
-      zdg: JSON.parse(options.item),
-      scroll_height: windowHeight * 750 / windowWidth - (400) - 30
+      zdg: JSON.parse(options.item)
     })
-    // wx.request({
-    //   url: 'http://www.panzongyan.cn/wxchat/module2/mtpl',
-    //   method: 'post',
-    //   data: {
-    //     "useruuid": "xxx",//身份验证
-    //     "type": "get",//发送数据的类型为获取
-    //     "aybh": that.data.zdg.id,//阿姨编号
-    //     "content": "zdgkhpj",//内容
-    //     "script": "钟点工客户评价",//描述
-    //   },
-    //   success: function (res) {
-    //     if (res.statusCode === 200) {
-    //       console.log(res.data)
-    //     }
-    //   },
-    // })
+    console.log(this.data.zdg)
   },
-  order: function () { //(this.data.sl * this.data.zdg.jg) * 100
+  handleChange: function(options) {
+    this.setData({
+      sl: options.detail.value
+    })
+  },
+  ddbzInput: function(e) {
+    this.setData({
+      ddbz: e.detail.value
+    })
+  },
+  order: function() { //(this.data.sl * this.data.zdg.jg) * 100
     if (app.globalData.hasLogin) {
       if (this.data.time !== '' && this.data.date !== '') {
         let that = this;
@@ -78,7 +62,7 @@ Page({
               method: 'post',
               data: {
                 openid: app.globalData.openid,
-                dzbh: 0,
+                dzbh: "1234",
                 aybh: that.data.zdg.id,
                 sl: that.data.sl,
                 fwsj: timestamp,
@@ -87,7 +71,7 @@ Page({
                 content: "xdbjzy",
                 script: "下单保洁直约"
               },
-              success: function (res) {
+              success: function(res) {
                 if (res.statusCode === 200) {
                   console.log(res.data)
                 }
@@ -99,15 +83,13 @@ Page({
             console.log("提交失败", res)
           }
         })
-      }
-      else {
+      } else {
         $Message({
           content: '请选择服务日期和服务时间',
           type: 'error'
         });
       }
-    }
-    else{
+    } else {
       $Message({
         content: '请登录',
         type: 'error'
@@ -137,4 +119,15 @@ Page({
       }
     })
   },
+  bindDateChange: function(e) {
+    this.setData({
+      date: e.detail.value
+    })
+  },
+  bindTimeChange: function(e) {
+    this.setData({
+      time: e.detail.value
+    })
+  }
+
 })

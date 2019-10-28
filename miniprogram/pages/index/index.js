@@ -103,23 +103,23 @@ Page({
         region: res
       })
     });
-    // wx.request({
-    //   url: 'http://www.panzongyan.cn/wxchat/module2/gdt',
-    //   method: 'get',
-    //   data:{
-    //   },
-    //   success: function(res) {
-    //     if (res.statusCode === 200) {
-    //       console.log(res.data)
-    //       if(res.data.status === "success")
-    //       {
-    //         that.setData({
-    //           notice: res.data.gdgg
-    //         });
-    //       }
-    //     }
-    //   }
-    // })
+    wx.request({
+      url: 'http://www.panzongyan.cn/wxchat/module2/gdt',
+      method: 'get',
+      data:{
+      },
+      success: function(res) {
+        if (res.statusCode === 200) {
+          console.log(res.data)
+          if(res.data.status === "success")
+          {
+            that.setData({
+              notice: res.data.gdgg
+            });
+          }
+        }
+      }
+    })
   },
   getPosition: function () {
     return new Promise((resolve, reject) => {

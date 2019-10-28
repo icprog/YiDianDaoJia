@@ -1,25 +1,9 @@
 const app = getApp()
 Page({
   data: {
-    addressList: [{
-      "bh":"1234",//地址唯一编号
-      "lxr":"小白",//联系人姓名
-      "lxdh":"13412342222",//联系电话
-      "fwdz":"河南省郑州市高新区abcde",//地址
-      },
-      ]
+    addressList: [],
+    defaultBh:0
   },
-
-  // selectTap: function(e) {
-  //   var id = e.currentTarget.dataset.id;
-  //   updateAddress({
-  //     token: wx.getStorageSync('token'),
-  //     id: id,
-  //     isDefault: 'true'
-  //   }).then(function(res) {
-  //     wx.navigateBack({})
-  //   })
-  // },
 
   address: function(e) {
     wx.navigateTo({
@@ -28,7 +12,7 @@ Page({
   },
 
   onLoad: function() {
-    console.log(app.globalData.openid)
+    let that = this;
     wx.request({
       url: 'http://www.panzongyan.cn/wxchat/login/hqdz',
       data:
@@ -41,10 +25,44 @@ Page({
         // 内容
         script: "地址信息",//描述
       },
-      success:function(e)
+      success:function(res)
       {
+        console.log(res)
+        if(res.statusCode==200)
+        {
+          if(res.data.status==='success')
+          {
+            that.setData(
+              {
+                addressList:res.data.data.dzxx,
+                defaultBh:res.data.data.defaultBh
+              }
+            )
+          }
+          else
+          {
+          }
+        }
+        else
+        {
+          wx.showModal({
+            title: '提示',
+            content: '获取失败',
+            showCancel: false
+          })
+        }
+      },fail(res)
+      {
+        wx.showModal({
+          title: '提示',
+          content: '获取失败',
+          showCancel: false
+        })
       }
     })
+  },onShow()
+  {
+    this.onLoad()
   }
 
 })

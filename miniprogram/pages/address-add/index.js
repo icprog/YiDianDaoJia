@@ -9,9 +9,8 @@ Page({
   bindSave: function (e) {
     var that = this;
     var lxr = e.detail.value.lxr;
-    var lxdz = e.detail.value.lxdz;
+    var fwdz = e.detail.value.fwdz;
     var lxdh = e.detail.value.lxdh;
-    console.log(lxr + lxdz + lxdh)
     if (lxr == "") {
       wx.showModal({
         title: '提示',
@@ -28,7 +27,7 @@ Page({
       })
       return
     }
-    if (lxdh == "") {
+    if (fwdz == "") {
       wx.showModal({
         title: '提示',
         content: '请填写详细地址',
@@ -45,7 +44,55 @@ Page({
         script: "添加地址信息",//描述
         lxr: lxr,//联系人姓名
         lxdh: lxdh,//联系电话
-        fwdz: lxdz,//地址
+        fwdz: fwdz,//地址
+      },
+      success(res)
+      {
+        console.log(res)
+        if(res.statusCode ==200)
+        {
+          if(res.data.status==='success')
+          {
+            wx.showModal({
+              title: '提示',
+              content: '添加成功',
+              showCancel: false,
+              success(res)
+              {
+                if (res.confirm)
+                {
+                  wx.navigateBack({
+                  })
+                }
+              }
+            })
+          }
+          else
+          {
+            wx.showModal({
+              title: '提示',
+              content: '添加失败',
+              showCancel: false
+            })
+          }
+        }
+        else
+        {
+          wx.showModal({
+            title: '提示',
+            content: '添加失败',
+            showCancel: false
+          })
+        }
+      },
+      fail(res)
+      {
+        console.log(res)
+        wx.showModal({
+          title: '提示',
+          content: '添加失败',
+          showCancel: false
+        })
       }
     })
   },
@@ -82,13 +129,97 @@ Page({
       success: function (res) {
         if (res.confirm) {
           wx.request({
-            url: 'http://www.panzongyan.cn/wxchat/login/tjdz',
+            url: 'http://www.panzongyan.cn/wxchat/login/scdz',
             data:
             {
-              openid:app.globalData.openid ,//身份验证
-              "bh": e.bh,//地址唯一编号
-              "content": "scdzxx",// 内容
-              "script": "删除地址信息",//描述
+              openid: app.globalData.openid,//身份验证
+              bh: bh,//地址唯一编号
+              content: "scdzxx",// 内容
+              script: "删除地址信息",//描述
+            },
+            success: function (res) {
+              console.log(res)
+              if (res.statusCode == 200) {
+                if (res.data.status === 'success') {
+                  wx.navigateBack({})
+                }
+                else {
+                  wx.showModal({
+                    title: '提示',
+                    content: '删除失败',
+                    showCancel: false
+                  })
+                }
+              }
+              else {
+                wx.showModal({
+                  title: '提示',
+                  content: '删除失败',
+                  showCancel: false
+                })
+              }
+            }, fail(res) {
+              wx.showModal({
+                title: '提示',
+                content: '删除失败',
+                showCancel: false
+              })
+            }
+          })
+        } else {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  }, setDefault: function (e) {
+    let that = this;
+    let bh = e.currentTarget.dataset.bh;
+    wx.showModal({
+      title: '提示',
+      content: '确定要设置该收货地址位默认地址吗？',
+      success: function (res) {
+        if (res.confirm) {
+          wx.request({
+            url: 'http://www.panzongyan.cn/wxchat/login/scdz',
+            data:
+            {
+              openid: app.globalData.openid,//身份验证
+              "bh": bh,//地址唯一编号
+              "content": "szmrdz",// 内容
+              "script": "设置默认地址",//描述
+            },
+            success: function (res) {
+              console.log(res)
+              if (res.statusCode == 200) {
+                if (res.status === 'success') {
+                  wx.showModal({
+                    title: '提示',
+                    content: '设置成功',
+                    showCancel: false
+                  })
+                  wx.navigateBack({})
+                }
+                else {
+                  wx.showModal({
+                    title: '提示',
+                    content: '设置失败',
+                    showCancel: false
+                  })
+                }
+              }
+              else {
+                wx.showModal({
+                  title: '提示',
+                  content: '设置失败',
+                  showCancel: false
+                })
+              }
+            }, fail(res) {
+              wx.showModal({
+                title: '提示',
+                content: '设置失败',
+                showCancel: false
+              })
             }
           })
         } else {

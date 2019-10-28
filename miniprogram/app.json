@@ -6,10 +6,9 @@
     "pages/address-add/index",
     "pages/nav/ayxq/ayxq",
     "pages/nav/xdyy/xdyy",
-    "pages/nav/fw/fw",
+    "pages/nav/zy/index",
     "pages/my/my",
-    "pages/order-list/index",
-    "template/dz"
+    "pages/order-list/index"
   ],
   "permission": {
     "scope.userLocation": {
