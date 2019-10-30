@@ -22,7 +22,7 @@
     padding-left: 58rpx;
 }
 .a-address .left-text.active{
-    background: url(/image/addr-active.png) no-repeat left center;
+    background: url(https://cdn.it120.cc/images/weappshop/addr-active.png) no-repeat left center;
     background-size: 28rpx auto;
 }
 .a-address .left-text .name-tel{

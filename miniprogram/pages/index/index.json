@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "i-notice-bar": "../../iview/notice-bar/index"
+    "i-notice-bar": "../../iview/notice-bar/index",
+    "i-message": "/iview/message/index"
   }
 }

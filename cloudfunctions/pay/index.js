@@ -9,22 +9,23 @@ const config = {
   appid: 'wx79cf3cf2c20617a9',
   mchid: '1486667722',
   partnerKey: 'yddj458sdf8g5er8f5z5x5v9w3h4b8y6',
-  notify_url: 'baidu.com',
-  spbill_create_ip: '127.0.0.1' //这里填这个就可以
+  notify_url: 'http://www.panzongyan.cn/wxchat/wxx/notify',
+  spbill_create_ip: '127.0.0.1'
 };
 
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
   let {
     orderid,
-    money
+    money,
+    bodyInfo
   } = event;
   //3，初始化支付
   const api = tenpay.init(config);
 
   let result = await api.getPayParams({
     out_trade_no: orderid,
-    body: '测试',
+    body: bodyInfo,
     total_fee: money, //订单金额(分),
     openid: wxContext.OPENID //付款用户的openid
   });

@@ -1,32 +1,26 @@
 <import src="/template/dz.wxml" />
 <i-message id="message" />
 <view style="display: flex;flex-direction: column;height:100%">
-  <template is="dz"></template>
-  <view style="width:100%; display:flex;flex-direction:row;align-items:center;justify-content:center; margin-bottom:15rpx;margin-top:10rpx;font-size: 25rpx;">
-    <image style="width:100rpx;height:100rpx;border: 3rpx #0080ff solid;border-radius:100rpx" mode="aspectFit" src="{{zdg.tx}}" />
-    <view style="margin-left:30rpx">
-      <view style="display:flex;flex-direction:row;">
-        <text style="font-size:30rpx">{{zdg.xm}}</text>
-        <text style="border: 3rpx red solid;margin-left:15rpx;color:red;margin-left: auto;">{{zdg.jg}}元/小时</text>
+  <template is="dz" data="{{item:dzxx,index:selectedIndex}}"></template>
+  <view>
+    <view style="float:right">
+      <image src="/image/UI/gdtz.png" style="width:50rpx;height:50rpx;"></image>
+    </view>
+    <text style="float:right;line-height:50rpx;font-size:25rpx">服务详情</text>
+    <text style="float:left;line-height:50rpx;margin-left:20rpx;font-size:25rpx">服务种类</text>
+  </view>
+  <view class="fwzl">
+    <block wx:for="{{fwzl}}">
+      <view class="{{index==idx?'_sort_class':'sort_class'}}" data-index="{{index}}" bindtap="change">
+        <view style="vertical-align: middle;">{{item.xmmc}}</view>
       </view>
-      <view style="display:flex;flex-direction:row;">
-        <text>{{zdg.xb}}</text>
-        <text style="margin-left:15rpx;">{{zdg.nl}}岁</text>
-        <text style="margin-left:15rpx;">{{zdg.dd}}</text>
-      </view>
-      <view style="display:flex;flex-direction:row;align-items:center;justify-content:space-between">
-        <block wx:for="{{stars}}" wx:for-item="item_xj" wx:key="index">
-          <image class="star-image" src="{{zdg.xj > item_xj ? (zdg.xj-item_xj>0.5 ? selectedSrc:halfSrc) : normalSrc}}">
-          </image>
-        </block>
-        <text style="margin-left:10rpx;width:70rpx;">{{zdg.xj}} 分</text>
-        <text style="margin-left:10rpx;width:120rpx;">服务 {{zdg.fwcs}} 次</text>
-        <text style="margin-left:10rpx;width:140rpx;">距离 {{zdg.jl}} km</text>
-      </view>
-      <view style="display:flex;flex-direction:row; justify-content:flex-end;margin-top:10rpx;align-items:center">
-        <text>数量：</text>
-        <i-input-number value="{{ sl }}" min="0" max="10" bindchange="handleChange" />
-      </view>
+    </block>
+  </view>
+  <view style="margin-left:30rpx;display:flex;align-items:center;justify-content:space-between;">
+    <text style="border: 3rpx red solid;margin-left:15rpx;color:red;float:left;">{{fwzl[idx].xmjg}}元/平方</text>
+    <view style="margin-right:20rpx">
+      <i-input-number style="float:right" value="{{ sl }}" min="0" max="10" bindchange="handleChange" />
+      <text style="float:right">数量：</text>
     </view>
   </view>
   <view>
@@ -35,7 +29,7 @@
       <picker mode="date" value="{{date}}" bindchange="bindDateChange">
         <view style="display:flex;flex-direction:row;align-items:center;">
           <text>{{date}}</text>
-          <image src="/image/UI/gdtz.png" style="width:100rpx;height:100rpx;"></image>
+          <image src="/image/UI/gdtz.png" style="width:70rpx;height:70rpx;"></image>
         </view>
       </picker>
     </view>
@@ -46,7 +40,7 @@
       <picker mode="time" value="{{time}}" start="09:01" end="21:01" bindchange="bindTimeChange">
         <view style="display:flex;flex-direction:row;align-items:center;">
           <text>{{time}}</text>
-          <image src="/image/UI/gdtz.png" style="width:100rpx;height:100rpx;"></image>
+          <image src="/image/UI/gdtz.png" style="width:70rpx;height:70rpx;"></image>
         </view>
       </picker>
     </view>
@@ -67,7 +61,7 @@
     <view>
       <view style="float:left; border-right:2px;solid #0080ff;background-color:#FFF;line-height:100rpx;width:50%">
         <text style="font-size: 30rpx;">订单金额：</text>
-        <text style="font-size: 30rpx;color:red;">{{zdg.jg*sl}}</text>
+        <text style="font-size: 30rpx;color:red;">{{fwzl[idx].xmjg*sl}}</text>
       </view>
       <view style="float:left;width:50%;height:100;background-color:#0080ff;" bindtap="order">
         <text style="font-size: 30rpx;color:white;line-height:100rpx;">下单预约</text>

@@ -1,0 +1,44 @@
+/* pages/nav/zyxd.wxss */
+
+.star-image {
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.item {
+  display: absolute;
+  width: 20rpx;
+  height: 40rpx;
+}
+
+.fwzl {
+  margin: 20rpx;
+}
+
+.sort_class {
+  margin: 10rpx;
+  width: 20%;
+  height: 15rpx;
+  float: left;
+  line-height: 15rpx;
+  border-radius: 30rpx;
+  text-align: center;
+  padding: 20rpx;
+  font-size: 25rpx;
+  background: white;
+  border: 1rpx solid #000;
+}
+
+._sort_class {
+  margin: 10rpx;
+  width: 20%;
+  height: 15rpx;
+  float: left;
+  line-height: 15rpx;
+  border-radius: 30rpx;
+  text-align: center;
+  padding: 20rpx;
+  font-size: 25rpx;
+  background: rgb(184, 178, 178);
+  border: 1rpx solid rgb(184, 178, 178);
+}

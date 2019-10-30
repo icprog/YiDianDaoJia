@@ -5,15 +5,15 @@
     <view style="display:flex;flex-direction:column;font-size:20rpx;flex:1">
       <view>
         <text style="font-size:25rpx;">联系人：</text>
-        <text>{{defaultItem.lxr}}</text>
+        <text>{{item[index].lxr}}</text>
       </view>
       <view>
         <text style="font-size:25rpx;">联系电话：</text>
-        <text>{{defaultItem.lxdh}}</text>
+        <text>{{item[index].lxdh}}</text>
       </view>
       <view>
         <text style="font-size:25rpx;">服务地址：</text>
-        <text>{{defaultItem.fwdz}}</text>
+        <text>{{item[index].fwdz}}</text>
       </view>
     </view>
     <navigator url="/pages/dzgl/index?from=select">

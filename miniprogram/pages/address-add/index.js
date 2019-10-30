@@ -102,10 +102,7 @@ Page({
         from : e.from
       }
     )
-    if (e.from === 'select') {
-     
-    }
-    else if (e.from === 'edit') {
+    if (e.from === 'edit') {
       wx.setNavigationBarTitle(
         {
           title: "修改地址"
@@ -180,7 +177,7 @@ Page({
       success: function (res) {
         if (res.confirm) {
           wx.request({
-            url: 'http://www.panzongyan.cn/wxchat/login/scdz',
+            url: 'http://www.panzongyan.cn/wxchat/login/mrdz',
             data:
             {
               openid: app.globalData.openid,//身份验证
@@ -191,7 +188,7 @@ Page({
             success: function (res) {
               console.log(res)
               if (res.statusCode == 200) {
-                if (res.status === 'success') {
+                if (res.data.status === 'success') {
                   wx.showModal({
                     title: '提示',
                     content: '设置成功',

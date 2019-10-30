@@ -5,27 +5,8 @@ Page({
     statusType: ["全部", "待付款", "已预约", "已完成", "待评价"],
     currentType: '全部',
     currentIndex:0,
-    orderList: [
-      {
-        "ddbh": "11234",//订单唯一编号
-        "ddzt": "待付款",//订单状态
-        "xdsj": new Date().toDateString(),//下单时间
-        "ddlx": "保洁直约",//订单类型
-        "fwdz": "朝阳东路xxx",//服务地址
-        "fwsj": new Date().toDateString(),//服务时间
-        "fws": "服务商",//服务商
-        "zfje": 111,//支付金额
-      }, {
-        "ddbh": "11234",//订单唯一编号
-        "ddzt": "已预约",//订单状态
-        "xdsj": new Date().toDateString(),//下单时间
-        "ddlx": "自营订单",//订单类型
-        "fwdz": "朝阳东路xxx",//服务地址
-        "fwsj": new Date().toDateString(),//服务时间
-        "fws": "服务商",//服务商
-        "zfje": 111,//支付金额
-      }
-    ],
+    scroll_height: 0,
+    orderList: [],
     selected:[]
   },
   statusTap: function (e) {
@@ -40,16 +21,19 @@ Page({
     });
   },
   onLoad: function (options) {
-    this.show();
+    let windowHeight = wx.getSystemInfoSync().windowHeight // 屏幕的高度
+    let windowWidth = wx.getSystemInfoSync().windowWidth // 屏幕的宽度
     if (options && options.index) {
       this.setData({
-        currentIndex: options.index
-      });
+        currentIndex: options.index,
+    scroll_height: windowHeight * 750 / windowWidth - (110) - 30
+      })
     }
-    let x =["全部", "待付款", "已预约", "已完成", "待评价"]
-    this.update(x[parseInt(this.data.currentIndex,10)]);
+    console.log(options)
+    this.show();
   },
   show: function () {
+    let that = this
     // 获取订单列表
     wx.request(
       {
@@ -62,8 +46,23 @@ Page({
           script: "订单信息",//描述
         },
         success: function (e) {
-          console.log(e);
-          
+          let data =  e.data.data
+          data.forEach(
+          x=>
+          {
+            console.log(x.xdsj)
+            let time = new Date(parseInt("" + x.xdsj + "000",10))
+            x.xdsj = time.getFullYear()+"-"+time.getMonth()+"-"+time.getDay()+" "+time.getHours()+":"+time.getMinutes()
+          }
+          )
+          that.setData(
+            {
+              orderList:data
+            }
+               
+          )
+          let x = ["全部", "待付款", "已预约", "已完成", "待评价"]
+          that.update(x[parseInt(that.data.currentIndex, 10)]);
         }
       }
     )
@@ -78,7 +77,7 @@ Page({
     }
     else
     {
-      let temp = []
+      let temp = new Array()
       this.data.orderList.forEach(element => {
         if(element.ddzt===curType)
         {

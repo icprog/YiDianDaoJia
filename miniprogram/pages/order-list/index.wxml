@@ -4,6 +4,7 @@
       {{item}}
     </view>
   </view>
+  <scroll-view scroll-y style="height: {{scroll_height}}rpx;">
   <view class="no-order" wx:if="{{selected.size() ? true : false}}">
     <image src="/image/dd/mydd.png" class="no-order-img"></image>
     <view class="text">暂无订单</view>
@@ -18,4 +19,5 @@
       </view>
     </view>
   </view>
+  </scroll-view>
 </view>

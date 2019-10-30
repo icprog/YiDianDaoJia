@@ -1,5 +1,6 @@
 <view class="page">
   <view class="page__hd">
+    <i-message id="message" />
     <view class="head_bar" style="display:flex; justify-content:space-between; ">
       <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
         <view style="display:flex;flex-direction:row;align-items: center;">
@@ -21,10 +22,10 @@
     <scroll-view scroll-y style="height: {{scroll_height}}rpx;">
           <view class="weui-grids grids_block" style="margin-top:20rpx;">
       <block wx:for="{{zymk}}" wx:for-item="item" wx:key="index">
-        <navigator url="{{item.nav}}" class="weui-grid" hover-class="weui-grid_active">
+        <view data-title="{{item.title}}" data-type='zymk' class="weui-grid" hover-class="weui-grid_active" bindtap="nav">
           <image class="weui-grid__icon" mode="widthFix" src="{{item.img}}" />
           <view class="weui-grid__label title">{{item.title}}</view>
-        </navigator>
+        </view>
       </block>
     </view>
 
@@ -34,7 +35,6 @@
             <image src="/image/UI/zdgbjzy.png" style="width:60rpx;height:60rpx;" />
             <text style="text-color:blue;">钟点保洁直约</text>
           </view>
-          <view class></view>
           <view style="display:flex;flex-direction:row;align-items: center;justify-content: flex-start;">
             <image src="/image/UI/zdgbjzy.png" style="width:150rpx;height:150rpx;padding-right:8rpx;border-right: 3rpx #0080ff solid;" />
             <image src="/image/UI/ry.png" style="width:150rpx;height:150rpx;" />
@@ -50,10 +50,10 @@
       </view>
       <view>
         <block wx:for="{{zszy}}" wx:for-item="item" wx:key="index">
-          <navigator url="{{item.nav}}" class="weui-grid" hover-class="weui-grid_active">
+          <view data-title="{{item.title}}" data-type='jszy'  class="weui-grid" hover-class="weui-grid_active" bindtap="nav">
             <image class="weui-grid__icon image" mode="widthFix" src="{{item.img}}" />
             <view class="weui-grid__label title">{{item.title}}</view>
-          </navigator>
+          </view>
         </block>
       </view>
     </view>

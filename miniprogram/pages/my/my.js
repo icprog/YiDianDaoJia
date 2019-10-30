@@ -75,7 +75,7 @@ Page({
       {
         wx.navigateTo(
           {
-            url: '/pages/dzgl/index'
+            url: '/pages/dzgl/index?from=dzgl'
           }
         )
       }
