@@ -2,7 +2,7 @@ const app = getApp()
 Page({
   data: {
     addressList: [],
-    defaultBh:0,
+    defaultBh:-1,
     from:'',
   },
 
@@ -57,6 +57,12 @@ Page({
             )
           }
           else {
+            that.setData(
+              {
+                addressList: [],
+                defaultBh:-1,
+              }
+            )
           }
         }
         else {

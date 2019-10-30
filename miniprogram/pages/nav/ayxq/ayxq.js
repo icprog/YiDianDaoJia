@@ -1,5 +1,5 @@
 // pages/nav/zyxd.js
-const { $Message } = require('../../../iview/base/index');
+const {myPay} = require('../../../utils/myPay.js')
 let app = getApp();
 Page({
 
@@ -12,8 +12,10 @@ Page({
     selectedSrc: '/image/UI/selected.png',
     halfSrc: '/image/UI/half.png',
     zdg: {},
+    gzlb:[],//关注列表
     scroll_height:0,
-    isFans:true,
+    isFans:false,
+    title:'',
     pj: [
     {
       "pjbh": "11234",//评价唯一编号
@@ -39,102 +41,176 @@ Page({
     let windowWidth = wx.getSystemInfoSync().windowWidth // 屏幕的宽度
     this.setData({
       zdg: JSON.parse(options.item),
+      title: options.title,
       scroll_height: windowHeight * 750 / windowWidth - (400) - 30
     })
-    // wx.request({
-    //   url: 'http://www.panzongyan.cn/wxchat/module2/mtpl',
-    //   method: 'post',
-    //   data: {
-    //     "useruuid": "xxx",//身份验证
-    //     "type": "get",//发送数据的类型为获取
-    //     "aybh": that.data.zdg.id,//阿姨编号
-    //     "content": "zdgkhpj",//内容
-    //     "script": "钟点工客户评价",//描述
-    //   },
-    //   success: function (res) {
-    //     if (res.statusCode === 200) {
-    //       console.log(res.data)
-    //     }
-    //   },
-    // })
-  },
-  order: function () { //(this.data.sl * this.data.zdg.jg) * 100
-    if (app.globalData.hasLogin) {
-      if (this.data.time !== '' && this.data.date !== '') {
-        let that = this;
-        wx.cloud.callFunction({
-          name: "pay",
-          data: {
-            orderid: "" + new Date().getTime(),
-            money: 2
-          },
-          success(res) {
-            var date = that.data.date + ' ' + that.data.time + ':00';
-            date = date.substring(0, 19);
-            date = date.replace(/-/g, '/');
-            var timestamp = new Date(date).getTime();
-            wx.request({
-              url: 'http://www.panzongyan.cn/wxchat/wxx/s_order',
-              method: 'post',
-              data: {
-                openid: app.globalData.openid,
-                dzbh: 0,
-                aybh: that.data.zdg.id,
-                sl: that.data.sl,
-                fwsj: timestamp,
-                ddbz: that.data.ddbz,
-                type: "send",
-                content: "xdbjzy",
-                script: "下单保洁直约"
-              },
-              success: function (res) {
-                if (res.statusCode === 200) {
-                  console.log(res.data)
-                }
-              }
-            })
-            that.pay(res.result)
-          },
-          fail(res) {
-            console.log("提交失败", res)
-          }
-        })
-      }
-      else {
-        $Message({
-          content: '请选择服务日期和服务时间',
-          type: 'error'
-        });
-      }
-    }
-    else{
-      $Message({
-        content: '请登录',
-        type: 'error'
-      });
-    }
-  },
-  //实现小程序支付
-  pay(payData) {
-    //官方标准的支付方法
-    wx.requestPayment({
-      timeStamp: payData.timeStamp,
-      nonceStr: payData.nonceStr,
-      package: payData.package, //统一下单接口返回的 prepay_id 格式如：prepay_id=***
-      signType: 'MD5',
-      paySign: payData.paySign, //签名
-      success(res) {
-        console.log("支付成功", res)
-        wx.switchTab({
-          url: '/pages/my'
-        })
+    //获取关注列表
+    wx.request({
+      url: '',
+      data:
+      {
+        openid: "xxx",//身份验证
+        content: "hqgzlb",// 内容
+        script: "获取关注列表",//描述
       },
-      fail(res) {
-        $Message({
-          content: '支付失败',
-          type: 'error'
-        });
+      success(res)
+      {
+        if(res.statusCode===200)
+        {
+          if(res.data.status=='success')
+          {
+            that.setData(
+              {
+                gzlb:res.data.data
+              }
+            )
+            //设置关注
+            for (let i = 0; i < that.data.gzlb.length;i++) {
+              if(that.data.gzlb[i]===zdg.bh)
+              {
+                that.setData(
+                  {
+                    isFans:true
+                  }
+                )
+                break
+              }
+            }
+          }
+        }
       }
     })
+    wx.request({
+      url: 'http://www.panzongyan.cn/wxchat/module2/mtpl',
+      method: 'post',
+      data: {
+        "useruuid": "xxx",//身份验证
+        "type": "get",//发送数据的类型为获取
+        "aybh": that.data.zdg.id,//阿姨编号
+        "content": "zdgkhpj",//内容
+        "script": "钟点工客户评价",//描述
+      },
+      success: function (res) {
+        if (res.statusCode === 200) {
+          console.log(res.data)
+        }
+      },
+    })
   },
+  order()
+  {
+    wx.navigateTo({
+      url: '/pages/nav/xdyy/xdyy?item=' + JSON.stringify(this.data.zdg) + '&title=' + this.data.title
+    })
+  },
+  changeFan()
+  {
+    let that = this
+    if(this.data.isFans)
+    {
+      wx.request({
+        url: 'http://www.panzongyan.cn/wxchat/module2/gfans',
+        data:
+        {
+          openid: app.globalData.openid,//身份验证
+          bh: that.zdg.bh,//阿姨/服务商编号
+          content: "qxgz",// 内容
+          script: "取消关注",//描述
+        },
+        success(res)
+        {
+          if(res.statusCode==200)
+          {
+            if(res.data.status=='success')
+            {
+              that.setData(
+                {
+                  isFans:false
+                }
+              )
+              wx.showModal({
+                title: '提示',
+                content: '取消关注成功',
+                showCancel: false
+              })
+            }
+            else
+            {
+              wx.showModal({
+                title: '提示',
+                content: '取消关注失败',
+                showCancel: false
+              })
+            }
+          }
+          else
+          {
+            wx.showModal({
+              title: '提示',
+              content: '取消关注失败',
+              showCancel: false
+            })
+          }
+        },
+        fail(res)
+        {
+          wx.showModal({
+            title: '提示',
+            content: '取消关注失败',
+            showCancel: false
+          })
+        }
+      })
+    }
+    else
+    {
+      wx.request({
+        url: 'http://www.panzongyan.cn/wxchat/module2/fans',
+        data:
+        {
+          openid: app.globalData.openid,//身份验证
+          bh: that.zdg.bh,//编号
+          content: "gz",// 内容
+          script: "关注",//描述
+        },
+        success(res) {
+          if (res.statusCode == 200) {
+            if (res.data.status == 'success') {
+              that.setData(
+                {
+                  isFans: false
+                }
+              )
+              wx.showModal({
+                title: '提示',
+                content: '关注成功',
+                showCancel: false
+              })
+            }
+            else {
+              wx.showModal({
+                title: '提示',
+                content: '关注失败',
+                showCancel: false
+              })
+            }
+          }
+          else {
+            wx.showModal({
+              title: '提示',
+              content: '关注失败',
+              showCancel: false
+            })
+          }
+        },
+        fail(res) {
+          wx.showModal({
+            title: '提示',
+            content: '关注失败',
+            showCancel: false
+          })
+        }
+      })
+    }
+  }
 })

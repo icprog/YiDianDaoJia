@@ -1,4 +1,3 @@
-const { $Message } = require('../../iview/base/index');
 let app = getApp();
 Page({
   data: {
@@ -169,10 +168,11 @@ Page({
     }
     else
     {
-      $Message({
-        content: '未登录',
-        type: 'error'
-      });
+      wx.showModal({
+        title: '提示',
+        content: '请登录',
+        showCancel: false
+      })
     }
   }
 });

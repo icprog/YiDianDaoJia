@@ -36,12 +36,13 @@ Page({
       return
     }
     wx.request({
-      url: 'http://www.panzongyan.cn/wxchat/login/tjdz',
+      url: this.data.from == 'add' ? 'http://www.panzongyan.cn/wxchat/login/tjdz' : 'http://www.panzongyan.cn/wxchat/login/xgdz',
       data:
       {
         openid: app.globalData.openid,//身份验证
         content: "tjdzxx",// 内容
-        script: "添加地址信息",//描述
+        script: "添加/修改地址信息",//描述
+        bh: that.data.addressData.bh,
         lxr: lxr,//联系人姓名
         lxdh: lxdh,//联系电话
         fwdz: fwdz,//地址
@@ -55,7 +56,7 @@ Page({
           {
             wx.showModal({
               title: '提示',
-              content: '添加成功',
+              content: '成功',
               showCancel: false,
               success(res)
               {
@@ -71,7 +72,7 @@ Page({
           {
             wx.showModal({
               title: '提示',
-              content: '添加失败',
+              content: '失败',
               showCancel: false
             })
           }
@@ -80,7 +81,7 @@ Page({
         {
           wx.showModal({
             title: '提示',
-            content: '添加失败',
+            content: '失败',
             showCancel: false
           })
         }
@@ -90,7 +91,7 @@ Page({
         console.log(res)
         wx.showModal({
           title: '提示',
-          content: '添加失败',
+          content: '失败',
           showCancel: false
         })
       }

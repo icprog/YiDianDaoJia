@@ -1,20 +1,14 @@
 <import src="/template/dz.wxml" />
-<i-message id="message" />
 <view style="display: flex;flex-direction: column;height:100%">
   <template is="dz" data="{{item:dzxx,index:selectedIndex}}"></template>
-  <view>
-    <view style="float:right">
-      <image src="/image/UI/gdtz.png" style="width:50rpx;height:50rpx;"></image>
-    </view>
-    <text style="float:right;line-height:50rpx;font-size:25rpx">服务详情</text>
-    <text style="float:left;line-height:50rpx;margin-left:20rpx;font-size:25rpx">服务种类</text>
-  </view>
   <view class="fwzl">
-    <block wx:for="{{fwzl}}">
-      <view class="{{index==idx?'_sort_class':'sort_class'}}" data-index="{{index}}" bindtap="change">
-        <view style="vertical-align: middle;">{{item.xmmc}}</view>
-      </view>
-    </block>
+    <scroll-view scroll-x style="height:80rpx;">
+      <block wx:for="{{fwzl}}">
+        <view class="{{index==idx?'_sort_class':'sort_class'}}" data-index="{{index}}" bindtap="change">
+          <view style="vertical-align: middle;">{{item.xmmc}}</view>
+        </view>
+      </block>
+    </scroll-view>
   </view>
   <view style="margin-left:30rpx;display:flex;align-items:center;justify-content:space-between;">
     <text style="border: 3rpx red solid;margin-left:15rpx;color:red;float:left;">{{fwzl[idx].xmjg}}元/平方</text>

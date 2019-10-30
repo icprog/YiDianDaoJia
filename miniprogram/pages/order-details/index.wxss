@@ -1,0 +1,37 @@
+.container {
+  min-height: 100%;
+  overflow: hidden;
+  overflow-y: hidden;
+}
+
+.goods-info {
+  width: 100%;
+  background-color: #fff;
+  margin-bottom: 60rpx;
+  padding-bottom: 24rpx;
+}
+
+.goods-info .row-box {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 24rpx 30rpx 12rpx 30rpx;
+  font-size: 28rpx;
+  color: #000;
+}
+
+.goods-info .row-box .right-text {
+  text-align: right;
+}
+.btn
+{
+  
+  margin-left:20rpx;
+  margin-right:20rpx
+}
+.btn button
+{
+  margin-bottom:15rpx;
+}

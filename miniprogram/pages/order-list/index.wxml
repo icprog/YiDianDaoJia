@@ -5,13 +5,13 @@
     </view>
   </view>
   <scroll-view scroll-y style="height: {{scroll_height}}rpx;">
-  <view class="no-order" wx:if="{{selected.size() ? true : false}}">
+  <view class="no-order" wx:if="{{selected.length> 0 ? false : true}}">
     <image src="/image/dd/mydd.png" class="no-order-img"></image>
     <view class="text">暂无订单</view>
   </view>
   <view wx:else>
     <view style="margin-bottom:20rpx;" wx:for-items="{{selected}}" wx:key="{{index}}">
-       <view class="order-list" >
+       <view class="order-list" bindtap="directXq" data-item="{{item}}" >
         <view class="weui-cell__ft_in-access" style="width:90rpx;">{{item.ddzt}}</view>
         <view>订单类型：{{item.ddlx}}</view>
         <view class="price">金额：{{item.zfje}}元</view>

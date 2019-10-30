@@ -28,7 +28,7 @@
 }
 .title
 {
-  font-size: 20rpx;
+  font-size: 25rpx;
 }
 .page__bd
 {

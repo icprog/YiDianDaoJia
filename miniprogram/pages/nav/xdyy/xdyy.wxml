@@ -1,5 +1,4 @@
 <import src="/template/dz.wxml" />
-<i-message id="message" />
 <view style="display: flex;flex-direction: column;height:100%">
   <template is="dz" data="{{item:dzxx,index:selectedIndex}}"></template>
   <view style="width:100%; display:flex;flex-direction:row;align-items:center;justify-content:center; margin-bottom:15rpx;margin-top:10rpx;font-size: 25rpx;">

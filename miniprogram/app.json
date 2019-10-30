@@ -7,8 +7,11 @@
     "pages/nav/ayxq/ayxq",
     "pages/nav/xdyy/xdyy",
     "pages/nav/zy/zy",
+    "pages/nav/js/js",
     "pages/my/my",
-    "pages/order-list/index"
+    "pages/order-list/index",
+    "pages/feedback/feedback",
+    "pages/order-details/index"
   ],
   "permission": {
     "scope.userLocation": {

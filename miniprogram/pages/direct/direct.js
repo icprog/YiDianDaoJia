@@ -1,4 +1,3 @@
-const { $Message } = require('../../iview/base/index');
 let app = getApp();
 Page({
   data: {
@@ -43,10 +42,11 @@ Page({
         }
       },
       fail: function () {
-        $Message({
+        wx.showModal({
+          title: '提示',
           content: '加载失败',
-          type: 'error'
-        });
+          showCancel: false
+        })
       },
       complete: function () {
       }
@@ -128,10 +128,11 @@ Page({
       }
     }
     else {
-      $Message({
+      wx.showModal({
+        title: '提示',
         content: '请登录',
-        type: 'error'
-      });
+        showCancel: false
+      })
     }
   },
   refresh() {

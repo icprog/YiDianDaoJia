@@ -1,6 +1,5 @@
 <view class="page">
   <view class="page__hd">
-  <i-message id="message" />
     <view class="head_bar" style="display:flex; justify-content:space-between; ">
       <button wx:if="{{!hasLogin}}" class="login_btn" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo">登录</button>
       <view wx:else style="display:flex; flex-direction:row;align-items:center">
@@ -63,31 +62,31 @@
         <image class="weui-grid__icon" mode="widthFix" src="/image/wd/dzgl.png" />
         <view class="weui-grid__label title">地址管理</view>
       </view>
-      <view class="weui-grid" hover-class="weui-grid_active">
+      <view bindtap="centerDirect" data-from='lxpt' class="weui-grid" hover-class="weui-grid_active">
         <image class="weui-grid__icon" mode="widthFix" src="/image/wd/lxpt.png" />
         <view class="weui-grid__label title">联系平台</view>
       </view>
-      <view class="weui-grid" hover-class="weui-grid_active">
+      <view class="weui-grid" bindtap="centerDirect" data-from='tszx' hover-class="weui-grid_active">
         <image class="weui-grid__icon" mode="widthFix" src="/image/wd/tszx.png" />
         <view class="weui-grid__label title">投诉中心</view>
       </view>
-      <view class="weui-grid" hover-class="weui-grid_active">
+      <view bindtap="centerDirect" data-from='sjrz' class="weui-grid" hover-class="weui-grid_active">
         <image class="weui-grid__icon" mode="widthFix" src="/image/wd/sjrz.png" />
         <view class="weui-grid__label title">商家入驻</view>
       </view>
-      <view class="weui-grid" hover-class="weui-grid_active">
+      <view bindtap="centerDirect" data-from='lxpt' class="weui-grid" hover-class="weui-grid_active">
         <image class="weui-grid__icon" mode="widthFix" src="/image/wd/jrzy.png" />
         <view class="weui-grid__label title">加入直约</view>
       </view>
-      <view class="weui-grid" hover-class="weui-grid_active">
+      <view bindtap="centerDirect" data-from='yhxy' class="weui-grid" hover-class="weui-grid_active">
         <image class="weui-grid__icon" mode="widthFix" src="/image/wd/yhxy.png" />
         <view class="weui-grid__label title">用户协议</view>
       </view>
-      <view class="weui-grid" hover-class="weui-grid_active">
+      <view bindtap="centerDirect" data-from='yszc' class="weui-grid" hover-class="weui-grid_active">
         <image class="weui-grid__icon" mode="widthFix" src="/image/wd/yszc.png" />
         <view class="weui-grid__label title">隐私政策</view>
       </view>
-      <view class="weui-grid" hover-class="weui-grid_active">
+      <view bindtap="centerDirect" data-from='gywm' class="weui-grid" hover-class="weui-grid_active">
         <image class="weui-grid__icon" mode="widthFix" src="/image/wd/gywm.png" />
         <view class="weui-grid__label title">关于我们</view>
       </view>

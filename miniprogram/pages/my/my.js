@@ -1,5 +1,4 @@
 const app = getApp();
-const { $Message } = require('../../iview/base/index');
 Page({
   data: {
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
@@ -8,7 +7,12 @@ Page({
     wxnc: app.globalData.wxnc
   },
   bindGetUserInfo: function (e) {
+    wx.showLoading({
+      title: '正在登陆',
+      mask:true
+    })
     let that = this
+
     wx.cloud.callFunction({
       name: "login",
       success(res) {
@@ -27,10 +31,11 @@ Page({
                     that.updateInfo();
                   },
                   fail: function () {
-                    $Message({
+                    wx.showModal({
+                      title: '提示',
                       content: '登陆失败',
-                      type: 'error'
-                    });
+                      showCancel: false
+                    })
                   }
                 });
               }
@@ -39,10 +44,15 @@ Page({
         }
       },
       fail: function () {
-        $Message({
+        wx.showModal({
+          title: '提示',
           content: '登陆失败',
-          type: 'error'
-        });
+          showCancel: false
+        })
+      },
+      complete()
+      {
+        wx.hideLoading()
       }
     })
   },
@@ -58,9 +68,10 @@ Page({
   },
   goOrder: function (e) {
     if (!app.globalData.hasLogin) {
-      wx.showToast({
-        title: '请登录',
-        icon: 'none',
+      wx.showModal({
+        title: '提示',
+        content: '请登录',
+        showCancel: false
       })
     }
     else
@@ -79,12 +90,141 @@ Page({
           }
         )
       }
+      else if(from === 'tszx')
+      {
+        wx.navigateTo(
+          {
+            url: "/pages/feedback/feedback"
+          }
+        )
+       
+      }
+      else if (from === 'lxpt') {
+        wx.request({
+          url: '',//todo:aaa
+          data:
+          {
+            openid:app.globalData.openid,
+            type:'get',
+            content:'hqsjdh',
+            script:"获取商家电话",
+          },
+          success(res)
+          {
+            if(res.statusCode===200)
+            {
+              if(res.status=='success')
+              {
+                wx.makePhoneCall({
+                  phoneNumber: res.dh,
+                })
+              }
+              else
+              {
+                wx.showModal({
+                  title: '提示',
+                  content: '商家未设置电话信息',
+                  showCancel: false
+                })
+              }
+            }
+            else
+            {
+              wx.showModal({
+                title: '提示',
+                content: '网络错误',
+                showCancel: false
+              })
+            }
+          }
+        })
+      }
+      else if (from === 'yhxy') {
+        wx.request({
+          url: '',//todo:aaa
+          data:
+          {
+            openid: app.globalData.openid,
+            type: 'get',
+            content: 'hqyhxy',
+            script: "获取用户协议",
+          },
+          success(res) {
+            if (res.statusCode === 200) {
+              if (res.status == 'success') {
+                wx.showModal({
+                  title: '用户协议',
+                  content: res.yhxy,
+                })
+              }
+              else {
+                wx.showModal({
+                  title: '提示',
+                  content: '商家未设置用户协议',
+                  showCancel: false
+                })
+              }
+            }
+            else {
+              wx.showModal({
+                title: '提示',
+                content: '网络错误',
+                showCancel: false
+              })
+            }
+          }
+        })
+      }
+      else if (from === 'yszc') {
+        wx.request({
+          url: '',//todo:aaa
+          data:
+          {
+            openid: app.globalData.openid,
+            type: 'get',
+            content: 'hqyszc',
+            script: "获取隐私政策",
+          },
+          success(res) {
+            if (res.statusCode === 200) {
+              if (res.status == 'success') {
+                wx.showModal({
+                  title: '隐私政策',
+                  content: res.yhxy,
+                })
+              }
+              else {
+                wx.showModal({
+                  title: '提示',
+                  content: '商家未设置隐私政策',
+                  showCancel: false
+                })
+              }
+            }
+            else {
+              wx.showModal({
+                title: '提示',
+                content: '网络错误',
+                showCancel: false
+              })
+            }
+          }
+        })
+      }
+      else if (from === 'gywm') {
+        wx.showModal({
+          title: '关于我们',
+          content: '家政服务提供商',
+          showCancel:false
+        })
+      }
     }
     else {
-      $Message({
+      wx.showModal({
+        title: '提示',
         content: '请登录',
-        type: 'error'
-      });
+        showCancel: false
+      })
     }
   }
 })

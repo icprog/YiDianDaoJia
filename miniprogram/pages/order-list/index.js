@@ -4,10 +4,10 @@ Page({
   data: {
     statusType: ["全部", "待付款", "已预约", "已完成", "待评价"],
     currentType: '全部',
-    currentIndex:0,
+    currentIndex: 0,
     scroll_height: 0,
     orderList: [],
-    selected:[]
+    selected: [],
   },
   statusTap: function (e) {
     const curType = e.currentTarget.dataset.type;
@@ -15,7 +15,7 @@ Page({
     this.data.currentType = curType
     this.data.currentIndex = curIndex
     this.update(curType);
-   
+
     this.setData({
       currentIndex: curIndex
     });
@@ -26,7 +26,7 @@ Page({
     if (options && options.index) {
       this.setData({
         currentIndex: options.index,
-    scroll_height: windowHeight * 750 / windowWidth - (110) - 30
+        scroll_height: windowHeight * 750 / windowWidth - (110) - 30
       })
     }
     console.log(options)
@@ -46,20 +46,21 @@ Page({
           script: "订单信息",//描述
         },
         success: function (e) {
-          let data =  e.data.data
+          let data = e.data.data
           data.forEach(
-          x=>
-          {
-            console.log(x.xdsj)
-            let time = new Date(parseInt("" + x.xdsj + "000",10))
-            x.xdsj = time.getFullYear()+"-"+time.getMonth()+"-"+time.getDay()+" "+time.getHours()+":"+time.getMinutes()
-          }
+            x => {
+              let time = new Date(parseInt("" + x.xdsj + "000", 10))
+              x.xdsj = time.getFullYear() + "-" + time.getMonth() + "-" + time.getDay() + " " + time.getHours() + ":" + time.getMinutes()
+
+              time = new Date(parseInt("" + x.fwsj + "000", 10))
+              x.fwsj = time.getFullYear() + "-" + time.getMonth() + "-" + time.getDay() + " " + time.getHours() + ":" + time.getMinutes()
+            }
           )
           that.setData(
             {
-              orderList:data
+              orderList: data
             }
-               
+
           )
           let x = ["全部", "待付款", "已预约", "已完成", "待评价"]
           that.update(x[parseInt(that.data.currentIndex, 10)]);
@@ -67,26 +68,31 @@ Page({
       }
     )
   },
-  update(curType)
-  {
-    if(curType==="全部")
-    {
+  update(curType) {
+    if (curType === "全部") {
       this.setData(
-       { selected:this.data.orderList}
+        { selected: this.data.orderList,
+         }
       )
     }
-    else
-    {
+    else {
       let temp = new Array()
       this.data.orderList.forEach(element => {
-        if(element.ddzt===curType)
-        {
+        if (element.ddzt === curType) {
           temp.push(element)
         }
       });
+    
       this.setData(
-        { selected:temp}
-       )
+        {
+          selected: temp,
+        }
+      )
     }
+  },
+  directXq(e) {
+    wx.navigateTo({
+      url: '/pages/order-details/index?item=' + JSON.stringify(e.currentTarget.dataset.item),
+    })
   }
 })
