@@ -10,13 +10,6 @@
       </block>
     </scroll-view>
   </view>
-  <view style="margin-left:30rpx;display:flex;align-items:center;justify-content:space-between;">
-    <text style="border: 3rpx red solid;margin-left:15rpx;color:red;float:left;">{{fwzl[idx].xmjg}}元/平方</text>
-    <view style="margin-right:20rpx">
-      <i-input-number style="float:right" value="{{ sl }}" min="0" max="10" bindchange="handleChange" />
-      <text style="float:right">数量：</text>
-    </view>
-  </view>
   <view>
     <view style="width:100%; display:flex;flex-direction:row;align-items:center;justify-content:space-between;margin-top:10rpx;font-size: 25rpx;">
       <text style="margin-left:30rpx">服务日期</text>

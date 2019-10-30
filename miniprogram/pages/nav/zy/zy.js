@@ -161,6 +161,7 @@ Page({
               openid: app.globalData.openid,
               dzbh: this.data.dzxx[this.data.selectedIndex].bh,
               zybh: this.data.xmbh,
+              fwbh: this.data.fwzl[this.data.idx].fwbh,
               sl: this.data.sl,
               fwsj: timestamp,
               ddbz: this.data.ddbz,

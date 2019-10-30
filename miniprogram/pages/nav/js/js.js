@@ -9,7 +9,6 @@ Page({
     fwzl: [//服务种类
     ],
     title: '',
-    sl: 1,
     time: '',
     date: '',
     ddbz: '',
@@ -73,14 +72,14 @@ Page({
       }
     })
     wx.request({
-      url: 'http://www.panzongyan.cn/wxchat/module1/index',
+      url: '',
       data:
       {
         openid: "xxx",
         //身份验证
         type: "send",
         //发送数据的类型为获取
-        content: "hqzymkxx",
+        content: "hqjszyxx",
         xmmc: this.data.title,//项目名称
         script: "获取" + this.data.title+"信息",//描述
 
@@ -130,11 +129,7 @@ Page({
       }
     })
   },
-  handleChange: function (options) {
-    this.setData({
-      sl: options.detail.value
-    })
-  },
+ 
   ddbzInput: function (e) {
     this.setData({
       ddbz: e.detail.value
@@ -148,7 +143,6 @@ Page({
     })
   },
   order() {
-    console.log(myPay)
     var date = this.data.date + ' ' + this.data.time + ':00';
     date = date.substring(0, 19);
     date = date.replace(/-/g, '/');
@@ -156,30 +150,67 @@ Page({
     if (app.globalData.hasLogin) {
       if (this.data.selectedIndex != -1) {
         if (this.data.time !== '' && this.data.date !== '') {
-          myPay({
-            data: {
+          wx.request({
+            url: 'http://baidu.com',
+            data:
+            {
               openid: app.globalData.openid,
               dzbh: this.data.dzxx[this.data.selectedIndex].bh,
-              zybh: this.data.xmbh,
-              sl: this.data.sl,
+              jsbh: this.data.xmbh,
               fwsj: timestamp,
+              fwbh: this.data.fwzl[this.data.idx].fwbh,
               ddbz: this.data.ddbz,
               type: "send",
-              content: "xdzymk",
-              script: "下单自营模块",
+              content: "xdjszy",
+              script: "下单极速直约",
             },
-            info: this.data.title + "-" + this.data.fwzl[this.data.idx].xmmc,
-            money: 1,
-            url: 'xx'
-          }).then(() => {
-            wx.navigateBack({
-            })
-          }).catch((res) => {
-            wx.showModal({
-              title: '提示',
-              content: res.reason,
-              showCancel: false
-            })
+            success(res)
+            {
+              if(res.statusCode==200)
+              {
+                if(res.data.status=='success')
+                {
+                  wx.showModal({
+                    title: '提示',
+                    content: '下单成功',
+                    showCancel: false,
+                    success(res)
+                    {
+                      if(res.confirm)
+                      {
+                        wx.navigateBack({
+                          
+                        })
+                      }
+                    }
+                  })
+                }
+                else
+                {
+                  wx.showModal({
+                    title: '提示',
+                    content: '下单失败',
+                    showCancel: false,
+                  })
+                }
+              }
+              else
+              {
+                wx.showModal({
+                  title: '提示',
+                  content: '下单失败',
+                  showCancel: false,
+                })
+              }
+            },
+            fail(res)
+            {
+              wx.showModal({
+                title: '提示',
+                content: '下单失败',
+                showCancel: false,
+              })
+            }
           })
         } else {
           wx.showModal({
