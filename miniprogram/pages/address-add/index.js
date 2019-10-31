@@ -36,13 +36,13 @@ Page({
       return
     }
     wx.request({
-      url: this.data.from == 'add' ? 'http://www.panzongyan.cn/wxchat/login/tjdz' : 'http://www.panzongyan.cn/wxchat/login/xgdz',
+      url: this.data.from == 'add' ? 'https://1024.lovelywhite.cn/wxchat/login/tjdz' : 'https://1024.lovelywhite.cn/wxchat/login/xgdz',
       data:
       {
         openid: app.globalData.openid,//身份验证
         content: "tjdzxx",// 内容
         script: "添加/修改地址信息",//描述
-        bh: that.data.addressData.bh,
+        bh: that.data.addressData==null ? '' : that.data.addressData.bh,
         lxr: lxr,//联系人姓名
         lxdh: lxdh,//联系电话
         fwdz: fwdz,//地址
@@ -127,7 +127,7 @@ Page({
       success: function (res) {
         if (res.confirm) {
           wx.request({
-            url: 'http://www.panzongyan.cn/wxchat/login/scdz',
+            url: 'https://1024.lovelywhite.cn/wxchat/login/scdz',
             data:
             {
               openid: app.globalData.openid,//身份验证
@@ -178,7 +178,7 @@ Page({
       success: function (res) {
         if (res.confirm) {
           wx.request({
-            url: 'http://www.panzongyan.cn/wxchat/login/mrdz',
+            url: 'https://1024.lovelywhite.cn/wxchat/login/mrdz',
             data:
             {
               openid: app.globalData.openid,//身份验证

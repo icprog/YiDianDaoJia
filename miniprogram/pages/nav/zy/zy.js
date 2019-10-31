@@ -31,7 +31,7 @@ Page({
       title: options.title
     })
     wx.request({
-      url: 'http://www.panzongyan.cn/wxchat/login/hqdz',
+      url: 'https://1024.lovelywhite.cn/wxchat/login/hqdz',
       data: {
         "openid": app.globalData.openid,
         //身份验证
@@ -59,13 +59,6 @@ Page({
               }
             }
           }
-          else {
-            wx.showModal({
-              title: '提示',
-              content: '请先添加地址',
-              showCancel: false
-            })
-          }
         }
       },
       fail(res) {
@@ -73,12 +66,12 @@ Page({
       }
     })
     wx.request({
-      url: 'http://www.panzongyan.cn/wxchat/module1/index',
+      url: 'https://1024.lovelywhite.cn/wxchat/module1/index',
       data:
       {
-        openid: "xxx",
+        openid: app.globalData.openid,
         //身份验证
-        type: "send",
+        type: "get",
         //发送数据的类型为获取
         content: "hqzymkxx",
         xmmc: this.data.title,//项目名称
@@ -171,7 +164,7 @@ Page({
             },
             info: this.data.title + "-" + this.data.fwzl[this.data.idx].xmmc,
             money: 1,
-            url: 'xx'
+            url: 'https://1024.lovelywhite.cn/wxchat/module1/operate'
           }).then(() => {
             wx.navigateBack({
             })
@@ -219,7 +212,7 @@ Page({
   onShow() {
     let that = this
     wx.request({
-      url: 'http://www.panzongyan.cn/wxchat/login/hqdz',
+      url: 'https://1024.lovelywhite.cn/wxchat/login/hqdz',
       data: {
         "openid": app.globalData.openid,
         //身份验证

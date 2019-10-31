@@ -104,7 +104,7 @@ Page({
       })
     });
     wx.request({
-      url: 'http://www.panzongyan.cn/wxchat/module2/gdt',
+      url: 'https://1024.lovelywhite.cn/wxchat/module2/gdt',
       method: 'get',
       data: {},
       success: function(res) {

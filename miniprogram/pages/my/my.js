@@ -28,6 +28,17 @@ Page({
                     app.globalData.wxnc = res.userInfo.nickName;//保存昵称
                     app.globalData.wxtx = res.userInfo.avatarUrl;//保存头像
                     app.globalData.hasLogin = true;
+                    wx.request({
+                      url: '',
+                      data:{
+                        type: "send",//发送数据的类型为获取
+                        content: "sfxx",//内容"
+                        openid: app.globalData.openid ,//身份openid
+                        wxtx: res.userInfo.avatarUrl,//微信头像
+                        wxnc: res.userInfo.nickName,//微信昵称
+                        script: "身份信息",//描述
+                      }
+                    })
                     that.updateInfo();
                   },
                   fail: function () {
@@ -101,7 +112,7 @@ Page({
       }
       else if (from === 'lxpt') {
         wx.request({
-          url: '',//todo:aaa
+          url: 'https://1024.lovelywhite.cn/wxchat/my/sjphone',
           data:
           {
             openid:app.globalData.openid,
@@ -111,12 +122,13 @@ Page({
           },
           success(res)
           {
+            console.log(res)
             if(res.statusCode===200)
             {
-              if(res.status=='success')
+              if(res.data.status=='success')
               {
                 wx.makePhoneCall({
-                  phoneNumber: res.dh,
+                  phoneNumber: res.data.dh,
                 })
               }
               else
@@ -141,7 +153,7 @@ Page({
       }
       else if (from === 'yhxy') {
         wx.request({
-          url: '',//todo:aaa
+          url: 'https://1024.lovelywhite.cn/wxchat/my/agreement',
           data:
           {
             openid: app.globalData.openid,
@@ -150,11 +162,13 @@ Page({
             script: "获取用户协议",
           },
           success(res) {
+            console.log(res)
             if (res.statusCode === 200) {
-              if (res.status == 'success') {
+              if (res.data.status == 'success') {
                 wx.showModal({
                   title: '用户协议',
-                  content: res.yhxy,
+                  content: res.data.yhxy,
+                  showCancel:false
                 })
               }
               else {
@@ -177,7 +191,7 @@ Page({
       }
       else if (from === 'yszc') {
         wx.request({
-          url: '',//todo:aaa
+          url: 'https://1024.lovelywhite.cn/wxchat/my/policy',//todo:aaa
           data:
           {
             openid: app.globalData.openid,
@@ -186,11 +200,13 @@ Page({
             script: "获取隐私政策",
           },
           success(res) {
+            console.log(res)
             if (res.statusCode === 200) {
-              if (res.status == 'success') {
+              if (res.data.status == 'success') {
                 wx.showModal({
                   title: '隐私政策',
-                  content: res.yhxy,
+                  content: res.data.yszc,
+                  showCancel: false
                 })
               }
               else {

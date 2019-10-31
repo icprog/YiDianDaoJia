@@ -13,7 +13,7 @@ Page({
     idx: 0
   },
   onLoad: function (e) {
-    this.loadZdg()
+
     let windowHeight = wx.getSystemInfoSync().windowHeight // 屏幕的高度
     let windowWidth = wx.getSystemInfoSync().windowWidth // 屏幕的宽度
     this.setData({
@@ -23,7 +23,7 @@ Page({
   loadZdg: function () {
     let that = this
     wx.request({
-      url: 'http://www.panzongyan.cn/wxchat/module2/index',
+      url: 'https://1024.lovelywhite.cn/wxchat/module2/index',
       method: 'post',
       data: {
         openid: app.globalData.openid,//身份验证
@@ -134,6 +134,10 @@ Page({
         showCancel: false
       })
     }
+  },
+  onShow()
+  {
+    this.loadZdg()
   },
   refresh() {
     console.log("refresh")

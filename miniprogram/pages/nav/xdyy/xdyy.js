@@ -36,7 +36,7 @@ Page({
     })
     let that = this
     wx.request({
-      url: 'http://www.panzongyan.cn/wxchat/login/hqdz',
+      url: 'https://1024.lovelywhite.cn/wxchat/login/hqdz',
       data: {
         "openid": app.globalData.openid,
         //身份验证
@@ -63,13 +63,6 @@ Page({
                 })
               }
             }
-          }
-          else {
-            wx.showModal({
-              title: '提示',
-              content: '请先添加地址',
-              showCancel: false
-            })
           }
         }
       },
@@ -101,7 +94,7 @@ Page({
             data: {
               openid: app.globalData.openid,
               dzbh: this.data.dzxx[this.data.selectedIndex].bh,
-              aybh: this.data.zdg.id,
+              aybh: this.data.zdg.bh,
               sl: this.data.sl,
               fwsj: timestamp,
               ddbz: this.data.ddbz,
@@ -111,7 +104,7 @@ Page({
             },
             info: "保洁直约",
             money: 1,
-            url: 'http://www.panzongyan.cn/wxchat/wxx/s_order'
+            url: 'https://1024.lovelywhite.cn/wxchat/wxx/s_order'
           }).then(() => {
             wx.switchTab({
               url: '/pages/direct/direct',
@@ -162,7 +155,7 @@ Page({
   onShow() {
     let that = this
     wx.request({
-      url: 'http://www.panzongyan.cn/wxchat/login/hqdz',
+      url: 'https://1024.lovelywhite.cn/wxchat/login/hqdz',
       data: {
         "openid": app.globalData.openid,
         //身份验证

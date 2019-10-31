@@ -30,7 +30,7 @@ Page({
       title: options.title
     })
     wx.request({
-      url: 'http://www.panzongyan.cn/wxchat/login/hqdz',
+      url: 'https://1024.lovelywhite.cn/wxchat/login/hqdz',
       data: {
         "openid": app.globalData.openid,
         //身份验证
@@ -58,13 +58,6 @@ Page({
               }
             }
           }
-          else {
-            wx.showModal({
-              title: '提示',
-              content: '请先添加地址',
-              showCancel: false
-            })
-          }
         }
       },
       fail(res) {
@@ -72,10 +65,10 @@ Page({
       }
     })
     wx.request({
-      url: '',
+      url: 'https://1024.lovelywhite.cn/wxchat/module3/index',
       data:
       {
-        openid: "xxx",
+        openid: app.globalData.openid,
         //身份验证
         type: "send",
         //发送数据的类型为获取
@@ -151,7 +144,7 @@ Page({
       if (this.data.selectedIndex != -1) {
         if (this.data.time !== '' && this.data.date !== '') {
           wx.request({
-            url: 'http://baidu.com',
+            url: 'https://1024.lovelywhite.cn/wxchat/module3/operate3',
             data:
             {
               openid: app.globalData.openid,
@@ -249,7 +242,7 @@ Page({
   onShow() {
     let that = this
     wx.request({
-      url: 'http://www.panzongyan.cn/wxchat/login/hqdz',
+      url: 'https://1024.lovelywhite.cn/wxchat/login/hqdz',
       data: {
         "openid": app.globalData.openid,
         //身份验证

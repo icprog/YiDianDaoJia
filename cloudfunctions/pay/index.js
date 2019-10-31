@@ -9,7 +9,7 @@ const config = {
   appid: 'wx79cf3cf2c20617a9',
   mchid: '1486667722',
   partnerKey: 'yddj458sdf8g5er8f5z5x5v9w3h4b8y6',
-  notify_url: 'http://www.panzongyan.cn/wxchat/wxx/notify',
+  notify_url: 'https://1024.lovelywhite.cn/wxchat/wxx/notify',
   spbill_create_ip: '127.0.0.1'
 };
 

@@ -34,7 +34,7 @@ Page({
   {
     let that = this;
     wx.request({
-      url: 'http://www.panzongyan.cn/wxchat/login/hqdz',
+      url: 'https://1024.lovelywhite.cn/wxchat/login/hqdz',
       data:
       {
         openid: app.globalData.openid,//身份验证

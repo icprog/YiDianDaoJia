@@ -26,7 +26,7 @@ export async function myPay(orderInfo) { //(this.data.sl * this.data.zdg.jg) * 1
    }).catch((res) => reslove({ code: -1, reason: "云调用错误", res: res }))
  })
 }
-async function pay(payData) {
+export async function pay(payData) {
   return new Promise((reslove, reject) => {
   //官方标准的支付方法
   wx.requestPayment({

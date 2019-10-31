@@ -18,14 +18,14 @@ Page({
         if (e.detail.value.mobile!='')
         {
           wx.request({
-            url: '',
+            url: 'https://1024.lovelywhite.cn/wxchat/module3/ts',
             data:
             {
               openid: app.globalData.openid,
               type: "send",//发送数据的类型为发送
               fklx: this.data.array[this.data.index],//反馈类型,
               fknr: this.data.inputTxt,//反馈内容
-              content: this.data.inputTxt,// 内容
+              content:'fsfk',// 内容
               script: "发送反馈",//描述
             },
             success(res) {

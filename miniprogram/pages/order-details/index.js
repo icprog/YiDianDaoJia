@@ -1,11 +1,12 @@
 var app = getApp();
+const { pay } = require('../../utils/myPay.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    item:{}
+    item:{},
   },
 
   /**
@@ -18,6 +19,97 @@ Page({
       }
     )
     console.log(this.data.item)
+  },
+  re(e)
+  {
+    let type = e.currentTarget.dataset.type
+    if(type == 'zf')
+    {
+      pay(this.data.item.payData).then((res) => {
+        wx.showModal({
+          title: '提示',
+          content: '支付成功',
+          showCancel:false,
+        })
+      }).catch((res) => {
+        console.log(res)
+        wx.showModal({
+          title: '提示',
+          content: '支付失败'+res,
+          showCancel: false,
+        })
+      })
+    }
+    else if(type == 'pj')
+    {
+      wx.navigateTo({
+        url: '/pages/ddpj/ddpj?item='+JSON.stringify(this.data.item),
+      })
+    }
+    else if(type == 'td')
+    {
+      let that = this
+      wx.showModal({
+        title: '提示',
+        content: '确定要退订该服务？',
+        showCancel: true,
+        success: function(res) {
+          if(res.confirm)
+          {
+            wx.request({
+              url: 'https://1024.lovelywhite.cn/wxchat/module2/tjpl',
+              data:
+              {
+                openid: app.globalData.openid,
+                type: "send",//发送数据的类型为发送
+                ddbh: that.data.item.ddbh,//订单编号
+                content: "qxxdbjzy",//内容
+                script: "取消下单保洁直约",//描述
+              },
+              success(res) {
+                if (res.statusCode === 200) {
+                  if (res.data.status === 'success') {
+                    wx.showModal({
+                      title: '提示',
+                      content: '退订成功',
+                      showCancel: false,
+                      success(res) {
+                        if (res.confirm) {
+                          wx.navigateBack({
+
+                          })
+                        }
+                      }
+                    })
+                  }
+                  else {
+                    wx.showModal({
+                      title: '提示',
+                      content: '服务器错误，提交失败',
+                      showCancel: false
+                    })
+                  }
+                }
+                else {
+                  wx.showModal({
+                    title: '提示',
+                    content: '网络错误，提交失败',
+                    showCancel: false
+                  })
+                }
+              },
+              fail(res) {
+                wx.showModal({
+                  title: '提示',
+                  content: '退订失败',
+                  showCancel: false
+                })
+              }
+            })
+          }
+        }
+      })
+    }
   },
 
   /**

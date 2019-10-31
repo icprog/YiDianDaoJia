@@ -22,8 +22,8 @@
     </view>
   </view>
     <view class="btn">
-    <button wx:if="{{item.ddzt=='待付款'}}" type="warn">支付</button>    
-    <button wx:if="{{item.ddzt=='待付款'||item.ddzt=='已预约'}}" type="default">退订</button>
-    <button wx:if="{{item.ddzt=='已完成'}}" type="primary">评价</button>
+    <button bindtap="re" data-type="zf" wx:if="{{item.ddzt=='待付款'}}" type="warn">支付</button>    
+    <button bindtap="re" data-type="td" wx:if="{{item.ddzt=='待付款'||item.ddzt=='待服务'}}" type="default">退订</button>
+    <button bindtap="re" data-type="pj" wx:if="{{item.ddzt=='待评价'}}" type="primary">评价</button>
     </view>
 </view>

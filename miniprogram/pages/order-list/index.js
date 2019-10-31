@@ -2,7 +2,7 @@ const app = getApp()
 
 Page({
   data: {
-    statusType: ["全部", "待付款", "已预约", "已完成", "待评价"],
+    statusType: ["全部", "待付款", "待服务", "已完成", "待评价"],
     currentType: '全部',
     currentIndex: 0,
     scroll_height: 0,
@@ -37,7 +37,7 @@ Page({
     // 获取订单列表
     wx.request(
       {
-        url: 'http://www.panzongyan.cn/wxchat/login/orders',
+        url: 'https://1024.lovelywhite.cn/wxchat/login/orders',
         data:
         {
           openid: app.globalData.openid,//身份验证
@@ -62,7 +62,7 @@ Page({
             }
 
           )
-          let x = ["全部", "待付款", "已预约", "已完成", "待评价"]
+          let x = ["全部", "待付款", "待服务", "已完成", "待评价"]
           that.update(x[parseInt(that.data.currentIndex, 10)]);
         }
       }
