@@ -1,6 +1,6 @@
 # 易点到家
 
- ![pic]('https://github.com/LovelyWhite/YiDianDaoJia/raw/master/pic.png')
+ ![image]('https://github.com/LovelyWhite/YiDianDaoJia/raw/master/pic.png')
 
 
 ## 参考文档
