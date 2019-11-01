@@ -19,8 +19,15 @@ Page({
     this.setData({
       scroll_height: windowHeight * 750 / windowWidth - (280) - 30
     })
+  }, 
+  onPullDownRefresh: function () {
+    this.loadZdg()
   },
   loadZdg: function () {
+    wx.showLoading({
+      title: '加载中',
+      mask:true,
+    })
     let that = this
     wx.request({
       url: 'https://1024.lovelywhite.cn/wxchat/module2/index',
@@ -49,6 +56,8 @@ Page({
         })
       },
       complete: function () {
+        wx.stopPullDownRefresh()
+        wx.hideLoading()
       }
     })
   },

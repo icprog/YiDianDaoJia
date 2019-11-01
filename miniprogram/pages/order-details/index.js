@@ -13,19 +13,22 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var  pages  =  getCurrentPages();
+    var  prevPage  =  pages[pages.length  -  2];
+    var  info  =  prevPage.data
     this.setData(
       {
-        item: JSON.parse(options.item)
+        item: prevPage.data.item
       }
     )
-    console.log(this.data.item)
+    // console.log(this.data.item)
   },
   re(e)
   {
     let type = e.currentTarget.dataset.type
     if(type == 'zf')
     {
-      pay(this.data.item.payData).then((res) => {
+      pay(JSON.parse(this.data.item.payData)).then((res) => {
         wx.showModal({
           title: '提示',
           content: '支付成功',
@@ -35,7 +38,7 @@ Page({
         console.log(res)
         wx.showModal({
           title: '提示',
-          content: '支付失败'+res,
+          content: '支付失败',
           showCancel: false,
         })
       })
@@ -43,7 +46,7 @@ Page({
     else if(type == 'pj')
     {
       wx.navigateTo({
-        url: '/pages/ddpj/ddpj?item='+JSON.stringify(this.data.item),
+        url: '/pages/ddpj/ddpj',
       })
     }
     else if(type == 'td')

@@ -1,5 +1,6 @@
 {
   "usingComponents": {
     "i-message": "/iview/message/index"
-  }
+  },
+  "enablePullDownRefresh": true
 }

@@ -10,6 +10,7 @@ export async function myPay(orderInfo) { //(this.data.sl * this.data.zdg.jg) * 1
        data: orderInfo.data,
        success: function (res) {
          if (res.statusCode === 200) {
+           console.log(ress.result)
            pay(ress.result).then((res) => {
              reslove({ code: 0, reason: "支付成功", res:res })
            }).catch((res) => {
