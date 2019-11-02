@@ -55,9 +55,9 @@ Page({
                   showCancel: false,
                   success(res) {
                     if (res.confirm) {
-                      wx.navigateBack({
-
-                      })
+                     wx.navigateBack({
+                       delta: 2
+                     })
                     }
                   }
                 })

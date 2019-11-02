@@ -86,6 +86,7 @@ Page({
     date = date.substring(0, 19);
     date = date.replace(/-/g, '/');
     var timestamp = new Date(date).getTime();
+    console.log(timestamp)
     if (app.globalData.hasLogin) {
       if(this.data.selectedIndex!=-1)
       {
@@ -100,9 +101,9 @@ Page({
               ddbz: this.data.ddbz,
               type: "send",
               content: "xdbjzy",
-              script: "下单保洁直约",
+              script: "保洁直约",
             },
-            info: "保洁直约",
+            info: "保洁直约" ,
             money: 1,
             url: 'https://1024.lovelywhite.cn/wxchat/wxx/s_order'
           }).then(() => {

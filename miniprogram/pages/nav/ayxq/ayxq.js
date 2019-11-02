@@ -1,5 +1,4 @@
 // pages/nav/zyxd.js
-const {myPay} = require('../../../utils/myPay.js')
 let app = getApp();
 Page({
 

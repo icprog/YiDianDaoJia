@@ -1,0 +1,24 @@
+<scroll-view scroll-y style="height: {{scroll_height}}rpx;">
+  <view >
+    <view wx:for='{{chatList}}'>
+      <view class="kefu-chat" wx:if="{{item.type==1}}">
+        <image src="../../image/kf.png" />
+        <view class="content" style="margin-left:15rpx">
+          <text style="font-size:20rpx">{{item.date}}</text>
+          <text class="text">{{item.content}}</text>
+        </view>
+      </view>
+      <view class="user-chat" wx:else>
+        <view class="content">
+          <text style="font-size:20rpx">{{item.date}}</text>
+          <text class="text">{{item.content}}</text>
+        </view>
+        <image src="../../image/yh.png" />
+      </view>
+    </view>
+  </view>
+</scroll-view>
+<view class="chat-input">
+  <input bindinput="bindKeyInput" value="{{message}}"></input>
+  <button bindtap="sendMessage">发送</button>
+</view>

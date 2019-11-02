@@ -1,30 +1,28 @@
 export async function myPay(orderInfo) { //(this.data.sl * this.data.zdg.jg) * 100
  return new Promise((reslove,reject)=>
  {
-   orderWX(orderInfo.money, orderInfo.info).then(ress => {
-     //添加result信息
-     orderInfo.data['payData'] = JSON.stringify(ress.result)
-     wx.request({
-       url: orderInfo.url,
-       method: 'post',
-       data: orderInfo.data,
-       success: function (res) {
-         if (res.statusCode === 200) {
-           console.log(ress.result)
-           pay(ress.result).then((res) => {
-             reslove({ code: 0, reason: "支付成功", res:res })
-           }).catch((res) => {
-             reject({ code: -1, reason: "支付失败", res: res })
-           })
-         }
-         else
-           reject({ code: -1, reason: "状态码错误", res: res })
-       },
-       fail(res) {
-         reject({ code: -1, reason: "wx请求错误", res: res })
-       }
-     })
-   }).catch((res) => reslove({ code: -1, reason: "云调用错误", res: res }))
+  wx.request({
+    url: orderInfo.url,
+    method: 'post',
+    data: orderInfo.data,
+    success: function (res) {
+      if (res.statusCode === 200) {
+        console.log(res)
+        orderWX(orderInfo.money, orderInfo.info,res.data.data.ddbh).then(ress => {
+          pay(ress.result).then((res) => {
+            reslove({ code: 0, reason: "支付成功", res:res })
+          }).catch((res) => {
+            reject({ code: -1, reason: "支付失败", res: res })
+          })
+        }).catch((res) => reslove({ code: -1, reason: "云调用错误", res: res }))
+      }
+      else
+        reject({ code: -1, reason: "状态码错误", res: res })
+    },
+    fail(res) {
+      reject({ code: -1, reason: "wx请求错误", res: res })
+    }
+  })
  })
 }
 export async function pay(payData) {
@@ -45,12 +43,12 @@ export async function pay(payData) {
   })
   })
 }
-async function orderWX(money, info){
+export async function orderWX(money, info,orderid){
   return new Promise((reslove, reject) => {
   wx.cloud.callFunction({
     name: "pay",
     data: {
-      orderid: "" + new Date().getTime(),
+      orderid: orderid,
       money: money,
       bodyInfo: info
     },

@@ -1,5 +1,5 @@
 var app = getApp();
-const { pay } = require('../../utils/myPay.js')
+const { orderWX ,pay } = require('../../utils/myPay.js')
 Page({
 
   /**
@@ -21,18 +21,34 @@ Page({
         item: prevPage.data.item
       }
     )
-    // console.log(this.data.item)
+    console.log(this.data.item)
   },
   re(e)
   {
     let type = e.currentTarget.dataset.type
     if(type == 'zf')
     {
-      pay(JSON.parse(this.data.item.payData)).then((res) => {
-        wx.showModal({
-          title: '提示',
-          content: '支付成功',
-          showCancel:false,
+      orderWX(1, this.data.item.script, this.data.item.ddbh).then((res) => {
+        pay(res.result).then((res) => {
+          wx.showModal({
+            title: '提示',
+            content: '支付成功',
+            showCancel: false,
+            success(res)
+            {
+              if(res.confirm)
+              {
+                wx.navigateBack({
+                })
+              }
+            }
+          })
+        }).catch((res) => {
+          wx.showModal({
+            title: '提示',
+            content: '支付失败',
+            showCancel: false,
+          })
         })
       }).catch((res) => {
         console.log(res)
@@ -46,7 +62,7 @@ Page({
     else if(type == 'pj')
     {
       wx.navigateTo({
-        url: '/pages/ddpj/ddpj',
+        url: '/pages/ddpj/ddpj?item='+JSON.stringify(this.data.item),
       })
     }
     else if(type == 'td')

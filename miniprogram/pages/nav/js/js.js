@@ -1,6 +1,5 @@
 // pages/nav/zyxd.js
 let app = getApp();
-const { myPay } = require('../../../utils/myPay.js')
 Page({
   data: {
     idx: 0,//select服务种类
@@ -155,7 +154,7 @@ Page({
               ddbz: this.data.ddbz,
               type: "send",
               content: "xdjszy",
-              script: "下单极速直约",
+              script: "极速直约",
             },
             success(res)
             {

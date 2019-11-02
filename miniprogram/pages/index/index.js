@@ -119,6 +119,23 @@ Page({
       }
     })
   },
+  kf()
+  {
+    if(!app.globalData.hasLogin)
+    {
+      wx.navigateTo({
+        url: '/pages/chat/index',
+      })
+    }
+    else
+    {
+      wx.showModal({
+        title: '提示',
+        content: '请登录',
+        showCancel: false
+      })
+    }
+  },
   getPosition: function() {
     return new Promise((resolve, reject) => {
       let app = this;

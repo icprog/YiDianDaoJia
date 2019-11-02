@@ -2,7 +2,7 @@ const app = getApp()
 
 Page({
   data: {
-    statusType: ["全部", "待付款", "待服务", "已完成", "待评价"],
+    statusType: ["全部", "待付款", "待服务", "待评价", "已完成"],
     currentType: '全部',
     currentIndex: 0,
     scroll_height: 0,
@@ -30,7 +30,6 @@ Page({
         scroll_height: windowHeight * 750 / windowWidth - (110) - 30
       })
     }
-    this.show();
   },
   show: function () {
     wx.showLoading({
@@ -54,11 +53,11 @@ Page({
             let data = res.data.data
             data.forEach(
               x => {
-               
-                let time = new Date(parseInt("" + x.xdsj + "000", 10))
-                x.xdsj = time.getFullYear() + "-" + (time.getMonth()+1) + "-" + time.getDay() + " " + time.getHours() + ":" + time.getMinutes()
-                time = new Date(parseInt("" + x.fwsj + "000", 10))
-                x.fwsj = time.getFullYear() + "-" + (time.getMonth() + 1) + "-" + time.getDay() + " " + time.getHours() + ":" + time.getMinutes()
+                let time = new Date(x.xdsj*1000)
+                console.log(time)
+                x.xdsj = time.getFullYear() + "-" + (time.getMonth()+1) + "-" + time.getDate() + " " + time.getHours() + ":" + time.getMinutes()
+                time = new Date(x.fwsj * 1000)
+                x.fwsj = time.getFullYear() + "-" + (time.getMonth() + 1) + "-" + time.getDate() + " " + time.getHours() + ":" + time.getMinutes()
               }
             )
             that.setData({
@@ -66,7 +65,7 @@ Page({
             }
 
             )
-            let x = ["全部", "待付款", "待服务", "已完成", "待评价"]
+            let x = ["全部", "待付款", "待服务", "待评价", "已完成"]
             that.update(x[parseInt(that.data.currentIndex, 10)]);
           }
           else
@@ -115,4 +114,8 @@ Page({
   onPullDownRefresh: function () {
     this.show();
   },
+  onShow()
+  {
+    this.show()
+  }
 })

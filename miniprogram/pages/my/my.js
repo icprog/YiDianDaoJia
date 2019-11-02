@@ -27,9 +27,8 @@ Page({
                     console.log(res)
                     app.globalData.wxnc = res.userInfo.nickName;//保存昵称
                     app.globalData.wxtx = res.userInfo.avatarUrl;//保存头像
-                    app.globalData.hasLogin = true;
                     wx.request({
-                      url: '',
+                      url: 'https://1024.lovelywhite.cn/wxchat/my/login',
                       data:{
                         type: "send",//发送数据的类型为获取
                         content: "sfxx",//内容"
@@ -37,9 +36,46 @@ Page({
                         wxtx: res.userInfo.avatarUrl,//微信头像
                         wxnc: res.userInfo.nickName,//微信昵称
                         script: "身份信息",//描述
+                      },
+                      success(res)
+                      {
+                        console.log(res)
+                        if(res.statusCode==200)
+                        {
+                          if(res.data.status=='success')
+                          {
+                            app.globalData.hasLogin = true;
+                            that.updateInfo();
+                            wx.showModal({
+                              title: '提示',
+                              content: '登陆成功',
+                              showCancel: false
+                            })
+                          }
+                          else
+                          {
+                            wx.showModal({ 
+                              title: '提示',
+                              content: '登陆失败',
+                              showCancel: false
+                            })
+                          }
+                        }
+                        else
+                        {
+                          wx.showModal({
+                            title: '提示',
+                            content: '状态码错误',
+                            showCancel: false
+                          })
+                        }
+                      },
+                      fail(res)
+                      {
+                        console.log(res)
                       }
                     })
-                    that.updateInfo();
+                  
                   },
                   fail: function () {
                     wx.showModal({

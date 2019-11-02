@@ -160,9 +160,9 @@ Page({
               ddbz: this.data.ddbz,
               type: "send",
               content: "xdzymk",
-              script: "下单自营模块",
+              script: "自营模块",
             },
-            info: this.data.title + "-" + this.data.fwzl[this.data.idx].xmmc,
+            info: '自营模块',
             money: 1,
             url: 'https://1024.lovelywhite.cn/wxchat/module1/operate'
           }).then(() => {
