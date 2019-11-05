@@ -181,8 +181,8 @@ Page({
                 {
                   wx.showModal({
                     title: '提示',
-                    content: '下单失败',
-                    showCancel: false,
+                    content:  res.data.message,
+                    showCancel: false
                   })
                 }
               }

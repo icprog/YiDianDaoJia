@@ -102,7 +102,7 @@ Page({
                   if (res.data.status === 'success') {
                     wx.showModal({
                       title: '提示',
-                      content: '退订成功',
+                      content: '已通知服务商，请联系客服',
                       showCancel: false,
                       success(res) {
                         if (res.confirm) {
@@ -116,7 +116,7 @@ Page({
                   else {
                     wx.showModal({
                       title: '提示',
-                      content: '服务器错误，提交失败',
+                      content: res.data.message,
                       showCancel: false
                     })
                   }

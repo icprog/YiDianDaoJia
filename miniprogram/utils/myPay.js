@@ -1,4 +1,4 @@
-export async function myPay(orderInfo) { //(this.data.sl * this.data.zdg.jg) * 100
+export async function myPay(orderInfo) { //
  return new Promise((reslove,reject)=>
  {
   wx.request({

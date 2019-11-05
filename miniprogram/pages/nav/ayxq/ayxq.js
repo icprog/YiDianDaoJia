@@ -70,6 +70,9 @@ Page({
               }
             }
           }
+          else
+          {
+          }
         }
       }
     })
@@ -93,6 +96,9 @@ Page({
                 pj:res.data.data
               }
             )
+          }
+          else
+          {
           }
         }
       },

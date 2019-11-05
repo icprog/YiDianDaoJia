@@ -124,10 +124,8 @@ Page({
       })
     }
   },
-  onHide() {
-    console.log(this.data.interval)
+  onUnload() {
     if (this.data.interval)
       clearInterval(this.data.interval)
   }
-  
 })

@@ -137,7 +137,7 @@ Page({
             {
               wx.showModal({
                 title: '提示',
-                content: '该地区无服务',
+                content:  res.data.message,
                 showCancel: false
               })
             }

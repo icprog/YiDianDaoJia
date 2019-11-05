@@ -24,7 +24,7 @@
       </view>
       <view style="display:flex;flex-direction:row; justify-content:flex-end;margin-top:10rpx;align-items:center">
         <text>数量：</text>
-        <i-input-number value="{{ sl }}" min="0" max="10" bindchange="handleChange" />
+        <i-input-number value="{{ sl }}" min="1" max="99" bindchange="handleChange" />
       </view>
     </view>
   </view>

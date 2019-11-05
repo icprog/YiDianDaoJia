@@ -13,7 +13,8 @@
     "pages/feedback/feedback",
     "pages/ddpj/ddpj",
     "pages/order-details/index",
-    "pages/chat/index"
+    "pages/chat/index",
+    "pages/wdpj/index"
   ],
   "permission": {
     "scope.userLocation": {

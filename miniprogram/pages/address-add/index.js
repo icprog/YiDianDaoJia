@@ -72,7 +72,7 @@ Page({
           {
             wx.showModal({
               title: '提示',
-              content: '失败',
+              content: res.data.message,
               showCancel: false
             })
           }
@@ -152,7 +152,7 @@ Page({
               else {
                 wx.showModal({
                   title: '提示',
-                  content: '删除失败',
+                  content:  res.data.message,
                   showCancel: false
                 })
               }
@@ -200,7 +200,7 @@ Page({
                 else {
                   wx.showModal({
                     title: '提示',
-                    content: '设置失败',
+                    content:  res.data.message,
                     showCancel: false
                   })
                 }

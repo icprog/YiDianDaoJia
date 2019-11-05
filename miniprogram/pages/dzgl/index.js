@@ -68,7 +68,7 @@ Page({
         else {
           wx.showModal({
             title: '提示',
-            content: '获取失败',
+            content:  res.data.message,
             showCancel: false
           })
         }

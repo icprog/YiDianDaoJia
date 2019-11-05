@@ -68,9 +68,9 @@ Page({
                           }
                           else
                           {
-                            wx.showModal({ 
+                            wx.showModal({
                               title: '提示',
-                              content: '登陆失败',
+                              content:  res.data.message,
                               showCancel: false
                             })
                           }
@@ -185,7 +185,7 @@ Page({
               {
                 wx.showModal({
                   title: '提示',
-                  content: '商家未设置电话信息',
+                  content:  res.data.message,
                   showCancel: false
                 })
               }
@@ -224,7 +224,7 @@ Page({
               else {
                 wx.showModal({
                   title: '提示',
-                  content: '商家未设置用户协议',
+                  content:  res.data.message,
                   showCancel: false
                 })
               }
@@ -262,7 +262,7 @@ Page({
               else {
                 wx.showModal({
                   title: '提示',
-                  content: '商家未设置隐私政策',
+                  content:  res.data.message,
                   showCancel: false
                 })
               }

@@ -1,7 +1,7 @@
 // pages/nav/zyxd.js
 
 let app = getApp();
-const {myPay} = require('../../../utils/myPay.js')
+const { myPay } = require('../../../utils/myPay.js')
 Page({
 
   /**
@@ -26,8 +26,8 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
-   
+  onLoad: function (options) {
+
     wx.setNavigationBarTitle({
       title: options.title === undefined ? "" : options.title
     })
@@ -71,12 +71,12 @@ Page({
       }
     })
   },
-  handleChange: function(options) {
+  handleChange: function (options) {
     this.setData({
       sl: options.detail.value
     })
   },
-  ddbzInput: function(e) {
+  ddbzInput: function (e) {
     this.setData({
       ddbz: e.detail.value
     })
@@ -88,8 +88,7 @@ Page({
     var timestamp = new Date(date).getTime();
     console.log(timestamp)
     if (app.globalData.hasLogin) {
-      if(this.data.selectedIndex!=-1)
-      {
+      if (this.data.selectedIndex != -1) {
         if (this.data.time !== '' && this.data.date !== '') {
           myPay({
             data: {
@@ -103,22 +102,32 @@ Page({
               content: "xdbjzy",
               script: "保洁直约",
             },
-            info: "保洁直约" ,
-            money: 1,
+            info: "保洁直约",
+            money: (this.data.sl * this.data.zdg.jg) * 100,
             url: 'https://yddj.panzongyan.cn/wxchat/wxx/s_order'
           }).then(() => {
-            wx.switchTab({
-              url: '/pages/direct/direct',
-              success: function(res) {},
-              fail: function(res) {},
-              complete: function(res) {},
+            wx.showModal({
+              title: '提示',
+              content: '支付成功',
+              showCancel: false,
+              success(res) {
+                if (res.confirm) {
+                  wx.switchTab({
+                    url: '/pages/direct/direct',
+                    success: function (res) { },
+                    fail: function (res) { },
+                    complete: function (res) { },
+                  })
+                }
+              }
             })
-            }).catch((res) => {
-              wx.showModal({
-                title: '提示',
-                content: res.reason,
-                showCancel: false
-              })})
+          }).catch((res) => {
+            wx.showModal({
+              title: '提示',
+              content: res.reason,
+              showCancel: false
+            })
+          })
         } else {
           wx.showModal({
             title: '提示',
@@ -127,8 +136,7 @@ Page({
           })
         }
       }
-      else
-      {
+      else {
         wx.showModal({
           title: '提示',
           content: '请先添加地址',
@@ -143,12 +151,12 @@ Page({
       })
     }
   },
-  bindDateChange: function(e) {
+  bindDateChange: function (e) {
     this.setData({
       date: e.detail.value
     })
   },
-  bindTimeChange: function(e) {
+  bindTimeChange: function (e) {
     this.setData({
       time: e.detail.value
     })

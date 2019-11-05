@@ -48,7 +48,7 @@ Page({
                 else {
                   wx.showModal({
                     title: '提示',
-                    content: '服务器错误，提交失败',
+                    content:  res.data.message,
                     showCancel: false
                   })
                 }

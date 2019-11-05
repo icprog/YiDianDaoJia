@@ -13,7 +13,7 @@
   <view style="margin-left:30rpx;display:flex;align-items:center;justify-content:space-between;">
     <text style="border: 3rpx red solid;margin-left:15rpx;color:red;float:left;">{{fwzl[idx].xmjg}}元/平方</text>
     <view style="margin-right:20rpx">
-      <i-input-number style="float:right" value="{{ sl }}" min="0" max="10" bindchange="handleChange" />
+      <i-input-number style="float:right" value="{{ sl }}" min="1" max="99" bindchange="handleChange" />
       <text style="float:right">数量：</text>
     </view>
   </view>

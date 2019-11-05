@@ -163,10 +163,22 @@ Page({
               script: "自营模块",
             },
             info: '自营模块',
-            money: 1,
+            money: this.data.fwzl[this.data.idx].xmjg*this.data.sl*100,
             url: 'https://yddj.panzongyan.cn/wxchat/module1/operate'
           }).then(() => {
-            wx.navigateBack({
+            wx.showModal({
+              title: '提示',
+              content: '下单成功',
+              showCancel: false,
+              success(res)
+              {
+                if(res.confirm)
+                {
+                  wx.navigateBack({
+                    
+                  })
+                }
+              }
             })
           }).catch((res) => {
             wx.showModal({
