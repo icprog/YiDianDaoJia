@@ -39,7 +39,7 @@ Page({
     let that = this
     // 获取订单列表
     wx.request({
-      url: 'https://1024.lovelywhite.cn/wxchat/login/orders',
+      url: 'https://yddj.panzongyan.cn/wxchat/login/orders',
       data: {
         openid: app.globalData.openid, //身份验证
         type: "get", //发送数据的类型为获取

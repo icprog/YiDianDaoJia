@@ -47,17 +47,6 @@
   padding-bottom: 20rpx;
 }
 
-.srcoll_view{
-  position: absolute; top:16rpx;
-  height: 100rpx; margin-left: 0px;
-  font-size: 30rpx; font-weight: 550;
-  white-space: nowrap;
-  color: gray;
-  animation:myfirst 8s linear infinite;
-  }
-  @keyframes myfirst{
-  0% {margin-left:600rpx;margin-top: 10rpx;} 100% {margin-left:-1000rpx;margin-top: 10rpx;}
-  }
   .head_bar
   {
     height:80rpx;

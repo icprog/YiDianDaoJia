@@ -31,7 +31,7 @@ Page({
       title: options.title
     })
     wx.request({
-      url: 'https://1024.lovelywhite.cn/wxchat/login/hqdz',
+      url: 'https://yddj.panzongyan.cn/wxchat/login/hqdz',
       data: {
         "openid": app.globalData.openid,
         //身份验证
@@ -66,7 +66,7 @@ Page({
       }
     })
     wx.request({
-      url: 'https://1024.lovelywhite.cn/wxchat/module1/index',
+      url: 'https://yddj.panzongyan.cn/wxchat/module1/index',
       data:
       {
         openid: app.globalData.openid,
@@ -164,7 +164,7 @@ Page({
             },
             info: '自营模块',
             money: 1,
-            url: 'https://1024.lovelywhite.cn/wxchat/module1/operate'
+            url: 'https://yddj.panzongyan.cn/wxchat/module1/operate'
           }).then(() => {
             wx.navigateBack({
             })
@@ -212,7 +212,7 @@ Page({
   onShow() {
     let that = this
     wx.request({
-      url: 'https://1024.lovelywhite.cn/wxchat/login/hqdz',
+      url: 'https://yddj.panzongyan.cn/wxchat/login/hqdz',
       data: {
         "openid": app.globalData.openid,
         //身份验证

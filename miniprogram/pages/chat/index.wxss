@@ -32,20 +32,19 @@ page {
 }
 
 image {
-  width: 110rpx;
-  height: 110rpx;
-  min-width: 110rpx;
+  width: 90rpx;
+  height: 90rpx;
+  min-width: 90rpx;
 }
-
 
 .kefu-chat {
   font-size: 0.8rem;
-  color:  rgb(128, 125, 125);
+  color: rgb(128, 125, 125);
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items:center;
   margin-left: 15rpx;
   margin-right: 15rpx;
   margin-bottom: 20rpx;
@@ -58,7 +57,7 @@ image {
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: flex-end;
-  align-items: flex-start;
+  align-items:center;
   margin-left: 15rpx;
   margin-right: 15rpx;
   margin-bottom: 20rpx;
@@ -75,8 +74,8 @@ image {
   flex-direction: column;
   margin: 10rpx;
 }
-.content text
-{  
-   word-break:break-all; 
-   text-align: center
+
+.content text {
+  word-break: break-all;
+  text-align: center;
 }

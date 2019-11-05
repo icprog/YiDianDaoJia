@@ -6,22 +6,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-    chatList: [
-      {
-        type:1,
-        date:'2019-10-20 20:30',
-        content:"请问您需要什么帮助1111111111111111111111111111111111111111111吗1111？"
-      },
-      {
-        type: 0,
-        date: '2019-10-20 20:30',
-        content: "请问您需要什么帮助1111111111111111111111111111111111111111111吗1111？"
-      }
-    ],
-    message:'',
-    scroll_height:0
+    chatList: [],
+    message: '',
+    scroll_height: 0,
+    interval: null,
+    cid: null,
   },
-  bindKeyInput: function (e) {
+  bindKeyInput: function(e) {
     this.setData({
       message: e.detail.value
     })
@@ -36,50 +27,107 @@ Page({
     this.setData({
       scroll_height: windowHeight * 750 / windowWidth - (60) - 30
     })
-    setInterval(()=>
-    {
-      wx.request({
-        url: '',
-        data:
-        {
-          openid:app.globalData.openid
-        },
-        success(res)
-        {
-        }
-      })
-    },5000)
-  },
-  
-  //发送信息
-  sendMessage: function() {
-    let that = this
+    
     wx.request({
-      url: '/game/game/sendMessage',
+      url: 'https://yddj.panzongyan.cn/wxchat/game/getChatContent',
+      method: 'post',
       data: {
-        openid: app.globalData.openid,
-        mes: that.data.message
+        openid: app.globalData.openid
       },
       success(res) {
-       
+        if (res.statusCode == 200) {
+          console.log(res)
+          that.setData({
+            cid: res.data.data.cid,
+            chatList: res.data.data.data
+          })
+        }
       },
       fail(res) {
         console.log(res)
-      },
-      complete()
-      {
-        that.data.chatList.push({
-          type: 2,
-          content: that.data.message,
-          date: '2019-10-10 20:23'
-        })
-        that.setData(
-          {
-            message: '',
-            chatList: that.data.chatList,
-          }
-        )
       }
     })
+    this.data.interval = setInterval(() => {
+      wx.request({
+        url: 'https://yddj.panzongyan.cn/wxchat/game/getChatContent',
+        method: 'post',
+        data: {
+          openid: app.globalData.openid
+        },
+        success(res) {
+          if (res.statusCode == 200) {
+            console.log(res)
+            that.setData({
+              chatList: res.data.data.data
+            })
+          }
+        },
+        fail(res) {
+          console.log(res)
+        }
+      })
+    }, 10000)
   },
+
+  //发送信息
+  sendMessage: function() {
+    let that = this
+    if (this.data.cid != null) {
+      wx.request({
+        url: 'https://yddj.panzongyan.cn/wxchat/game/sendMessage',
+        method: 'post',
+        data: {
+          openid: app.globalData.openid,
+          mes: that.data.message,
+          cid: that.data.cid
+        },
+        success(res) {
+          console.log(res)
+          that.data.chatList.push({
+            type: 2,
+            content: that.data.message,
+            date: that.data.date
+          })
+          that.setData({
+            message: '',
+            chatList: that.data.chatList,
+          })
+          wx.request({
+            url: 'https://yddj.panzongyan.cn/wxchat/game/getChatContent',
+            method: 'post',
+            data: {
+              openid: app.globalData.openid
+            },
+            success(res) {
+              if (res.statusCode == 200) {
+                console.log(res)
+                that.setData({
+                  chatList: res.data.data.data
+                })
+              }
+            },
+            fail(res) {
+              console.log(res)
+            }
+          })
+        },
+        fail(res) {
+          console.log(res)
+        },
+        complete() {
+
+        }
+      })
+    } else {
+      wx.showToast({
+        title: '未初始化',
+      })
+    }
+  },
+  onHide() {
+    console.log(this.data.interval)
+    if (this.data.interval)
+      clearInterval(this.data.interval)
+  }
+  
 })

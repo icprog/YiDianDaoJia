@@ -2,10 +2,15 @@
   <view class="page__hd">
     <i-message id="message" />
     <view class="head_bar" style="display:flex; justify-content:space-between; ">
-      <view></view>
+      <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+        <view style="display:flex;flex-direction:row;align-items: center;">
+          <view class="picker" style="font-size:30rpx;color: white;">{{region[1]}}</view>
+          <image style="width:30rpx;height:30rpx;" src="/image/UI/dwxlj.png" />
+        </view>
+      </picker>
       <view style="height:100%;display:flex;flex-direction:row;align-items:center;">
-        <image style="height:100%;width: 40px;" mode="aspectFit" src="/image/UI/gwc.png"></image>
-        <image style="height:100%;width: 40px;" mode="aspectFit" src="/image/UI/dxkf.png"></image>
+        <image bindtap="re" style="height:100%;width: 25px;" mode="aspectFit" src="/image/ico-addr.png"></image>
+        <image bindtap="kf" style="height:100%;width: 40px;" mode="aspectFit" src="/image/UI/dxkf.png"></image>
       </view>
     </view>
   </view>
@@ -13,7 +18,7 @@
     <view class="grids_block" style=" border-radius: 10rpx;">
       <view>
         <block wx:for="{{sort_list}}" wx:for-item="item" wx:key="index">
-        <text  bindtap="sort" class="{{index==idx?'_sort_class':'sort_class'}}" data-index="{{index}}">{{item}}</text>
+          <text bindtap="sort" class="{{index==idx?'_sort_class':'sort_class'}}" data-index="{{index}}">{{item}}</text>
         </block>
       </view>
       <scroll-view scroll-y style="height: {{scroll_height}}rpx;" bindscrolltoupper="refresh">
@@ -45,7 +50,7 @@
                 </block>
                 <text style="margin-left:10rpx;width:70rpx;">{{item_zdg.xj}} 分</text>
                 <text style="margin-left:10rpx;width:120rpx;">服务 {{item_zdg.fwcs}} 次</text>
-                <text style="margin-left:10rpx;width:140rpx;">距离 {{item_zdg.jl}} km</text>
+                <text style="margin-left:10rpx;width:140rpx;">{{item_zdg.jl}} km</text>
               </view>
             </view>
           </view>

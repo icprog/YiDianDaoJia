@@ -10,7 +10,7 @@
       </view>
       <view style="height:100%;display:flex;flex-direction:row;align-items:center;">
         <!-- <image style="height:100%;width: 40px;" mode="aspectFit" src="/image/UI/sz.png"></image> -->
-        <image style="height:100%;width: 40px;" mode="aspectFit" src="/image/UI/dxkf.png"></image>
+        <image bindtap="kf" style="height:100%;width: 40px;" mode="aspectFit" src="/image/UI/dxkf.png"></image>
       </view>
     </view>
   </view>
@@ -31,11 +31,11 @@
         </view>
         <view class="weui-grid" bindtap='goOrder' hover-class="weui-grid_active" data-index="3">
           <image class="weui-grid__icon" mode="widthFix" src="/image/dd/ddycg.png" />
-          <text class="weui-grid__label title">已完成</text>
+          <text class="weui-grid__label title">待评价</text>
         </view>
         <view class="weui-grid" bindtap='goOrder' hover-class="weui-grid_active" data-index="4">
           <image class="weui-grid__icon" mode="widthFix" src="/image/dd/dddpj.png" />
-          <text class="weui-grid__label title">待评价</text>
+          <text class="weui-grid__label title">已完成</text>
         </view>
       </view>
     </view>

@@ -41,7 +41,7 @@ Page({
       img: '/image/UI/gdfw.png',
       title: '更多服务',
 
-    }, ],
+    },],
     zszy: [{
       img: '/image/UI/bmys.png',
       title: '保姆月嫂',
@@ -80,34 +80,60 @@ Page({
     notice: "示例消息",
     scroll_height: 0
   },
-  bindRegionChange: function(e) {
-    this.setData({
-      region: e.detail.value
-    });
+  bindRegionChange: function (e) {
+    let that = this
+    wx.request({
+      url: 'https://apis.map.qq.com/ws/geocoder/v1',
+      data:
+      {
+        address: e.detail.value[0] + e.detail.value[1] + e.detail.value[2],
+        region: e.detail.value[1],
+        key: '3G2BZ-YAT3F-4CJJP-NYDUW-G5KXH-EZFT5',
+      },
+      success(res) {
+        if (res.statusCode == 200 && res.data.status == 0) {
+          that.setData({
+            region: e.detail.value
+          });
+          app.globalData.region = that.data.region
+          app.globalData.position = [res.data.result.location.lng, res.data.result.location.lat]
+        }
+        else {
+          wx.showModal({
+            title: '提示',
+            content: '地址获取失败',
+            showCancel: false
+          })
+        }
+      },
+      fail(res) {
+        wx.showModal({
+          title: '提示',
+          content: '地址获取失败',
+          showCancel: false
+        })
+      }
+    })
+
   },
-  directNav: function(e) {
+  directNav: function (e) {
     wx.switchTab({
       url: '../direct/direct'
     })
   },
-  onLoad: function() {
+  onLoad: function () {
     let that = this
     let windowHeight = wx.getSystemInfoSync().windowHeight // 屏幕的高度
     let windowWidth = wx.getSystemInfoSync().windowWidth // 屏幕的宽度
     this.setData({
       scroll_height: windowHeight * 750 / windowWidth - (250) - 30
     })
-    this.getPosition().then(res => {
-      console.log(res)
-      this.setData({
-        region: res
-      })
-    });
+
     wx.request({
-      url: 'https://1024.lovelywhite.cn/wxchat/module2/gdt',
+      url: 'https://yddj.panzongyan.cn/wxchat/module2/gdt',
       method: 'get',
       data: {},
-      success: function(res) {
+      success: function (res) {
         if (res.statusCode === 200) {
           console.log(res.data)
           if (res.data.status === "success") {
@@ -119,16 +145,32 @@ Page({
       }
     })
   },
-  kf()
-  {
-    if(!app.globalData.hasLogin)
+  re() {
+    app.getPosition().then(res => {
+      console.log(res)
+      wx.showToast({
+        title: '获取地址成功',
+      })
+      app.globalData.region = res.region
+      app.globalData.position = res.position
+      this.setData({
+        region: res.region,
+        position: res.position
+      })
+    }).catch(res=>
     {
+      wx.showToast({
+        title: '获取地址失败',
+      })
+    });
+  },
+  kf() {
+    if (app.globalData.hasLogin) {
       wx.navigateTo({
         url: '/pages/chat/index',
       })
     }
-    else
-    {
+    else {
       wx.showModal({
         title: '提示',
         content: '请登录',
@@ -136,60 +178,42 @@ Page({
       })
     }
   },
-  getPosition: function() {
-    return new Promise((resolve, reject) => {
-      let app = this;
-      wx.getLocation({
-        type: 'gcj02', //返回可以用于wx.openLocation的经纬度
-        success(res) {
-          var getAddressUrl = "https://apis.map.qq.com/ws/geocoder/v1/?location=" + res.latitude + "," + res.longitude + "&key=3G2BZ-YAT3F-4CJJP-NYDUW-G5KXH-EZFT5";
-          wx.request({
-            url: getAddressUrl,
-            success: res => {
-              if (res.statusCode != 200) {
-                reject(res);
-              } else {
-                let reg = [
-                  res.data.result.address_component.province,
-                  res.data.result.address_component.city,
-                  res.data.result.address_component.district
-                ];
-                resolve(reg);
-              }
-            },
-            fail(res) {
-              reject(["", "选择地区"]);
-            }
-          });
-        }
-      })
-    });
-  },
-  nav(e)
-  {
+
+  nav(e) {
     console.log(e)
-    if(app.globalData.hasLogin)
-    {
-      if(e.currentTarget.dataset.type ==='zymk')
-      {
+    if (app.globalData.hasLogin) {
+      if (e.currentTarget.dataset.type === 'zymk') {
         wx.navigateTo({
-          url: '/pages/nav/zy/zy?title='+e.currentTarget.dataset.title
+          url: '/pages/nav/zy/zy?title=' + e.currentTarget.dataset.title
         })
       }
-      else if (e.currentTarget.dataset.type==='jszy')
-      {
+      else if (e.currentTarget.dataset.type === 'jszy') {
         wx.navigateTo({
-          url: '/pages/nav/js/js?title='+e.currentTarget.dataset.title
+          url: '/pages/nav/js/js?title=' + e.currentTarget.dataset.title
         })
       }
     }
-    else
-    {
+    else {
       wx.showModal({
         title: '提示',
         content: '请登录',
         showCancel: false
       })
     }
+  },
+  onShow()
+  {
+    if (app.globalData.region[0] != '')
+      this.setData({
+        region: app.globalData.region
+      })
+    else
+      app.getPosition().then(res => {
+        app.globalData.region = res.region
+        app.globalData.position = res.position
+        this.setData({
+          region: res.region
+        })
+      });
   }
 });

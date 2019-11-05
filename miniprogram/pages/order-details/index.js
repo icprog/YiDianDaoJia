@@ -44,11 +44,23 @@ Page({
             }
           })
         }).catch((res) => {
-          wx.showModal({
-            title: '提示',
-            content: '支付失败',
-            showCancel: false,
-          })
+          console.log(res)
+          if(res.errMsg=="requestPayment:fail cancel")
+          {
+            wx.showModal({
+              title: '提示',
+              content: '支付取消',
+              showCancel: false,
+            })
+          }
+          else
+          {
+            wx.showModal({
+              title: '提示',
+              content: '支付失败',
+              showCancel: false,
+            })
+          }
         })
       }).catch((res) => {
         console.log(res)
@@ -76,7 +88,7 @@ Page({
           if(res.confirm)
           {
             wx.request({
-              url: 'https://1024.lovelywhite.cn/wxchat/module2/tjpl',
+              url: 'https://yddj.panzongyan.cn/wxchat/wxx/ddtd',
               data:
               {
                 openid: app.globalData.openid,

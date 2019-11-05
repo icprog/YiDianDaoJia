@@ -34,7 +34,7 @@ Page({
       if (e.detail.value.textarea != '') {
 
         wx.request({
-          url: 'https://1024.lovelywhite.cn/wxchat/module2/tjpl',
+          url: 'https://yddj.panzongyan.cn/wxchat/module2/tjpl',
           data:
           {
             openid: app.globalData.openid,

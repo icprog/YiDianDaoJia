@@ -42,9 +42,15 @@
 <scroll-view scroll-y style="height:{{scroll_height}}rpx;background-color: #EEEEEE;font-size: 25rpx;">
   <block wx:for="{{pj}}" wx:for-item="item_pj" wx:key="index">
     <view style="padding: 15rpx 15rpx 15rpx 50rpx;margin-top:10rpx;background-color:white">
-      <text style="max-width:100rpx">{{item_pj.khzh}}</text>
-      <text>评价等级：{{item_pj.pjdj}}</text>
-      <text>评价内容：{{item_pj.pjnr}}</text>
+      <view>
+        <text style="max-width:100rpx">{{item_pj.khnc}}</text>
+      </view>
+      <view>
+        <text>评价等级：{{item_pj.pjdj}}</text>
+      </view>
+      <view>
+        <text>评价内容：{{item_pj.pjnr}}</text>
+      </view>
     </view>
   </block>
 </scroll-view>

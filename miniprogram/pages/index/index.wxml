@@ -10,7 +10,7 @@
       </picker>
 
       <view style="height:100%;display:flex;flex-direction:row;align-items:center;">
-        <image style="height:100%;width: 40px;" mode="aspectFit" src="/image/UI/gwc.png"></image>
+        <image bindtap="re" style="height:100%;width: 25px;" mode="aspectFit" src="/image/ico-addr.png"></image>
         <image bindtap="kf" style="height:100%;width: 40px;" mode="aspectFit" src="/image/UI/dxkf.png"></image>
       </view>
     </view>
@@ -20,16 +20,16 @@
   </i-notice-bar>
   <view class="page__bd">
     <scroll-view scroll-y style="height: {{scroll_height}}rpx;">
-          <view class="weui-grids grids_block" style="margin-top:20rpx;">
-      <block wx:for="{{zymk}}" wx:for-item="item" wx:key="index">
-        <view data-title="{{item.title}}" data-type='zymk' class="weui-grid" hover-class="weui-grid_active" bindtap="nav">
-          <image class="weui-grid__icon" mode="widthFix" src="{{item.img}}" />
-          <view class="weui-grid__label title">{{item.title}}</view>
-        </view>
-      </block>
-    </view>
+      <view class="weui-grids grids_block" style="margin-top:20rpx;">
+        <block wx:for="{{zymk}}" wx:for-item="item" wx:key="index">
+          <view data-title="{{item.title}}" data-type='zymk' class="weui-grid" hover-class="weui-grid_active" bindtap="nav">
+            <image class="weui-grid__icon" mode="widthFix" src="{{item.img}}" />
+            <view class="weui-grid__label title">{{item.title}}</view>
+          </view>
+        </block>
+      </view>
 
-    <view class="grids_block" bindtap="directNav" style="margin-top:20rpx;">
+      <view class="grids_block" bindtap="directNav" style="margin-top:20rpx;">
         <view style="display:flex;flex-direction:column;">
           <view style="display:flex;flex-direction:row;align-items:center;justify-content: flex-start;  border-bottom: 3rpx #0080ff solid;">
             <image src="/image/UI/zdgbjzy.png" style="width:60rpx;height:60rpx;" />
@@ -41,22 +41,22 @@
             <text style="color:blue;">{{zytext}}</text>
           </view>
         </view>
-    </view>
+      </view>
 
-    <view class="weui-grids grids_block" style="display:flex;flex-direction:column;margin-top:20rpx;">
-      <view style="display:flex;flex-direction:row;align-items:center;justify-content: flex-start;  border-bottom: 3rpx #0080ff solid;">
-        <image src="/image/UI/jsyy.png" style="width:60rpx;height:60rpx;" />
-        <text style="text-color:blue;">极速直约</text>
+      <view class="weui-grids grids_block" style="display:flex;flex-direction:column;margin-top:20rpx;">
+        <view style="display:flex;flex-direction:row;align-items:center;justify-content: flex-start;  border-bottom: 3rpx #0080ff solid;">
+          <image src="/image/UI/jsyy.png" style="width:60rpx;height:60rpx;" />
+          <text style="text-color:blue;">极速直约</text>
+        </view>
+        <view>
+          <block wx:for="{{zszy}}" wx:for-item="item" wx:key="index">
+            <view data-title="{{item.title}}" data-type='jszy' class="weui-grid" hover-class="weui-grid_active" bindtap="nav">
+              <image class="weui-grid__icon image" mode="widthFix" src="{{item.img}}" />
+              <view class="weui-grid__label title">{{item.title}}</view>
+            </view>
+          </block>
+        </view>
       </view>
-      <view>
-        <block wx:for="{{zszy}}" wx:for-item="item" wx:key="index">
-          <view data-title="{{item.title}}" data-type='jszy'  class="weui-grid" hover-class="weui-grid_active" bindtap="nav">
-            <image class="weui-grid__icon image" mode="widthFix" src="{{item.img}}" />
-            <view class="weui-grid__label title">{{item.title}}</view>
-          </view>
-        </block>
-      </view>
-    </view>
     </scroll-view>
   </view>
 </view>

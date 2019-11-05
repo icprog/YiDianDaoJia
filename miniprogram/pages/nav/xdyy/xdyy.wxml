@@ -20,7 +20,7 @@
         </block>
         <text style="margin-left:10rpx;width:70rpx;">{{zdg.xj}} 分</text>
         <text style="margin-left:10rpx;width:120rpx;">服务 {{zdg.fwcs}} 次</text>
-        <text style="margin-left:10rpx;width:140rpx;">距离 {{zdg.jl}} km</text>
+        <text style="margin-left:10rpx;width:140rpx;">{{zdg.jl}}km</text>
       </view>
       <view style="display:flex;flex-direction:row; justify-content:flex-end;margin-top:10rpx;align-items:center">
         <text>数量：</text>

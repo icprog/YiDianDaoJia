@@ -10,14 +10,14 @@
       </view>
       <view class="user-chat" wx:else>
         <view class="content">
-          <text style="font-size:20rpx">{{item.date}}</text>
+          <text style="font-size:20rpx">{{item.date?item.date:'...'}}</text>
           <text class="text">{{item.content}}</text>
         </view>
         <image src="../../image/yh.png" />
       </view>
     </view>
   </view>
-</scroll-view>
+</scroll-view >
 <view class="chat-input">
   <input bindinput="bindKeyInput" value="{{message}}"></input>
   <button bindtap="sendMessage">发送</button>

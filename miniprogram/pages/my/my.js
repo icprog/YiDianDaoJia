@@ -6,6 +6,20 @@ Page({
     wxtx: app.globalData.wxtx,
     wxnc: app.globalData.wxnc
   },
+  kf() {
+    if (app.globalData.hasLogin) {
+      wx.navigateTo({
+        url: '/pages/chat/index',
+      })
+    }
+    else {
+      wx.showModal({
+        title: '提示',
+        content: '请登录',
+        showCancel: false
+      })
+    }
+  },
   bindGetUserInfo: function (e) {
     wx.showLoading({
       title: '正在登陆',
@@ -28,7 +42,7 @@ Page({
                     app.globalData.wxnc = res.userInfo.nickName;//保存昵称
                     app.globalData.wxtx = res.userInfo.avatarUrl;//保存头像
                     wx.request({
-                      url: 'https://1024.lovelywhite.cn/wxchat/my/login',
+                      url: 'https://yddj.panzongyan.cn/wxchat/my/login',
                       data:{
                         type: "send",//发送数据的类型为获取
                         content: "sfxx",//内容"
@@ -148,7 +162,7 @@ Page({
       }
       else if (from === 'lxpt') {
         wx.request({
-          url: 'https://1024.lovelywhite.cn/wxchat/my/sjphone',
+          url: 'https://yddj.panzongyan.cn/wxchat/my/sjphone',
           data:
           {
             openid:app.globalData.openid,
@@ -189,7 +203,7 @@ Page({
       }
       else if (from === 'yhxy') {
         wx.request({
-          url: 'https://1024.lovelywhite.cn/wxchat/my/agreement',
+          url: 'https://yddj.panzongyan.cn/wxchat/my/agreement',
           data:
           {
             openid: app.globalData.openid,
@@ -227,7 +241,7 @@ Page({
       }
       else if (from === 'yszc') {
         wx.request({
-          url: 'https://1024.lovelywhite.cn/wxchat/my/policy',//todo:aaa
+          url: 'https://yddj.panzongyan.cn/wxchat/my/policy',//todo:aaa
           data:
           {
             openid: app.globalData.openid,

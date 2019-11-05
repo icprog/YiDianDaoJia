@@ -36,7 +36,7 @@ Page({
       return
     }
     wx.request({
-      url: this.data.from == 'add' ? 'https://1024.lovelywhite.cn/wxchat/login/tjdz' : 'https://1024.lovelywhite.cn/wxchat/login/xgdz',
+      url: this.data.from == 'add' ? 'https://yddj.panzongyan.cn/wxchat/login/tjdz' : 'https://yddj.panzongyan.cn/wxchat/login/xgdz',
       data:
       {
         openid: app.globalData.openid,//身份验证
@@ -127,7 +127,7 @@ Page({
       success: function (res) {
         if (res.confirm) {
           wx.request({
-            url: 'https://1024.lovelywhite.cn/wxchat/login/scdz',
+            url: 'https://yddj.panzongyan.cn/wxchat/login/scdz',
             data:
             {
               openid: app.globalData.openid,//身份验证
@@ -178,7 +178,7 @@ Page({
       success: function (res) {
         if (res.confirm) {
           wx.request({
-            url: 'https://1024.lovelywhite.cn/wxchat/login/mrdz',
+            url: 'https://yddj.panzongyan.cn/wxchat/login/mrdz',
             data:
             {
               openid: app.globalData.openid,//身份验证

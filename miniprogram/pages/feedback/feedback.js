@@ -18,13 +18,14 @@ Page({
         if (e.detail.value.mobile!='')
         {
           wx.request({
-            url: 'https://1024.lovelywhite.cn/wxchat/module3/ts',
+            url: 'https://yddj.panzongyan.cn/wxchat/module3/ts',
+            method:'post',
             data:
             {
               openid: app.globalData.openid,
               type: "send",//发送数据的类型为发送
               fklx: this.data.array[this.data.index],//反馈类型,
-              fknr: this.data.inputTxt,//反馈内容
+              fknr: e.detail.value.textarea,//反馈内容
               content:'fsfk',// 内容
               script: "发送反馈",//描述
             },
