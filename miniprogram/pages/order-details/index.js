@@ -28,7 +28,7 @@ Page({
     let type = e.currentTarget.dataset.type
     if(type == 'zf')
     {
-      orderWX(1, this.data.item.script, this.data.item.ddbh).then((res) => {
+      orderWX(this.data.item.zfje, this.data.item.script, this.data.item.ddbh).then((res) => {
         pay(res.result).then((res) => {
           wx.showModal({
             title: '提示',

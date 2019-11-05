@@ -41,7 +41,7 @@ Page({
       img: '/image/UI/gdfw.png',
       title: '更多服务',
 
-    }, ],
+    },],
     zszy: [{
       img: '/image/UI/bmys.png',
       title: '保姆月嫂',
@@ -80,63 +80,88 @@ Page({
     notice: "示例消息",
     scroll_height: 0
   },
-  bindRegionChange: function(e) {
-    this.setData({
-      region: e.detail.value
-    });
+  bindRegionChange: function (e) {
+    let that = this
+    wx.request({
+      url: 'https://apis.map.qq.com/ws/geocoder/v1',
+      data:
+      {
+        address: e.detail.value[0] + e.detail.value[1] + e.detail.value[2],
+        region: e.detail.value[1],
+        key: '3G2BZ-YAT3F-4CJJP-NYDUW-G5KXH-EZFT5',
+      },
+      success(res) {
+        if (res.statusCode == 200 && res.data.status == 0) {
+          that.setData({
+            region: e.detail.value
+          });
+          app.globalData.region = that.data.region
+          app.globalData.position = [res.data.result.location.lng, res.data.result.location.lat]
+
+        }
+        else {
+          wx.showModal({
+            title: '提示',
+            content: '地址获取失败',
+            showCancel: false
+          })
+        }
+      },
+      fail(res) {
+        wx.showModal({
+          title: '提示',
+          content: '地址获取失败',
+          showCancel: false
+        })
+      }
+    })
+
   },
-  directNav: function(e) {
+  directNav: function (e) {
     wx.switchTab({
       url: '../direct/direct'
     })
   },
-  onLoad: function() {
-    let that = this
+  re() {
+    app.getPosition().then(res => {
+      console.log(res)
+      app.globalData.region = res.region
+      app.globalData.position = res.position
+      wx.showModal({
+        title: '提示',
+        content: '定位成功',
+        showCancel: false
+      })
+      this.setData(
+        {
+          region: app.globalData.region
+        }
+      )
+    }).catch(res=>
+    {
+      wx.showModal({
+        title: '提示',
+        content: '定位失败',
+        showCancel: false
+      })
+    })
+  },
+  onLoad: function () {
+ 
     let windowHeight = wx.getSystemInfoSync().windowHeight // 屏幕的高度
     let windowWidth = wx.getSystemInfoSync().windowWidth // 屏幕的宽度
     this.setData({
       scroll_height: windowHeight * 750 / windowWidth - (250) - 30
     })
-    this.getPosition().then(res => {
-      // console.log(res)
-      this.setData({
-        region: res
-      })
-    });
-    wx.request({
-      url: 'https://yddj.panzongyan.cn/wxchat/module2/gdt',
-      method: 'get',
-      data: {},
-      success: function(res) {
-        if (res.statusCode === 200) {
-          console.log(res.data)
-          if (res.data.status === "success") {
-            that.setData({
-              notice: res.data.gdgg
-            });
-          }
-          else
-          {
-            wx.showModal({
-              title: '提示',
-              content:  res.data.message,
-              showCancel: false
-            })
-          }
-        }
-      }
-    })
+    
   },
-  kf()
-  {
-    if(app.globalData.hasLogin)
-    {
+  kf() {
+    if (app.globalData.hasLogin) {
       wx.navigateTo({
         url: '/pages/chat/index',
       })
     }
-    else
-    {
+    else {
       wx.showModal({
         title: '提示',
         content: '请登录',
@@ -144,7 +169,7 @@ Page({
       })
     }
   },
-  getPosition: function() {
+  getPosition: function () {
     return new Promise((resolve, reject) => {
       let app = this;
       wx.getLocation({
@@ -173,31 +198,87 @@ Page({
       })
     });
   },
-  nav(e)
-  {
+  nav(e) {
     console.log(e)
-    if(app.globalData.hasLogin)
-    {
-      if(e.currentTarget.dataset.type ==='zymk')
-      {
-        wx.navigateTo({
-          url: '/pages/nav/zy/zy?title='+e.currentTarget.dataset.title
-        })
+    if (app.globalData.hasLogin) {
+      if (e.currentTarget.dataset.type === 'zymk') {
+        if (e.currentTarget.dataset.title != '更多服务')
+          wx.navigateTo({
+            url: '/pages/nav/zy/zy?title=' + e.currentTarget.dataset.title
+          })
+        else {
+          wx.showModal({
+            title: '提示',
+            content: '暂无',
+            showCancel: false
+          })
+        }
       }
-      else if (e.currentTarget.dataset.type==='jszy')
-      {
-        wx.navigateTo({
-          url: '/pages/nav/js/js?title='+e.currentTarget.dataset.title
-        })
+      else if (e.currentTarget.dataset.type === 'jszy') {
+        if (e.currentTarget.dataset.title != '其他服务')
+          wx.navigateTo({
+            url: '/pages/nav/js/js?title=' + e.currentTarget.dataset.title
+          })
+        else {
+          wx.showModal({
+            title: '提示',
+            content: '暂无',
+            showCancel: false
+          })
+        }
       }
     }
-    else
-    {
+    else {
       wx.showModal({
         title: '提示',
         content: '请登录',
         showCancel: false
       })
     }
+  },
+  onShow()
+  {
+    let that = this
+    if (app.globalData.region[0] != '') {
+      this.setData(
+        {
+          region: app.globalData.region
+        }
+      )
+    }
+    else {
+      app.getPosition().then(res => {
+        console.log(res)
+        app.globalData.region = res.region
+        app.globalData.position = res.position
+        this.setData(
+          {
+            region: app.globalData.region
+          }
+        )
+      })
+    }
+    wx.request({
+      url: 'https://yddj.panzongyan.cn/wxchat/module2/gdt',
+      method: 'get',
+      data: {},
+      success: function (res) {
+        if (res.statusCode === 200) {
+          console.log(res.data)
+          if (res.data.status === "success") {
+            that.setData({
+              notice: res.data.gdgg
+            });
+          }
+          else {
+            wx.showModal({
+              title: '提示',
+              content: res.data.message,
+              showCancel: false
+            })
+          }
+        }
+      }
+    })
   }
 });

@@ -43,21 +43,18 @@ Page({
                     app.globalData.wxtx = res.userInfo.avatarUrl;//保存头像
                     wx.request({
                       url: 'https://yddj.panzongyan.cn/wxchat/my/login',
-                      data:{
+                      data: {
                         type: "send",//发送数据的类型为获取
                         content: "sfxx",//内容"
-                        openid: app.globalData.openid ,//身份openid
+                        openid: app.globalData.openid,//身份openid
                         wxtx: res.userInfo.avatarUrl,//微信头像
                         wxnc: res.userInfo.nickName,//微信昵称
                         script: "身份信息",//描述
                       },
-                      success(res)
-                      {
+                      success(res) {
                         console.log(res)
-                        if(res.statusCode==200)
-                        {
-                          if(res.data.status=='success')
-                          {
+                        if (res.statusCode == 200) {
+                          if (res.data.status == 'success') {
                             app.globalData.hasLogin = true;
                             that.updateInfo();
                             wx.showModal({
@@ -66,17 +63,15 @@ Page({
                               showCancel: false
                             })
                           }
-                          else
-                          {
+                          else {
                             wx.showModal({
                               title: '提示',
-                              content:  res.data.message,
+                              content: res.data.message,
                               showCancel: false
                             })
                           }
                         }
-                        else
-                        {
+                        else {
                           wx.showModal({
                             title: '提示',
                             content: '状态码错误',
@@ -84,12 +79,11 @@ Page({
                           })
                         }
                       },
-                      fail(res)
-                      {
+                      fail(res) {
                         console.log(res)
                       }
                     })
-                  
+
                   },
                   fail: function () {
                     wx.showModal({
@@ -97,6 +91,10 @@ Page({
                       content: '登陆失败',
                       showCancel: false
                     })
+                  },
+                  complete()
+                  {
+                    wx.hideLoading()
                   }
                 });
               }
@@ -113,7 +111,7 @@ Page({
       },
       complete()
       {
-        wx.hideLoading()
+        
       }
     })
   },
@@ -159,6 +157,42 @@ Page({
           }
         )
        
+      }
+      else if (from === 'sjrz') {
+        wx.request({
+          url: 'https://yddj.panzongyan.cn/wxchat/my/sjphone',
+          data:
+          {
+            openid: app.globalData.openid,
+            type: 'get',
+            content: 'hqsjdh',
+            script: "获取商家电话",
+          },
+          success(res) {
+            console.log(res)
+            if (res.statusCode === 200) {
+              if (res.data.status == 'success') {
+                wx.makePhoneCall({
+                  phoneNumber: res.data.dh,
+                })
+              }
+              else {
+                wx.showModal({
+                  title: '提示',
+                  content: res.data.message,
+                  showCancel: false
+                })
+              }
+            }
+            else {
+              wx.showModal({
+                title: '提示',
+                content: '网络错误',
+                showCancel: false
+              })
+            }
+          }
+        })
       }
       else if (from === 'lxpt') {
         wx.request({

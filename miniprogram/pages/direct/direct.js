@@ -8,7 +8,7 @@ Page({
     sort: "",
     reverse: false,
     zdg: [],
-    region:[],
+    region: [],
     sort_list: ['距离', '价格', '评分'],
     scroll_height: 0,
     idx: 0
@@ -18,8 +18,7 @@ Page({
       wx.navigateTo({
         url: '/pages/chat/index',
       })
-    }
-    else {
+    } else {
       wx.showModal({
         title: '提示',
         content: '请登录',
@@ -27,38 +26,32 @@ Page({
       })
     }
   },
-  bindRegionChange: function (e) {
+  bindRegionChange: function(e) {
     let that = this
     wx.request({
       url: 'https://apis.map.qq.com/ws/geocoder/v1',
-      data:
-      {
+      data: {
         address: e.detail.value[0] + e.detail.value[1] + e.detail.value[2],
-        region:e.detail.value[1],
-        key:'3G2BZ-YAT3F-4CJJP-NYDUW-G5KXH-EZFT5',
+        region: e.detail.value[1],
+        key: '3G2BZ-YAT3F-4CJJP-NYDUW-G5KXH-EZFT5',
       },
-      success(res)
-      {
-        if (res.statusCode == 200 && res.data.status == 0)
-        {
+      success(res) {
+        if (res.statusCode == 200 && res.data.status == 0) {
           that.setData({
             region: e.detail.value
           });
           app.globalData.region = that.data.region
-          app.globalData.position = [res.data.result.location.lng,res.data.result.location.lat]
+          app.globalData.position = [res.data.result.location.lng, res.data.result.location.lat]
           that.loadZdg()
-        }
-        else
-        {
+        } else {
           wx.showModal({
             title: '提示',
             content: '地址获取失败',
-            showCancel:false
+            showCancel: false
           })
         }
       },
-      fail(res)
-      {
+      fail(res) {
         wx.showModal({
           title: '提示',
           content: '地址获取失败',
@@ -66,44 +59,119 @@ Page({
         })
       }
     })
-    
+
   },
-  onLoad: function (e) {
+  onLoad: function(e) {
 
     let windowHeight = wx.getSystemInfoSync().windowHeight // 屏幕的高度
     let windowWidth = wx.getSystemInfoSync().windowWidth // 屏幕的宽度
     this.setData({
       scroll_height: windowHeight * 750 / windowWidth - (280) - 30
     })
-   
+
   },
   re() {
     app.getPosition().then(res => {
       console.log(res)
-      wx.showToast({
-        title: '获取地址成功',
-      })
       app.globalData.region = res.region
       app.globalData.position = res.position
+      wx.showModal({
+        title: '提示',
+        content: '定位成功',
+        showCancel: false
+      })
       this.setData({
-        region: res.region,
-        position: res.position
+        region: app.globalData.region
       })
+      this.loadZdg()
     }).catch(res => {
-      wx.showToast({
-        title: '获取地址失败',
+      wx.showModal({
+        title: '提示',
+        content: '定位失败',
+        showCancel: false
       })
-    });
+    })
+
   },
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
     this.loadZdg()
   },
-  loadZdg: function () {
+  loadZdg: function() {
     this.setData({
-      zdg:[]
+      zdg: []
     })
-    if(app.globalData.region[0]!='')
-    {
+    if (app.globalData.region[0] == '') {
+      wx.showLoading({
+        title: '加载中',
+        mask: true,
+      })
+      app.getPosition().then(res => {
+        console.log(res)
+        app.globalData.region = res.region
+        app.globalData.position = res.position
+
+        let that = this
+        wx.request({
+          url: 'https://yddj.panzongyan.cn/wxchat/module2/index',
+          method: 'post',
+          data: {
+            openid: app.globalData.openid, //身份验证
+            district: app.globalData.region[1],
+            position: that.data.position
+          },
+          success: function(res) {
+            if (res.statusCode === 200) {
+              if (res.data.status == 'success') {
+                console.log(res.data)
+                res.data.data.forEach(element => {
+                  element.jl = element.jl.toFixed(1)
+                });
+                that.setData({
+                  zdg: res.data.data.sort((a, b) => {
+                    if (a.jl > b.jl) return 1
+                    else if (a.jl === b.jl) return 0
+                    else return -1
+                  })
+                })
+              } else {
+                wx.showModal({
+                  title: '提示',
+                  content: res.data.message,
+                  showCancel: false
+                })
+              }
+            } else {
+              wx.showModal({
+                title: '提示',
+                content: '加载失败',
+                showCancel: false
+              })
+            }
+          },
+          fail: function() {
+            wx.showModal({
+              title: '提示',
+              content: '加载失败',
+              showCancel: false
+            })
+          },
+          complete: function() {
+            wx.stopPullDownRefresh()
+            wx.hideLoading()
+          }
+        })
+        this.setData({
+          region: res.region,
+          position: res.position
+        })
+      }).catch(res => {
+        wx.showToast({
+          title: '获取地址失败',
+        })
+        wx.stopPullDownRefresh()
+        wx.hideLoading()
+      });
+    } else {
       wx.showLoading({
         title: '加载中',
         mask: true,
@@ -113,14 +181,13 @@ Page({
         url: 'https://yddj.panzongyan.cn/wxchat/module2/index',
         method: 'post',
         data: {
-          openid: app.globalData.openid,//身份验证
+          openid: app.globalData.openid, //身份验证
           district: app.globalData.region[1],
-          position:that.data.position
+          position: app.globalData.position
         },
-        success: function (res) {
+        success: function(res) {
           if (res.statusCode === 200) {
-            if(res.data.status=='success')
-            {
+            if (res.data.status == 'success') {
               console.log(res.data)
               res.data.data.forEach(element => {
                 element.jl = element.jl.toFixed(1)
@@ -132,18 +199,14 @@ Page({
                   else return -1
                 })
               })
-            }
-            else
-            {
+            } else {
               wx.showModal({
                 title: '提示',
-                content:  res.data.message,
+                content: res.data.message,
                 showCancel: false
               })
             }
-          }
-          else
-          {
+          } else {
             wx.showModal({
               title: '提示',
               content: '加载失败',
@@ -151,29 +214,21 @@ Page({
             })
           }
         },
-        fail: function () {
+        fail: function() {
           wx.showModal({
             title: '提示',
             content: '加载失败',
             showCancel: false
           })
         },
-        complete: function () {
+        complete: function() {
           wx.stopPullDownRefresh()
           wx.hideLoading()
         }
       })
     }
-    else
-    {
-      wx.showModal({
-        title: '提示',
-        content: '地址未选择',
-        showCancel:false
-      })
-    }
   },
-  stringify: function (e) {
+  stringify: function(e) {
     return JSON.stringify(e);
   },
   sort(e) {
@@ -198,8 +253,7 @@ Page({
           else if (a.jl === b.jl) return 0
           else return -1
         })
-    }
-    else if (index === 1) {
+    } else if (index === 1) {
       if (that.data.reverse)
         temp = that.data.zdg.sort((a, b) => {
           if (a.jg < b.jg) return 1
@@ -213,8 +267,7 @@ Page({
           else return -1
         })
 
-    }
-    else {
+    } else {
       if (that.data.reverse)
         temp = that.data.zdg.sort((a, b) => {
           if (a.xj < b.xj) return 1
@@ -228,11 +281,9 @@ Page({
           else return -1
         })
     }
-    this.setData(
-      {
-        zdg: temp
-      }
-    )
+    this.setData({
+      zdg: temp
+    })
   },
   directxq(e) {
     if (app.globalData.hasLogin) {
@@ -247,8 +298,7 @@ Page({
           url: '/pages/nav/ayxq/ayxq?item=' + JSON.stringify(item) + '&title=' + title
         })
       }
-    }
-    else {
+    } else {
       wx.showModal({
         title: '提示',
         content: '请登录',
@@ -257,21 +307,20 @@ Page({
     }
   },
   onShow() {
-    if (app.globalData.region[0] != '')
+    if (app.globalData.region[0] != '') {
       this.setData({
-        region: app.globalData.region,
-        position: app.globalData.position
+        region: app.globalData.region
       })
-    else
+    } else {
       app.getPosition().then(res => {
         console.log(res)
         app.globalData.region = res.region
         app.globalData.position = res.position
         this.setData({
-          region: res.region,
-          position: res.position
+          region: app.globalData.region
         })
-      });
+      })
+    }
     this.loadZdg()
   },
   refresh() {
