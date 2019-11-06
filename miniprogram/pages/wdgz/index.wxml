@@ -1,0 +1,32 @@
+<view class="page">
+  <scroll-view scroll-y style="height: {{scroll_height}}rpx;">
+    <view class="container" wx:for="{{zdg}}" wx:for-item="item_zdg" wx:key="index">
+      <image class="image" mode="aspectFit" src="{{item_zdg.tx}}" />
+      <view class="text-view">
+        <view class="botton-view">
+          <view class="xm-view">
+            <view>
+              <text style="font-size:30rpx">{{item_zdg.xm}}</text>
+            </view>
+            <view>
+              <text style="margin-right:15rpx;">{{item_zdg.nl}}岁</text>
+              <text style="margin-right:15rpx;">{{item_zdg.dd}}</text>
+              <text style="margin-right:15rpx;">{{item_zdg.xb}}</text>
+            </view>
+          </view>
+          <text class="jg">{{item_zdg.jg}}元/小时</text>
+          <view class="btn">
+            <view bindtap="directxq" data-title="了解更多" data-item="{{item_zdg}}">
+              <text>了解更多</text>
+            </view>
+          </view>
+        </view>
+        <view class="star-view">
+          <text style="margin-left:10rpx;">{{item_zdg.xj}} 分</text>
+          <text style="margin-left:10rpx;">服务 {{item_zdg.fwcs}} 次</text>
+          <text style="margin-left:10rpx;">{{item_zdg.jl}} km</text>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

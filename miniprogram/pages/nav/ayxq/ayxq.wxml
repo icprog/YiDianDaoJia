@@ -1,5 +1,5 @@
 <!-- pages/nav/ayxq.wxml -->
-<view style="display:flex;margin-left:20rpx;align-items:center">
+<view class="page" style="display:flex;margin-left:20rpx;align-items:center">
   <image style="width:100rpx;height:100rpx;border: 3rpx #0080ff solid;border-radius:100rpx" mode="aspectFit" src="{{zdg.tx}}" />
   <view style="margin-left:30rpx">
     <view style="display:flex;flex-direction:row;">

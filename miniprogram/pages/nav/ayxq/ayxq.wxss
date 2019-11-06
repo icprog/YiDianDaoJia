@@ -1,5 +1,11 @@
 /* pages/nav/zyxd.wxss */
 
+.page {
+  font-size: 25rpx;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  height: 100%;
+}
+
 .star-image {
   width: 30rpx;
   height: 30rpx;
@@ -16,4 +22,9 @@
   padding: 2px 2px;
   border-right: 0;
   border-top: 1rpx solid #d9d9d9;
+}
+
+weui-grid__label {
+  font-size: 25rpx;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }

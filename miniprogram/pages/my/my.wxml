@@ -44,11 +44,11 @@
         <text class="weui-grid__label title" style="color:red;text-align:center">0</text>
         <text class="weui-grid__label title">购物车</text>
       </view> -->
-      <view class="weui-grid" style="width:50%"  hover-class="weui-grid_active">
-        <text class="weui-grid__label title" style="color:red">0</text>
+      <view bindtap="centerDirect" data-from='gzfw' class="weui-grid" style="width:50%" hover-class="weui-grid_active">
+        <text class="weui-grid__label title" style="color:red">{{gzfwsl}}</text>
         <text class="weui-grid__label title">关注服务</text>
       </view>
-      <view class="weui-grid" style="width:50%"  hover-class="weui-grid_active">
+      <view class="weui-grid" style="width:50%" hover-class="weui-grid_active">
         <text class="weui-grid__label title" style="color:red">0</text>
         <text class="weui-grid__label title">关注服务商</text>
       </view>

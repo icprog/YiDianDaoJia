@@ -9,52 +9,57 @@
         </view>
       </picker>
       <view style="height:100%;display:flex;flex-direction:row;align-items:center;">
-        <image bindtap="re" style="height:100%;width: 25px;" mode="aspectFit" src="/image/ico-addr.png"></image>
+        <image bindtap="re" style="height:100%;width: 20px;" mode="aspectFit" src="/image/ico-addr.png"></image>
         <image bindtap="kf" style="height:100%;width: 40px;" mode="aspectFit" src="/image/UI/dxkf.png"></image>
       </view>
     </view>
   </view>
   <view class="page__bd">
-    <view class="grids_block" style=" border-radius: 10rpx;">
+    <view class="grids_block">
       <view>
         <block wx:for="{{sort_list}}" wx:for-item="item" wx:key="index">
           <text bindtap="sort" class="{{index==idx?'_sort_class':'sort_class'}}" data-index="{{index}}">{{item}}</text>
         </block>
       </view>
       <scroll-view scroll-y style="height: {{scroll_height}}rpx;" bindscrolltoupper="refresh">
-        <block wx:for="{{zdg}}" wx:for-item="item_zdg" wx:key="index">
-          <view style="width:100%; display:flex;flex-direction:row;align-items:center;margin-bottom:15rpx;padding-left:20rpx">
-            <image style="width:100rpx;height:100rpx;border: 3rpx #0080ff solid;border-radius:100rpx" mode="aspectFit" src="{{item_zdg.tx}}" />
-            <view style="margin-left:30rpx">
-              <view style="display:flex;flex-direction:row;">
-                <text style="font-size:30rpx">{{item_zdg.xm}}</text>
-                <text style="border: 3rpx red solid;margin-left:15rpx;padding:2rpx">{{item_zdg.jg}}元/小时</text>
-                <view bindtap="directxq" data-title="了解更多" data-item="{{item_zdg}}" style="margin-left: auto;padding-right:10rpx;">
-                  <text style="font-size:23rpx">了解更多</text>
+        <view class="container" wx:for="{{zdg}}" wx:for-item="item_zdg" wx:key="index">
+          <image class="image" mode="aspectFit" src="{{item_zdg.tx}}" />
+          <view class="text-view">
+            <view class="botton-view">
+              <view class="xm-view">
+                <view>
+                  <text style="font-size:30rpx">{{item_zdg.xm}}</text>
+                </view>
+                <view>
+                  <text style="margin-right:15rpx;">{{item_zdg.nl}}岁</text>
+                  <text style="margin-right:15rpx;">{{item_zdg.dd}}</text>
+                  <text style="margin-right:15rpx;">{{item_zdg.xb}}</text>
                 </view>
               </view>
-              <view style="display:flex;flex-direction:row;">
-                <text>{{item_zdg.sex}}</text>
-                <text style="margin-right:15rpx;">{{item_zdg.nl}}岁</text>
-                <text style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;max-width:60%">{{item_zdg.dd}}</text>
-                <view bindtap="directxq" data-title="下单预约" data-item="{{item_zdg}}" style="margin-left: auto;background-color:#0080ff;border-radius:30rpx;padding-left:10rpx;padding-right:10rpx;">
-                  <text style="color:white;font-size:23rpx">下单预约</text>
+              <text class="jg">{{item_zdg.jg}}元/小时</text>
+              <view class="btn">
+                <view bindtap="directxq" data-title="了解更多" data-item="{{item_zdg}}">
+                  <text>了解更多</text>
                 </view>
-              </view>
-              <view style="display:flex;flex-direction:row;align-items:center;justify-content:space-between">
-                <block wx:for="{{stars}}" wx:for-item="item_xj" wx:key="index">
-                  <image class="star-image" src="{{item_zdg.xj > item_xj ? (item_zdg.xj-item_xj>0.5 ? selectedSrc:halfSrc) : normalSrc}}">
-                    <!-- <view style="left:0rpx"  class="item" data-key="{{item+0.5}}" bindtap="selectLeft"></view>
-                  <view style="left:20rpx"  class="item" data-key="{{item+1}}" bindtap="selectRight"></view> -->
-                  </image>
-                </block>
-                <text style="margin-left:10rpx;width:70rpx;">{{item_zdg.xj}} 分</text>
-                <text style="margin-left:10rpx;width:120rpx;">服务 {{item_zdg.fwcs}} 次</text>
-                <text style="margin-left:10rpx;width:140rpx;">{{item_zdg.jl}} km</text>
+                <view bindtap="directxq" data-title="下单预约" data-item="{{item_zdg}}" style="margin-top:10rpx">
+                  <text class="xdyy">下单预约</text>
+                </view>
               </view>
             </view>
+            <view class="star-view">
+              <view>
+                <block wx:for="{{stars}}" wx:for-item="item_xj" wx:key="index">
+                  <image class="star-image" src="{{item_zdg.xj > item_xj ? (item_zdg.xj-item_xj>0.5 ? selectedSrc:halfSrc) : normalSrc}}">
+                  </image>
+                </block>
+                <text style="margin-left:10rpx;">{{item_zdg.xj}} 分</text>
+              </view>
+              <text style="margin-left:10rpx;">服务 {{item_zdg.fwcs}} 次</text>
+              <text style="margin-left:10rpx;">{{item_zdg.jl}} km</text>
+            </view>
           </view>
-        </block>
+        </view>
+
       </scroll-view>
     </view>
   </view>

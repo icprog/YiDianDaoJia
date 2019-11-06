@@ -1,5 +1,7 @@
 page {
-  width: 100%;
+  font-size: 25rpx;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #eee;
 }
 
 .chat-input {
@@ -11,7 +13,7 @@ page {
 
 .chat-input input {
   height: 70rpx;
-  border: #8a6f44 solid 1px;
+  border: #0080ff solid 1px;
   border-radius: 0.3rem;
   padding-left: 15rpx;
   padding-right: 15rpx;
@@ -25,10 +27,11 @@ page {
   height: 70rpx;
   border: none;
   border-radius: 0.3rem;
-  background-color: #86794f;
+  background-color: #0080ff;
   line-height: 70rpx;
   width: 130rpx;
   margin-right: 10rpx;
+  font-size: 25rpx;
 }
 
 image {
@@ -44,7 +47,7 @@ image {
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: flex-start;
-  align-items:center;
+  align-items: center;
   margin-left: 15rpx;
   margin-right: 15rpx;
   margin-bottom: 20rpx;
@@ -57,7 +60,7 @@ image {
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: flex-end;
-  align-items:center;
+  align-items: center;
   margin-left: 15rpx;
   margin-right: 15rpx;
   margin-bottom: 20rpx;

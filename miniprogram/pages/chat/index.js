@@ -73,51 +73,62 @@ Page({
   sendMessage: function() {
     let that = this
     if (this.data.cid != null) {
-      wx.request({
-        url: 'https://yddj.panzongyan.cn/wxchat/game/sendMessage',
-        method: 'post',
-        data: {
-          openid: app.globalData.openid,
-          mes: that.data.message,
-          cid: that.data.cid
-        },
-        success(res) {
-          console.log(res)
-          that.data.chatList.push({
-            type: 2,
-            content: that.data.message,
-            date: that.data.date
-          })
-          that.setData({
-            message: '',
-            chatList: that.data.chatList,
-          })
-          wx.request({
-            url: 'https://yddj.panzongyan.cn/wxchat/game/getChatContent',
-            method: 'post',
-            data: {
-              openid: app.globalData.openid
-            },
-            success(res) {
-              if (res.statusCode == 200) {
+      if (that.data.message!='')
+      {
+        wx.request({
+          url: 'https://yddj.panzongyan.cn/wxchat/game/sendMessage',
+          method: 'post',
+          data: {
+            openid: app.globalData.openid,
+            mes: that.data.message,
+            cid: that.data.cid
+          },
+          success(res) {
+            console.log(res)
+            that.data.chatList.push({
+              type: 2,
+              content: that.data.message,
+              date: that.data.date
+            })
+            that.setData({
+              message: '',
+              chatList: that.data.chatList,
+            })
+            wx.request({
+              url: 'https://yddj.panzongyan.cn/wxchat/game/getChatContent',
+              method: 'post',
+              data: {
+                openid: app.globalData.openid
+              },
+              success(res) {
+                if (res.statusCode == 200) {
+                  console.log(res)
+                  that.setData({
+                    chatList: res.data.data.data
+                  })
+                }
+              },
+              fail(res) {
                 console.log(res)
-                that.setData({
-                  chatList: res.data.data.data
-                })
               }
-            },
-            fail(res) {
-              console.log(res)
-            }
-          })
-        },
-        fail(res) {
-          console.log(res)
-        },
-        complete() {
+            })
+          },
+          fail(res) {
+            console.log(res)
+          },
+          complete() {
 
-        }
-      })
+          }
+        })
+      }
+      else
+      {
+        wx.showModal({
+          title: '提示',
+          content: '消息框为空',
+          showCancel:false
+        })
+      }
     } else {
       wx.showToast({
         title: '未初始化',

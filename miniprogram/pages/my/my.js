@@ -4,7 +4,10 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     hasLogin: app.globalData.hasLogin,
     wxtx: app.globalData.wxtx,
-    wxnc: app.globalData.wxnc
+    wxnc: app.globalData.wxnc,
+    zdg:[],
+    gzlb:[],
+    gzfwsl:0
   },
   kf() {
     if (app.globalData.hasLogin) {
@@ -57,6 +60,7 @@ Page({
                           if (res.data.status == 'success') {
                             app.globalData.hasLogin = true;
                             that.updateInfo();
+                            that.loadZdg()
                             wx.showModal({
                               title: '提示',
                               content: '登陆成功',
@@ -157,6 +161,22 @@ Page({
           }
         )
        
+      }
+      else if(from === 'gzfw')
+      {
+        if (app.globalData.hasLogin) {
+          wx.navigateTo(
+            {
+              url: "/pages/wdgz/index"
+            }
+          )
+        } else {
+          wx.showModal({
+            title: '提示',
+            content: '请登录',
+            showCancel: false
+          })
+        }
       }
       else if (from === 'sjrz') {
         wx.request({
@@ -325,6 +345,203 @@ Page({
         content: '请登录',
         showCancel: false
       })
+    }
+  },
+  loadZdg: function () {
+    this.setData({
+      zdg: [],
+      gzlb:[],
+    })
+    if (app.globalData.region[0] == '') {
+      wx.showLoading({
+        title: '加载中',
+        mask: true,
+      })
+      app.getPosition().then(res => {
+        console.log(res)
+        app.globalData.region = res.region
+        app.globalData.position = res.position
+        let that = this
+        wx.request({
+          url: 'https://yddj.panzongyan.cn/wxchat/my/wxchat/module2/index',
+          method: 'post',
+          data: {
+            openid: app.globalData.openid, //身份验证
+            district: app.globalData.region[1],
+            position: that.data.position
+          },
+          success: function (res) {
+            if (res.statusCode === 200) {
+              if (res.data.status == 'success') {
+             
+                res.data.data.forEach(element => {
+                  element.jl = element.jl.toFixed(1)
+                });
+                that.setData({
+                  zdg: res.data.data.sort((a, b) => {
+                    if (a.jl > b.jl) return 1
+                    else if (a.jl === b.jl) return 0
+                    else return -1
+                  })
+                })
+                //获取关注列表
+                wx.request({
+                  url: 'https://yddj.panzongyan.cn/wxchat/my/hqgz',
+                  data:
+                  {
+                    openid: app.globalData.openid,//身份验证
+                    content: "hqgzlb",// 内容
+                    script: "获取关注列表",//描述
+                  },
+                  success(res) {
+                    console.log(res)
+                    if (res.statusCode === 200) {
+                      if (res.data.status == 'success') {
+                    
+                        //设置关注zdg
+                        for (let i = 0; i < that.data.zdg.length; i++) {
+                          if (res.data.data.includes(that.data.zdg[i].bh)) {
+                            that.data.gzlb.push(that.data.zdg[i])
+                          }
+                        }
+                        that.setData(
+                          {
+                            gzlb: that.data.gzlb,
+                            gzfwsl: that.data.gzlb.length
+                          }
+                        )
+                      
+                      }
+                      else {
+                      }
+                    }
+                  }
+                })
+              } else {
+               
+              }
+            } else {
+              wx.showModal({
+                title: '提示',
+                content: '加载失败',
+                showCancel: false
+              })
+            }
+          },
+          fail: function () {
+            wx.showModal({
+              title: '提示',
+              content: '加载失败',
+              showCancel: false
+            })
+          },
+          complete: function () {
+            wx.stopPullDownRefresh()
+            wx.hideLoading()
+          }
+        })
+        this.setData({
+          region: res.region,
+          position: res.position
+        })
+      }).catch(res => {
+        wx.showToast({
+          title: '获取地址失败',
+        })
+        wx.stopPullDownRefresh()
+        wx.hideLoading()
+      });
+    } else {
+      wx.showLoading({
+        title: '加载中',
+        mask: true,
+      })
+      let that = this
+      wx.request({
+        url: 'https://yddj.panzongyan.cn/wxchat/module2/index',
+        method: 'post',
+        data: {
+          openid: app.globalData.openid, //身份验证
+          district: app.globalData.region[1],
+          position: app.globalData.position
+        },
+        success: function (res) {
+          if (res.statusCode === 200) {
+            if (res.data.status == 'success') {
+              console.log(res.data)
+              res.data.data.forEach(element => {
+                element.jl = element.jl.toFixed(1)
+              });
+              that.setData({
+                zdg: res.data.data.sort((a, b) => {
+                  if (a.jl > b.jl) return 1
+                  else if (a.jl === b.jl) return 0
+                  else return -1
+                })
+                
+              })
+              //获取关注列表
+              wx.request({
+                url: 'https://yddj.panzongyan.cn/wxchat/my/hqgz',
+                data:
+                {
+                  openid: app.globalData.openid,//身份验证
+                  content: "hqgzlb",// 内容
+                  script: "获取关注列表",//描述
+                },
+                success(res) {
+                  console.log(res)
+                  if (res.statusCode === 200) {
+                    if (res.data.status == 'success') {
+
+                      //设置关注zdg
+                      for (let i = 0; i < that.data.zdg.length; i++) {
+                        if (res.data.data.includes(that.data.zdg[i].bh)) {
+                          that.data.gzlb.push(that.data.zdg[i])
+                        }
+                      }
+                      that.setData(
+                        {
+                          gzlb: that.data.gzlb,
+                          gzfwsl: that.data.gzlb.length
+                        }
+                      )
+                    }
+                    else {
+                    }
+                  }
+                }
+              })
+            } else {
+              
+            }
+          } else {
+            wx.showModal({
+              title: '提示',
+              content: '加载失败',
+              showCancel: false
+            })
+          }
+        },
+        fail: function () {
+          wx.showModal({
+            title: '提示',
+            content: '加载失败',
+            showCancel: false
+          })
+        },
+        complete: function () {
+          wx.stopPullDownRefresh()
+          wx.hideLoading()
+        }
+      })
+    }
+  },
+  onShow()
+  {
+    if(app.globalData.hasLogin)
+    {
+      this.loadZdg()
     }
   }
 })

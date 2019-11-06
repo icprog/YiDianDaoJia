@@ -28,7 +28,8 @@ Page({
     let type = e.currentTarget.dataset.type
     if(type == 'zf')
     {
-      orderWX(this.data.item.zfje, this.data.item.script, this.data.item.ddbh).then((res) => {
+      console.log(this.data.item.script)
+      orderWX(this.data.item.zfje*100, this.data.item.script, this.data.item.ddbh).then((res) => {
         pay(res.result).then((res) => {
           wx.showModal({
             title: '提示',
@@ -61,13 +62,6 @@ Page({
               showCancel: false,
             })
           }
-        })
-      }).catch((res) => {
-        console.log(res)
-        wx.showModal({
-          title: '提示',
-          content: '支付失败',
-          showCancel: false,
         })
       })
     }

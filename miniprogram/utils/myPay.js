@@ -6,7 +6,7 @@ export async function myPay(orderInfo) { //
       data: orderInfo.data,
       success: function(res) {
         if (res.statusCode === 200) {
-          console.log(res)
+          console.log(orderInfo.money, orderInfo.info, res.data.data.ddbh)
           orderWX(orderInfo.money, orderInfo.info, res.data.data.ddbh).then(ress => {
             pay(ress.result).then((res) => {
               reslove({
@@ -15,6 +15,7 @@ export async function myPay(orderInfo) { //
                 res: res
               })
             }).catch((res) => {
+    
               if (res.errMsg == "requestPayment:fail cancel")
                 reject({
                   code: -1,
@@ -28,11 +29,14 @@ export async function myPay(orderInfo) { //
                   res: res
                 })
             })
-          }).catch((res) => reslove({
-            code: -1,
-            reason: "云调用错误",
-            res: res
-          }))
+          }).catch((res) =>
+          {
+            reslove({
+              code: -1,
+              reason: "云调用错误",
+              res: res
+            })
+          })
         } else
           reject({
             code: -1,

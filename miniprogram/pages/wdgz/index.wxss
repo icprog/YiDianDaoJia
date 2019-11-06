@@ -1,38 +1,15 @@
-#picker {
-  width: 100rpx;
-  height: 10rpx;
-}
-
 .page {
   font-size: 25rpx;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #eee;
+  height: 100%;
 }
-
-.weui-grid__icon {
-  width: 100rpx;
-  height: 100rpx;
+.grids_block
+{
+  border-radius: 10rpx;
+  background: white;
+  margin: 20rpx;
 }
-
-.title {
-  font-size: 20rpx;
-}
-
-.page__bd {
-  padding: 30rpx;
-
-}
-
-.head_bar {
-  height: 80rpx;
-  padding-left: 30rpx;
-  padding-right: 30rpx;
-  background-color: #0080ff;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
 .image
 {
   width: 100rpx;
@@ -47,7 +24,10 @@
   flex-direction: row;
   justify-content:space-around;
   align-items: center;
-  margin-bottom: 10rpx;
+  margin: 10rpx;
+  background: white;
+  border-radius: 20rpx;
+  padding: 10rpx;
 }
 .text-view
 {
@@ -92,25 +72,4 @@
 .star-image {
   width: 30rpx;
   height: 30rpx;
-}
-
-
-
-.grids_block
-{
-  border-radius: 10rpx;
-  background: white;
-}
-.sort_class {
-  text-align: center;
-  margin-left: 30rpx;
-  color: gray;
-  line-height: 50rpx;
-}
-
-._sort_class {
-  text-align: center;
-  margin-left: 30rpx;
-  color: black;
-  line-height: 50rpx;
 }

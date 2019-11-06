@@ -14,7 +14,7 @@
     "pages/ddpj/ddpj",
     "pages/order-details/index",
     "pages/chat/index",
-    "pages/wdpj/index"
+    "pages/wdgz/index"
   ],
   "permission": {
     "scope.userLocation": {
