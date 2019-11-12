@@ -2,7 +2,7 @@
   <view class="page__hd">
     <view class="head_bar">
       <view>
-        <image style="width:150rpx;height:150rpx;border: 3rpx ##0080ee solid;border-radius:100rpx" src="{{wxtx}}"></image>
+        <image style="width:150rpx;height:150rpx;border: 3rpx #0080ee solid;border-radius:100rpx" src="{{wxtx}}"></image>
         <view>
           <text style="color:white">{{wxnc}}</text>
         </view>
