@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "i-input": "/iview/input/index",
+    "i-index": "/iview/index/index",
+    "i-index-item": "/iview/index-item/index"
+  },
+  "navigationBarTitleText": "商家入驻"
+}

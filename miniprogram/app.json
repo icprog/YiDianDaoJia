@@ -14,7 +14,10 @@
     "pages/ddpj/ddpj",
     "pages/order-details/index",
     "pages/chat/index",
-    "pages/wdgz/index"
+    "pages/wdgz/index",
+    "pages/sjrz/index",
+    "pages/mkfl/index",
+    "pages/fwxq/index"
   ],
   "permission": {
     "scope.userLocation": {

@@ -17,17 +17,25 @@
   <i-notice-bar icon="systemprompt" loop speed="4000">
     {{notice}}
   </i-notice-bar>
-  <view class="page__bd">
-    <scroll-view scroll-y style="height: {{scroll_height}}rpx;margin-top:20rpx;">
+  <scroll-view scroll-y style="height: {{scroll_height}}rpx;">
+    <view class="page__bd">
+      <swiper autoplay class="lunbotu-container">
+        <swiper-item style="border-radius: 20rpx;" wx:for="{{lbt}}" wx:key="{{index}}">
+          <image mode="aspectFit" style="height:250rpx;width:100%" src="{{item.url}}"></image>
+        </swiper-item>
+      </swiper>
       <view class="weui-grids grids_block">
-        <block wx:for="{{zymk}}" wx:for-item="item" wx:key="index">
+        <block wx:for="{{zymk}}" wx:for-item="item" wx:key="i" wx:if="{{index<=8}}">
           <view data-title="{{item.title}}" data-type='zymk' class="weui-grid" hover-class="weui-grid_active" bindtap="nav">
             <image class="weui-grid__icon" mode="widthFix" src="{{item.img}}" />
             <view class="weui-grid__label title">{{item.title}}</view>
           </view>
         </block>
+        <view data-title="其他自营"  data-type='zymk' wx:if="{{zymk.length>=9}}"  class="weui-grid" hover-class="weui-grid_active" bindtap="nav">
+          <image class="weui-grid__icon image" mode="widthFix" src="/image/UI/gdfw.png" />
+          <view class="weui-grid__label title">其他自营</view>
+        </view>
       </view>
-
       <view class="grids_block" bindtap="directNav" style="margin-top:20rpx;">
         <view style="display:flex;flex-direction:column;">
           <view style="display:flex;flex-direction:row;align-items:center;justify-content: flex-start;  border-bottom: 3rpx #0080ff solid;">
@@ -35,9 +43,9 @@
             <text style="text-color:blue;">钟点保洁直约</text>
           </view>
           <view style="display:flex;flex-direction:row;align-items: center;justify-content: flex-start;">
-            <image src="/image/UI/zdgbjzy.png" style="width:150rpx;height:150rpx;padding-right:8rpx;border-right: 3rpx #0080ff solid;" />
-            <image src="/image/UI/ry.png" style="width:150rpx;height:150rpx;" />
-            <text style="color:blue;">{{zytext}}</text>
+            <image src="/image/UI/zdgbjzy.png" style="width:100rpx;height:100rpx;padding-right:8rpx;border-right: 3rpx #0080ff solid;" />
+            <image src="/image/UI/ry.png" style="width:100rpx;height:100rpx;" />
+            <text style="color:blue;font-size:22rpx">{{zytext}}</text>
           </view>
         </view>
       </view>
@@ -48,14 +56,20 @@
           <text style="text-color:blue;">极速直约</text>
         </view>
         <view>
-          <block wx:for="{{zszy}}" wx:for-item="item" wx:key="index">
+          <block wx:for="{{zszy}}" wx:for-item="item" wx:key="i" wx:if="{{index<=8}}">
             <view data-title="{{item.title}}" data-type='jszy' class="weui-grid" hover-class="weui-grid_active" bindtap="nav">
               <image class="weui-grid__icon image" mode="widthFix" src="{{item.img}}" />
               <view class="weui-grid__label title">{{item.title}}</view>
             </view>
           </block>
+          <view data-title="其他服务"  data-type='jszy' wx:if="{{zszy.length>=9}}"  class="weui-grid" hover-class="weui-grid_active"> 
+          <image class="weui-grid__icon image" mode="widthFix" src="/image/UI/qtfw.png" />
+          <view class="weui-grid__label title">其他服务</view>
+        </view>
+          <view>
+          </view>
         </view>
       </view>
-    </scroll-view>
-  </view>
+    </view>
+  </scroll-view>
 </view>

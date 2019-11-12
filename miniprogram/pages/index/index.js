@@ -36,16 +36,13 @@ Page({
     }, {
       img: '/image/UI/clqx1.png',
       title: '窗帘清洗',
-
-    }, {
-      img: '/image/UI/gdfw.png',
-      title: '更多服务',
-
-    },],
+      }, {
+        img: '/image/UI/clqx1.png',
+        title: '窗帘清洗',
+      }, ],
     zszy: [{
       img: '/image/UI/bmys.png',
       title: '保姆月嫂',
-
     }, {
       img: '/image/UI/gdst.png',
       title: '管道疏通',
@@ -70,22 +67,29 @@ Page({
       img: '/image/UI/bjhy.png',
       title: '搬家货运',
 
-    }, {
-      img: '/image/UI/qtfw.png',
-      title: '其他服务',
-
     }],
     region: ["", "选择地区"],
     zytext: "1.平台服务商严选入驻服务安心\n2.平台无抽成服务商服务用心\n3.平台提供交易资金担保放心\n4.平台服务商一键对比省心",
     notice: "示例消息",
-    scroll_height: 0
+    scroll_height: 0,
+    lbt: [{
+        url: "http://pic26.nipic.com/20121217/9252150_101201834000_2.jpg"
+      },
+      {
+        url: "http://pic26.nipic.com/20121217/9252150_101201834000_2.jpg"
+      },
+      {
+        url: "http://pic26.nipic.com/20121217/9252150_101201834000_2.jpg"
+      }, {
+        url: "http://pic26.nipic.com/20121217/9252150_101201834000_2.jpg"
+      }
+    ]
   },
-  bindRegionChange: function (e) {
+  bindRegionChange: function(e) {
     let that = this
     wx.request({
       url: 'https://apis.map.qq.com/ws/geocoder/v1',
-      data:
-      {
+      data: {
         address: e.detail.value[0] + e.detail.value[1] + e.detail.value[2],
         region: e.detail.value[1],
         key: '3G2BZ-YAT3F-4CJJP-NYDUW-G5KXH-EZFT5',
@@ -98,8 +102,7 @@ Page({
           app.globalData.region = that.data.region
           app.globalData.position = [res.data.result.location.lng, res.data.result.location.lat]
 
-        }
-        else {
+        } else {
           wx.showModal({
             title: '提示',
             content: '地址获取失败',
@@ -117,7 +120,7 @@ Page({
     })
 
   },
-  directNav: function (e) {
+  directNav: function(e) {
     wx.switchTab({
       url: '../direct/direct'
     })
@@ -132,13 +135,10 @@ Page({
         content: '定位成功',
         showCancel: false
       })
-      this.setData(
-        {
-          region: app.globalData.region
-        }
-      )
-    }).catch(res=>
-    {
+      this.setData({
+        region: app.globalData.region
+      })
+    }).catch(res => {
       wx.showModal({
         title: '提示',
         content: '定位失败',
@@ -146,22 +146,21 @@ Page({
       })
     })
   },
-  onLoad: function () {
- 
+  onLoad: function() {
+
     let windowHeight = wx.getSystemInfoSync().windowHeight // 屏幕的高度
     let windowWidth = wx.getSystemInfoSync().windowWidth // 屏幕的宽度
     this.setData({
       scroll_height: windowHeight * 750 / windowWidth - (250) - 30
     })
-    
+
   },
   kf() {
     if (app.globalData.hasLogin) {
       wx.navigateTo({
         url: '/pages/chat/index',
       })
-    }
-    else {
+    } else {
       wx.showModal({
         title: '提示',
         content: '请登录',
@@ -169,7 +168,7 @@ Page({
       })
     }
   },
-  getPosition: function () {
+  getPosition: function() {
     return new Promise((resolve, reject) => {
       let app = this;
       wx.getLocation({
@@ -202,33 +201,27 @@ Page({
     console.log(e)
     if (app.globalData.hasLogin) {
       if (e.currentTarget.dataset.type === 'zymk') {
-        if (e.currentTarget.dataset.title != '更多服务')
+        if (e.currentTarget.dataset.title != '其他自营')
           wx.navigateTo({
             url: '/pages/nav/zy/zy?title=' + e.currentTarget.dataset.title
           })
         else {
-          wx.showModal({
-            title: '提示',
-            content: '暂无',
-            showCancel: false
+          wx.navigateTo({
+            url: '/pages/mkfl/index?title=' + e.currentTarget.dataset.title,//模块分类 
           })
         }
-      }
-      else if (e.currentTarget.dataset.type === 'jszy') {
+      } else if (e.currentTarget.dataset.type === 'jszy') {
         if (e.currentTarget.dataset.title != '其他服务')
           wx.navigateTo({
             url: '/pages/nav/js/js?title=' + e.currentTarget.dataset.title
           })
         else {
-          wx.showModal({
-            title: '提示',
-            content: '暂无',
-            showCancel: false
+          wx.navigateTo({
+            url: '/pages/mkfl/index?title=' + e.currentTarget.dataset.title,//模块分类 
           })
         }
       }
-    }
-    else {
+    } else {
       wx.showModal({
         title: '提示',
         content: '请登录',
@@ -236,45 +229,66 @@ Page({
       })
     }
   },
-  onShow()
-  {
+  onShow() {
     let that = this
     if (app.globalData.region[0] != '') {
-      this.setData(
-        {
-          region: app.globalData.region
-        }
-      )
-    }
-    else {
+      this.setData({
+        region: app.globalData.region
+      })
+    } else {
       app.getPosition().then(res => {
         console.log(res)
         app.globalData.region = res.region
         app.globalData.position = res.position
-        this.setData(
-          {
-            region: app.globalData.region
-          }
-        )
+        this.setData({
+          region: app.globalData.region
+        })
       })
     }
     wx.request({
       url: 'https://yddj.panzongyan.cn/wxchat/module2/gdt',
       method: 'get',
       data: {},
-      success: function (res) {
+      success: function(res) {
         if (res.statusCode === 200) {
           console.log(res.data)
           if (res.data.status === "success") {
             that.setData({
               notice: res.data.gdgg
             });
-          }
-          else {
+          } else {
             wx.showModal({
               title: '提示',
               content: res.data.message,
               showCancel: false
+            })
+          }
+        }
+      }
+    })
+    //请求轮播图
+    wx.request({
+      url: 'https://baidu.com',
+      success(res) {
+        if (res.statusCode == 200) {
+          if (res.data.status == 'success') {
+            that.setData({
+              lbt: res.data
+            })
+          }
+        }
+      }
+    })
+
+    //请求主页数据
+    wx.request({
+      url: 'https://baidu.com',
+      success(res) {
+        if (res.statusCode == 200) {
+          if (res.data.status === 'success') {
+            that.setData({
+              zymk: res.data.zymk,
+              zszy: res.data.zszy
             })
           }
         }

@@ -1,0 +1,33 @@
+/* miniprogram/pages/fwxq/index.wxss */
+.tab
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  height: 100rpx;
+  border-bottom: #eee 6rpx solid;
+}
+.active {
+  background-color: white;
+  color: #4f9dec;
+  font-weight:bold;
+}
+.text
+{
+  height: 100rpx;
+  line-height: 100rpx;
+}
+.container
+{
+  display: flex;
+  flex-direction: column;
+}
+.content
+{
+  flex:1;
+}
+.desc-img
+{
+  width: 100%;
+}

@@ -27,7 +27,7 @@ Page({
     if (options && options.index) {
       this.setData({
         currentIndex: options.index,
-        scroll_height: windowHeight * 750 / windowWidth - (110) - 30
+        scroll_height: windowHeight * 750 / windowWidth - (88)
       })
     }
   },

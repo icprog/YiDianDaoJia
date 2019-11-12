@@ -33,7 +33,7 @@ Page({
     this.setData({
       zdg: JSON.parse(options.item),
       title: options.title,
-      scroll_height: windowHeight * 750 / windowWidth - (400) - 30
+      scroll_height: windowHeight * 750 / windowWidth - (360) - 30
     })
     console.log(this.data.zdg)
     //获取关注列表

@@ -1,0 +1,17 @@
+<scroll-view scroll-y style="height: {{scroll_height}}rpx;">
+  <i-panel>
+  <i-input value="{{ xm }}" bind:change="changexm" title="姓名" autofocus placeholder="名字" />
+    <i-input value="{{ lxdh }}" bind:change="changedh" type="number" title="联系电话" placeholder="请输入手机号" />
+        <picker bindchange="bindPickerChange" value="{{index}}" range="{{types}}">
+      <view class="fb-type">
+        <view class="type-label">{{types[index]}}</view>
+        <image class="type-icon" src="../../image/down-thin.png"></image>
+      </view>
+    </picker>
+  </i-panel>
+  <view class="id-card">
+    <image bindtap="idcard" mode="aspectFit" src="{{idcardImg}}"></image>
+    <image bindtap="idcardBack" mode="aspectFit" src="{{idcardBackImg}}"></image>
+  </view>
+</scroll-view>
+<button bindtap="submit" class="fb-btn">提交</button>

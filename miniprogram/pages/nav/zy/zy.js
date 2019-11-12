@@ -4,8 +4,8 @@ const { myPay } = require('../../../utils/myPay.js')
 Page({
   data: {
     idx: 0,//select服务种类
-    xmbh: "1111",//唯一编号
-    fwxq: '<html>或者文字',//服务详情
+    xmbh: "",//唯一编号
+    fwxq: '<html></html>',//服务详情
     fwzl: [//服务种类
     ],
     title: '',
@@ -90,6 +90,21 @@ Page({
                 fwzl:res.data.data.fwzl,
                 xmbh:res.data.data.xmbh,
                 fwxq:res.data.data.fwxq
+              }
+            )
+            that.data.fwzl.push(that.data.fwzl[0])
+            that.data.fwzl.push(that.data.fwzl[0])
+            that.data.fwzl.push(that.data.fwzl[0])
+            that.data.fwzl.push(that.data.fwzl[0])
+            that.data.fwzl.push(that.data.fwzl[0])
+            that.data.fwzl.push(that.data.fwzl[0])
+            that.data.fwzl.push(that.data.fwzl[0])
+            that.data.fwzl.push(that.data.fwzl[0])
+            that.setData(
+              {
+                fwzl: that.data.fwzl,
+                xmbh: res.data.data.xmbh,
+                fwxq: res.data.data.fwxq
               }
             )
           }
@@ -259,4 +274,10 @@ Page({
       selectedIndex: this.data.selectedIndex
     })
   },
+  fwxq()
+  {
+    wx.navigateTo({
+      url: '/pages/fwxq/index',
+    })
+  }
 })

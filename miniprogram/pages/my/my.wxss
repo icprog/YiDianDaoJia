@@ -17,8 +17,8 @@
 
 .weui-grid__icon {
   padding: 10rpx;
-  width: 100rpx;
-  height: 100rpx;
+  width: 70rpx;
+  height: 70rpx;
 }
 
 .weui-grid {
@@ -46,19 +46,27 @@
 }
 
 .head_bar {
-  height: 80rpx;
-  padding-left: 30rpx;
-  padding-right: 30rpx;
-  background-color: #0080ff;
+  height: 320rpx;
   display: flex;
-  flex-direction: row;
+  justify-content: center;
+  text-align: center;
   align-items: center;
+  background-color: #0080ffd7;
+  border-bottom-left-radius: 20rpx;
+  border-bottom-right-radius: 20rpx;
 }
-
 .login_btn {
+  width: 200rpx;
+  margin-top: 10rpx;
   background-color: rgba(255, 255, 255, 0);
-  border: solid #0080ff 0px;
-  margin: 5rpx;
+  color: white;
+  font-size: 25rpx;
+}
+.login_btn_exit
+{
+  width: 200rpx;
+  margin-top: 10rpx;
+  background-color: rgba(226, 50, 50, 0.904);
   color: white;
   font-size: 25rpx;
 }

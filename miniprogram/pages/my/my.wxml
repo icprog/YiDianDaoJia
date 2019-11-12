@@ -1,19 +1,17 @@
 <view class="page">
   <view class="page__hd">
-    <view class="head_bar" style="display:flex; justify-content:space-between; ">
-      <button wx:if="{{!hasLogin}}" class="login_btn" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo">登录</button>
-      <view wx:else style="display:flex; flex-direction:row;align-items:center">
-        <image style="width:60rpx;height:60rpx;border: 3rpx ##0080ee solid;border-radius:100rpx;margin-right:5rpx" src="{{wxtx}}"></image>
-        <view style="display:flex;flex-direction:column;padding:10rpx;font-size:25rpx;color:white">
-          <text>{{wxnc}}</text>
+    <view class="head_bar">
+      <view>
+        <image style="width:150rpx;height:150rpx;border: 3rpx ##0080ee solid;border-radius:100rpx" src="{{wxtx}}"></image>
+        <view>
+          <text style="color:white">{{wxnc}}</text>
         </view>
-      </view>
-      <view style="height:100%;display:flex;flex-direction:row;align-items:center;">
-        <!-- <image style="height:100%;width: 40px;" mode="aspectFit" src="/image/UI/sz.png"></image> -->
-        <image bindtap="kf" style="height:100%;width: 40px;" mode="aspectFit" src="/image/UI/dxkf.png"></image>
+      <button wx:if="{{!hasLogin}}" class="login_btn" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo">登录</button>
+       <button wx:else class="login_btn_exit" bindtap="exit">退出</button>
       </view>
     </view>
   </view>
+
   <view class="page__bd">
     <view class="grids_block">
       <view>

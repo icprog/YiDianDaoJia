@@ -25,7 +25,7 @@
     <button bindtap="changeFan" size="mini" type="warn">取关</button>
   </view>
 </view>
-<view style="  height: 150rpx;">
+<view style="height: 120rpx;">
   <view class="weui-grid">
     <text class="weui-grid__label" style="text-align:center">{{zdg.fwcs}}</text>
     <text class="weui-grid__label">服务次数</text>
@@ -55,5 +55,5 @@
   </block>
 </scroll-view>
 <view style="position: fixed;bottom: 15rpx;width: 100%;text-align: center;">
-  <button bindtap="order" size="mini" style="background: #0080ff;color: white;border-radius: 40rpx;margin:0 auto;width: 400rpx;">预约下单</button>
+  <button bindtap="order" size="primary" style="background: #0080ff;color: white;border-radius: 40rpx;margin:0 auto;width: 400rpx;margin-bottom:20rpx">预约下单</button>
 </view>

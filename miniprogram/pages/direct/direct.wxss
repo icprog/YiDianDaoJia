@@ -18,11 +18,6 @@
   font-size: 20rpx;
 }
 
-.page__bd {
-  padding: 30rpx;
-
-}
-
 .head_bar {
   height: 80rpx;
   padding-left: 30rpx;
@@ -48,6 +43,8 @@
   justify-content:space-around;
   align-items: center;
   margin-bottom: 10rpx;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
 }
 .text-view
 {
@@ -64,7 +61,7 @@
 {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 .xm-view
 {
@@ -98,7 +95,7 @@
 
 .grids_block
 {
-  border-radius: 10rpx;
+
   background: white;
 }
 .sort_class {

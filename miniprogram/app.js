@@ -1,6 +1,6 @@
 App({
   onLaunch: function () {
-  
+    let app = this
     wx.cloud.init(
       {
         env: "yddj-rc9br"
@@ -11,7 +11,21 @@ App({
       selectedColor: '3157F0',
       backgroundColor: 'white',
       borderStyle: 'white'
-    });    
+    });
+    wx.getStorage({
+      key: 'user',
+      success: function (res) {
+        let data = JSON.parse(res.data)
+        console.log(data)
+        app.globalData.openid = data.openid
+        app.globalData.hasLogin = data.hasLogin
+        app.globalData.wxtx = data.wxtx
+        app.globalData.wxnc = data.wxnc
+      },
+      fail(res) {
+        console.log(res)
+      }
+    })
   },
   onShow: function () {
     console.log('App Show')
@@ -20,12 +34,12 @@ App({
     console.log('App Hide')
   },
   globalData: {
-    openid:"",
+    openid: "",
     hasLogin: false,
-    wxtx:"",
-    wxnc:"",
-    region:['','','选择地区'],
-    position:[0,0]
+    wxtx: "/image/nologin.png",
+    wxnc: "未登录",
+    region: ['', '', '选择地区'],
+    position: [0, 0]
   },
   getPosition: function () {
     return new Promise((resolve, reject) => {
@@ -46,11 +60,11 @@ App({
                   res.data.result.address_component.city,
                   res.data.result.address_component.district
                 ];
-                resolve({ position: [ress.longitude, ress.latitude], region: reg});
+                resolve({ position: [ress.longitude, ress.latitude], region: reg });
               }
             },
             fail(res) {
-              reject({ position: [0, 0], region: ["", "选择地区"]});
+              reject({ position: [0, 0], region: ["", "选择地区"] });
             }
           });
         }

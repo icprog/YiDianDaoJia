@@ -21,7 +21,7 @@
           <text bindtap="sort" class="{{index==idx?'_sort_class':'sort_class'}}" data-index="{{index}}">{{item}}</text>
         </block>
       </view>
-      <scroll-view scroll-y style="height: {{scroll_height}}rpx;" bindscrolltoupper="refresh">
+      <scroll-view scroll-y style="height: {{scroll_height}}rpx" bindscrolltoupper="refresh">
         <view class="container" wx:for="{{zdg}}" wx:for-item="item_zdg" wx:key="index">
           <image class="image" mode="aspectFit" src="{{item_zdg.tx}}" />
           <view class="text-view">
@@ -59,7 +59,6 @@
             </view>
           </view>
         </view>
-
       </scroll-view>
     </view>
   </view>

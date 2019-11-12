@@ -1,0 +1,15 @@
+<view class="container">
+  <view class="status-box">
+    <view bindtap="statusTap" class="status-label {{index == currentIndex ? 'active' : ''}}" wx:for-items="{{statusType}}" wx:key="{{index}}" data-index="{{index}}" data-type="{{item}}">
+      {{item.title}}
+    </view>
+  </view>
+  <view class="content">
+    <block wx:for="{{statusType}}" wx:for-item="item" wx:key="i" >
+      <view data-title="{{item.title}}" class="weui-grid" hover-class="weui-grid_active" bindtap="nav">
+        <image class="weui-grid__icon" mode="widthFix" src="{{item.img}}" />
+        <view class="weui-grid__label title">{{item.title}}</view>
+      </view>
+    </block>
+  </view>
+</view>

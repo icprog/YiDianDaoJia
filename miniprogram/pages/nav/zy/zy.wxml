@@ -2,16 +2,20 @@
 <view style="display: flex;flex-direction: column;height:100%">
   <template is="dz" data="{{item:dzxx,index:selectedIndex}}"></template>
   <view class="fwzl">
-    <scroll-view scroll-x style="height:80rpx;">
+    <scroll-view scroll-x style="height:80rpx;width:70%">
       <block wx:for="{{fwzl}}">
         <view class="{{index==idx?'_sort_class':'sort_class'}}" data-index="{{index}}" bindtap="change">
           <view style="vertical-align: middle;">{{item.xmmc}}</view>
         </view>
       </block>
     </scroll-view>
+     <view bindtap="fwxq" style="display:flex;flex-direction:row;align-items:center;justify-content:flex-end;height:80rpx;line-height:80rpx;font-size: 25rpx;">
+      <text>服务详情</text>
+      <image src="/image/UI/gdtz.png" style="width:70rpx;height:70rpx;"></image>
+    </view>
   </view>
   <view style="margin-left:30rpx;display:flex;align-items:center;justify-content:space-between;">
-    <text style="border: 3rpx red solid;margin-left:15rpx;color:red;float:left;">{{fwzl[idx].xmjg}}元/平方</text>
+    <text style="border: 3rpx red solid;margin-left:15rpx;color:red;float:left;">{{fwzl[idx].xmjg}}元/{{fwzl[idx].dw?fwzl[idx].dw:'单位'}}</text>
     <view style="margin-right:20rpx">
       <i-input-number style="float:right" value="{{ sl }}" min="1" max="20000" bindchange="handleChange" />
       <text style="float:right">数量：</text>

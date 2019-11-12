@@ -12,36 +12,48 @@
 }
 
 .fwzl {
-  white-space: nowrap; 
+  white-space: nowrap;
   margin-bottom: 20rpx;
   margin-top: 20rpx;
-
+  padding-left: 10rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .sort_class {
-  margin: 10rpx;
-  width: 160rpx;
-  height: 15rpx;
-  line-height: 15rpx;
+  height: 40rpx;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+  margin-left: 10rpx;
+  margin-right: 10rpx;
   border-radius: 30rpx;
   text-align: center;
   display: inline-block;
-  padding: 20rpx;
   font-size: 25rpx;
   background: white;
+  line-height: 40rpx;
+  align-items: center;
   border: 1rpx solid #000;
+  margin-top: 40rpx;
+  transform: translateY(-50%);
 }
 
 ._sort_class {
-  margin: 10rpx;
-  width: 160rpx;
-  height: 15rpx;
-  line-height: 15rpx;
+  height: 40rpx;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+  margin-left: 10rpx;
+  margin-right: 10rpx;
   border-radius: 30rpx;
   text-align: center;
   display: inline-block;
-  padding: 20rpx;
+  align-items: center;
   font-size: 25rpx;
+  line-height: 40rpx;
   background: rgb(184, 178, 178);
   border: 1rpx solid rgb(184, 178, 178);
+  margin-top: 40rpx;
+  transform: translateY(-50%);
 }

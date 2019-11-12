@@ -3,8 +3,8 @@ let app = getApp();
 Page({
   data: {
     idx: 0,//select服务种类
-    xmbh: "1111",//唯一编号
-    fwxq: '<html>或者文字',//服务详情
+    xmbh: "",//唯一编号
+    fwxq: '<html></html>',//服务详情
     fwzl: [//服务种类
     ],
     title: '',
@@ -276,4 +276,9 @@ Page({
       selectedIndex: this.data.selectedIndex
     })
   },
+  fwxq() {
+    wx.navigateTo({
+      url: '/pages/fwxq/index',
+    })
+  }
 })

@@ -66,7 +66,7 @@ Page({
     let windowHeight = wx.getSystemInfoSync().windowHeight // 屏幕的高度
     let windowWidth = wx.getSystemInfoSync().windowWidth // 屏幕的宽度
     this.setData({
-      scroll_height: windowHeight * 750 / windowWidth - (280) - 30
+      scroll_height: windowHeight * 750 / windowWidth - (220) - 30
     })
 
   },
