@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    richText: "<div><img class=\"desc-img\" src=\"//img.alicdn.com/imgextra/i1/66540576/O1CN01j2CKK01G7qh63QCcV_!!66540576.jpg_640x0q80_.webp\"></div><div><img class=\"desc-img\" src=\"//img.alicdn.com/imgextra/i1/66540576/O1CN01j2CKK01G7qh63QCcV_!!66540576.jpg_640x0q80_.webp\"></div><div><img class=\"desc-img\" src=\"//img.alicdn.com/imgextra/i1/66540576/O1CN01j2CKK01G7qh63QCcV_!!66540576.jpg_640x0q80_.webp\"></div><div><img class=\"desc-img\" src=\"//img.alicdn.com/imgextra/i1/66540576/O1CN01j2CKK01G7qh63QCcV_!!66540576.jpg_640x0q80_.webp\"></div><div><img class=\"desc-img\" src=\"//img.alicdn.com/imgextra/i1/66540576/O1CN01j2CKK01G7qh63QCcV_!!66540576.jpg_640x0q80_.webp\"></div><div><img class=\"desc-img\" src=\"//img.alicdn.com/imgextra/i1/66540576/O1CN01j2CKK01G7qh63QCcV_!!66540576.jpg_640x0q80_.webp\"></div>",
+    richText: "",
     is:true,
     pj: []
   },
@@ -18,28 +18,17 @@ Page({
     let pages = getCurrentPages()
     let prvPage = pages[pages.length - 2]
     let that = this
-    // this.setData(
-    //   {
-    //     richText:prvPage.data.fwxq
-    //   }
-    // )
+    this.setData(
+      {
+        richText:prvPage.data.fwxq
+      }
+    )
     let windowHeight = wx.getSystemInfoSync().windowHeight // 屏幕的高度
     let windowWidth = wx.getSystemInfoSync().windowWidth // 屏幕的宽度
     this.setData({
       scroll_height: windowHeight * 750 / windowWidth - (100) - 30
     })
-    wx.request({
-      url: '/',
-      success(res)
-      {
-        console.log(res)
-        that.setData(
-          {
-            richText: res.data.data
-          }
-        )
-      }
-    })
+
     wx.request({
       url: 'https://yddj.panzongyan.cn/wxchat/module2/mtpl',
       method: 'post',

@@ -103,7 +103,7 @@ Page({
                title: '正在提交',
              })
              wx.request({
-               url: 'https://baidu.com',
+               url: 'https://yddj.panzongyan.cn/wxchat/my/sjrz',
                method:'post',
                data:
                {
@@ -114,7 +114,31 @@ Page({
                  idcardBackImg: 'data:image/jpg;base64,' + fileManager.readFileSync(that.data.idcardBackImg, 'base64')
                },success(res)
                {
-
+                 if(res.statusCode==200)
+                 {
+                   if(res.data.status = 'success')
+                   {
+                     wx.showModal({
+                       title: '提示',
+                       content: res.data.message,
+                       showCancel: false,
+                       success()
+                       {
+                        wx.navigateBack({
+                          
+                        })
+                       }
+                     })
+                   }
+                   else
+                   {
+                     wx.showModal({
+                       title: '提示',
+                       content: res.data.message,
+                       showCancel: false
+                     })
+                   }
+                 }
                },
                complete()
                {

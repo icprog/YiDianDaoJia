@@ -7,7 +7,6 @@
 .goods-info {
   width: 100%;
   background-color: #fff;
-  margin-bottom: 60rpx;
   padding-bottom: 24rpx;
 }
 
@@ -25,13 +24,8 @@
 .goods-info .row-box .right-text {
   text-align: right;
 }
-.btn
+
+.goods-info button
 {
-  
-  margin-left:20rpx;
-  margin-right:20rpx
-}
-.btn button
-{
-  margin-bottom:15rpx;
+  margin:15rpx;
 }

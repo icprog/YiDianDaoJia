@@ -72,18 +72,7 @@ Page({
     zytext: "1.平台服务商严选入驻服务安心\n2.平台无抽成服务商服务用心\n3.平台提供交易资金担保放心\n4.平台服务商一键对比省心",
     notice: "示例消息",
     scroll_height: 0,
-    lbt: [{
-        url: "http://pic26.nipic.com/20121217/9252150_101201834000_2.jpg"
-      },
-      {
-        url: "http://pic26.nipic.com/20121217/9252150_101201834000_2.jpg"
-      },
-      {
-        url: "http://pic26.nipic.com/20121217/9252150_101201834000_2.jpg"
-      }, {
-        url: "http://pic26.nipic.com/20121217/9252150_101201834000_2.jpg"
-      }
-    ]
+    lbt: []
   },
   bindRegionChange: function(e) {
     let that = this
@@ -268,12 +257,13 @@ Page({
     })
     //请求轮播图
     wx.request({
-      url: 'https://baidu.com',
+      url: 'https://yddj.panzongyan.cn/wxchat/my/lbt',
       success(res) {
         if (res.statusCode == 200) {
           if (res.data.status == 'success') {
+            console.log(res.data)
             that.setData({
-              lbt: res.data
+              lbt: res.data.lbt
             })
           }
         }
@@ -282,8 +272,9 @@ Page({
 
     //请求主页数据
     wx.request({
-      url: 'https://baidu.com',
+      url: '',
       success(res) {
+
         if (res.statusCode == 200) {
           if (res.data.status === 'success') {
             that.setData({

@@ -92,14 +92,7 @@ Page({
                 fwxq:res.data.data.fwxq
               }
             )
-            that.data.fwzl.push(that.data.fwzl[0])
-            that.data.fwzl.push(that.data.fwzl[0])
-            that.data.fwzl.push(that.data.fwzl[0])
-            that.data.fwzl.push(that.data.fwzl[0])
-            that.data.fwzl.push(that.data.fwzl[0])
-            that.data.fwzl.push(that.data.fwzl[0])
-            that.data.fwzl.push(that.data.fwzl[0])
-            that.data.fwzl.push(that.data.fwzl[0])
+
             that.setData(
               {
                 fwzl: that.data.fwzl,

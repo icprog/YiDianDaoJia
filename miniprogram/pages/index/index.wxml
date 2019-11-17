@@ -21,7 +21,7 @@
     <view class="page__bd">
       <swiper autoplay class="lunbotu-container">
         <swiper-item style="border-radius: 20rpx;" wx:for="{{lbt}}" wx:key="{{index}}">
-          <image mode="aspectFit" style="height:250rpx;width:100%" src="{{item.url}}"></image>
+          <image mode="aspectFit" style="height:250rpx;width:100%" src="{{item}}"></image>
         </swiper-item>
       </swiper>
       <view class="weui-grids grids_block">
